@@ -1,7 +1,7 @@
 [![Build Status](https://github.com/ytdl-org/youtube-dl/workflows/CI/badge.svg)](https://github.com/ytdl-org/youtube-dl/actions?query=workflow%3ACI)
 
 
-youtube-dl - download videos from youtube.com or other video platforms
+youtube-dl - Télécharge une vidéo depuis youtube.com ou depuis une autre plateforme de vidéo
 
 - [INSTALLATION](#installation)
 - [DESCRIPTION](#description)
@@ -18,39 +18,31 @@ youtube-dl - download videos from youtube.com or other video platforms
 
 # INSTALLATION
 
-To install it right away for all UNIX users (Linux, macOS, etc.), type:
+Installer les packages youtube-dl avec pip:
 
-    sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-    sudo chmod a+rx /usr/local/bin/youtube-dl
+    pip install --upgrade youtube-dl
 
-If you do not have curl, you can alternatively use a recent wget:
+Cette commande va upgrader youtube-dl s'il est déjà installé.  
 
-    sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-    sudo chmod a+rx /usr/local/bin/youtube-dl
-
-Windows users can [download an .exe file](https://yt-dl.org/latest/youtube-dl.exe) and place it in any location on their [PATH](https://en.wikipedia.org/wiki/PATH_%28variable%29) except for `%SYSTEMROOT%\System32` (e.g. **do not** put in `C:\Windows\System32`).
-
-You can also use pip:
-
-    sudo -H pip install --upgrade youtube-dl
-    
-This command will update youtube-dl if you have already installed it. See the [pypi page](https://pypi.python.org/pypi/youtube_dl) for more information.
-
-macOS users can install youtube-dl with [Homebrew](https://brew.sh/):
+Les utilisateurs de macOS peuvent installer youtube-dl avec [Homebrew](https://brew.sh/):
 
     brew install youtube-dl
 
-Or with [MacPorts](https://www.macports.org/):
+Ou avec [MacPorts](https://www.macports.org/):
 
     sudo port install youtube-dl
 
-Alternatively, refer to the [developer instructions](#developer-instructions) for how to check out and work with the git repository. For further options, including PGP signatures, see the [youtube-dl Download Page](https://ytdl-org.github.io/youtube-dl/download.html).
-
 # DESCRIPTION
-**youtube-dl** is a command-line program to download videos from YouTube.com and a few more sites. It requires the Python interpreter, version 2.6, 2.7, or 3.2+, and it is not platform specific. It should work on your Unix box, on Windows or on macOS. It is released to the public domain, which means you can modify it, redistribute it or use it however you like.
+**youtube-dl** est un programme permettant de télécharger des vidéos depuis YouTube.com et de quelques autres sites. Il nécessite l'interpreteur python 2.6, 2.7 ou 3.2+ et ne nécessite aucune plateforme specific pour fonctionner.
 
-    youtube-dl [OPTIONS] URL [URL...]
+    youtube-dl [OPTIONS] URL ["PLAYLIST_URL" ou VIDEO_URL)]
     Ex : youtube-dl --write-info-json URL
+
+    télécharge la description (.txt), les meta data (.json), les annotation (.json), la miniature de la vidéo (.jpg) 
+    youtube-dl --write-description --write-info-json --write-annotations --write-sub --write-thumbnail URL
+
+    Télécharge les sous titres d'une vidéo sans télécharger la vidéo
+    youtube-dl --all-subs --skip-download URL_DE_LA_VIDEO
 
 # OPTIONS
     -h, --help                           Print this help text and exit
@@ -481,30 +473,27 @@ Alternatively, refer to the [developer instructions](#developer-instructions) fo
 
 # CONFIGURATION
 
-You can configure youtube-dl by placing any supported command line option to a configuration file. On Linux and macOS, the system wide configuration file is located at `/etc/youtube-dl.conf` and the user wide configuration file at `~/.config/youtube-dl/config`. On Windows, the user wide configuration file locations are `%APPDATA%\youtube-dl\config.txt` or `C:\Users\<user name>\youtube-dl.conf`. Note that by default configuration file may not exist so you may need to create it yourself.
+Il est possible de configurer youtube-dl en plaçant n'importe quelle ligne de commande dans le fichier de configuration. Sur Linux ou macOS, l'emplacement du fichier de configuration est situé ici : `/etc/youtube-dl.conf` et le fichier de configuration utilisateur est situé ici : `~/.config/youtube-dl/config`. Sur Windows, le fichier de configuration est situé ici : `%APPDATA%\youtube-dl\config.txt` ou `C:\Users\<user name>\youtube-dl.conf`. Attention, par défaut le fichier de configuration n'existe pas. Il sera nécessaire de le créer par vous-même.
 
-For example, with the following configuration file youtube-dl will always extract the audio, not copy the mtime, use a proxy and save all videos under `Movies` directory in your home directory:
+Par exemplen avec la configuration suivante, youtube-dl extraira toujours l'audio de la vidéo, sans copier le mtime, et utilisera un porxy et sauvegardera toutes les vidéos sous le dossier `Movies`:
 ```
-# Lines starting with # are comments
-
-# Always extract audio
+# Toujours extraire l'audio
 -x
 
-# Do not copy the mtime
+# Ne pas copier le mtime
 --no-mtime
 
-# Use this proxy
+# Utiliser un proxy
 --proxy 127.0.0.1:3128
 
-# Save all videos under Movies directory in your home directory
+# Sauvegarder les vidéos téléchargés sous le dossier Movies
 -o ~/Movies/%(title)s.%(ext)s
 ```
+Notez que les options du fichier de configuration sont exactement les mêmes options, c'est-à-dire les mêmes options utilisés dans les appels de ligne de commande réguliers, **il ne doit donc pas y avoir d'espace blanc** après `-` ou `--`, ex `-o` ou `--proxy` mais pas `- o` ou `-- proxy`.
 
-Note that options in configuration file are just the same options aka switches used in regular command line calls thus there **must be no whitespace** after `-` or `--`, e.g. `-o` or `--proxy` but not `- o` or `-- proxy`.
+Vous pouvez utiliser `--ignore-config` si vous voulez désactiver le fichier de configuration pour un téléchargement particulier.
 
-You can use `--ignore-config` if you want to disable the configuration file for a particular youtube-dl run.
-
-You can also use `--config-location` if you want to use custom configuration file for a particular youtube-dl run.
+Vous pouvez aussi utiliser `--config-location` si vous voulez utiliser un fichier de configuration particulier pour un téléchargement particulier 
 
 ### Authentication with `.netrc` file
 
