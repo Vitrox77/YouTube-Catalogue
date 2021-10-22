@@ -33,7 +33,7 @@ Ou avec [MacPorts](https://www.macports.org/):
     sudo port install youtube-dl
 
 # DESCRIPTION
-**youtube-dl** est un programme permettant de télécharger des vidéos depuis YouTube.com et de quelques autres sites. Il nécessite l'interpreteur python 2.6, 2.7 ou 3.2+ et ne nécessite aucune plateforme specific pour fonctionner.
+**youtube-dl** est un programme permettant de télécharger des vidéos depuis YouTube.com et de quelques autres sites. Il nécessite l'interpreteur python 2.6, 2.7 ou 3.2+ et ne nécessite aucune plateforme specific pour fonctionner. Visitez : [Korben](https://korben.info/comment-utiliser-et-maitriser-youtube-dl-pour-telecharger-des-videos-comme-un-champion.html) pour plus d'informations.
 
 youtube-dl [OPTIONS] URL ["PLAYLIST_URL" ou VIDEO_URL)]
 
