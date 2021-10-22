@@ -35,13 +35,13 @@ Ou avec [MacPorts](https://www.macports.org/):
 # DESCRIPTION
 **youtube-dl** est un programme permettant de télécharger des vidéos depuis YouTube.com et de quelques autres sites. Il nécessite l'interpreteur python 2.6, 2.7 ou 3.2+ et ne nécessite aucune plateforme specific pour fonctionner.
 
-    youtube-dl [OPTIONS] URL ["PLAYLIST_URL" ou VIDEO_URL)]
+youtube-dl [OPTIONS] URL ["PLAYLIST_URL" ou VIDEO_URL)]
     Ex : youtube-dl --write-info-json URL
 
-    télécharge la description (.txt), les meta data (.json), les annotation (.json), la miniature de la vidéo (.jpg) 
+télécharge la description (.txt), les meta data (.json), les annotation (.json), la miniature de la vidéo (.jpg) 
     youtube-dl --write-description --write-info-json --write-annotations --write-sub --write-thumbnail URL
 
-    Télécharge les sous titres d'une vidéo sans télécharger la vidéo
+Télécharge les sous titres d'une vidéo sans télécharger la vidéo
     youtube-dl --all-subs --skip-download URL_DE_LA_VIDEO
 
 # OPTIONS
