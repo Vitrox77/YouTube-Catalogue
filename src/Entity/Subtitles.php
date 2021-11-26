@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\SubtitlesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity(repositoryClass=SubtitlesRepository::class)
+ * @ApiResource
  */
 class Subtitles
 {
