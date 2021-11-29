@@ -11,14 +11,11 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
+    Ici la liste des catégories:
     <ul>
-        COUCOU C'EST LE PREMIER CONTROLLER LOL
-        {% for video in all_videos %}
-            {{ video.nb_likes }}
+        {% for categorie in all_categories %}
+            <li>{{ categorie.name }}</li>
         {% endfor %}
-        <li>Your controller at <code><a href="{{ 'C:/Users/Proprietaire/Documents/E4FI/Projet_fin_annee_YT/YouTube-Catalogue/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Proprietaire/Documents/E4FI/Projet_fin_annee_YT/YouTube-Catalogue/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
     </ul>
 </div>
 {% endblock %}
