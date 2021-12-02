@@ -31,6 +31,11 @@ class Tags
      */
     private $video;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isTagPerso;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
@@ -73,6 +78,18 @@ class Tags
     public function removeVideo(Video $video): self
     {
         $this->video->removeElement($video);
+
+        return $this;
+    }
+
+    public function getIsTagPerso(): ?bool
+    {
+        return $this->isTagPerso;
+    }
+
+    public function setIsTagPerso(bool $isTagPerso): self
+    {
+        $this->isTagPerso = $isTagPerso;
 
         return $this;
     }

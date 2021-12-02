@@ -78,6 +78,11 @@ class Video
      */
     private $tags;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $download_date;
+
     public function __construct()
     {
         $this->subtitles = new ArrayCollection();
@@ -255,6 +260,18 @@ class Video
         if ($this->tags->removeElement($tag)) {
             $tag->removeVideo($this);
         }
+
+        return $this;
+    }
+
+    public function getDownloadDate(): ?\DateTimeInterface
+    {
+        return $this->download_date;
+    }
+
+    public function setDownloadDate(\DateTimeInterface $download_date): self
+    {
+        $this->download_date = $download_date;
 
         return $this;
     }
