@@ -28,7 +28,9 @@
             <li>{{ categorie.name }}</li>
         {% endfor %}
     </ul>
-    <h1 id="h01"></h1>
+        {% for each_age in age %}
+            <li>{{ each_age }}</li>
+        {% endfor %}
 </div>
 {% endblock %}
 
