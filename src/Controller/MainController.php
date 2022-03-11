@@ -17,7 +17,7 @@ class MainController extends AbstractController
     {
         $array_age = ['20','10', '12'];
         $categories = $categoryRepository->findAll();//je stocke toutes mes videos dans une variable
-        return $this->render('main/index.html.twig', [
+        return $this->render('menu/index.html.twig', [
             'categories' => $categories,
             'age' => $array_age,
             'controller_name' => 'MainController',
