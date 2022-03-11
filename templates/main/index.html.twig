@@ -2,6 +2,17 @@
 
 {% block title %}Hello MainController!{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('menu') }}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('menu') }}
+{% endblock %}
+
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -17,5 +28,9 @@
             <li>{{ categorie.name }}</li>
         {% endfor %}
     </ul>
+    <h1 id="h01"></h1>
 </div>
 {% endblock %}
+
+
+
