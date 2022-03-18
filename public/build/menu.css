@@ -1,1 +1,19 @@
+@import "@fontsource/roboto-condensed";
+body {
+    background-color: rgb(32, 33, 49);
+    font-family: "Roboto Condensed", sans-serif;
+}
 
+.input-center {
+    margin-top: 20%;
+}
+
+.border-radius-input {
+    border-radius: 27.5rem 0 0 27.5rem !important;
+    margin: 0 !important;
+}
+
+.border-radius-button {
+    border-radius: 0 27.5rem 27.5rem 0 !important;
+    margin: 0 !important;
+}
