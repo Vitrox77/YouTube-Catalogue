@@ -12,7 +12,10 @@ class UniqueUrlType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('unique_link', UrlType::class)
+            ->add('unique_link', UrlType::class,[
+                'required' => true,
+                'label' => 'Lien d\'une vidéo Youtube'
+            ])
         ;
     }
 
