@@ -32,8 +32,8 @@
                         <p class="h3">--------- OR ---------</p>
 
                         {{ form_start(CSVform) }}
-                            <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
-                            {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile' ,'id': 'inputfile'} }) }}
+                            <label for="import_CSV" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
+                            {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile'}}) }}
                             {{ form_widget(CSVform.button, {'attr': {'class': 'btn btn-danger modal-boutton-CSV'}}) }}
                         {{ form_end(CSVform) }}
 
