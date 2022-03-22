@@ -10,6 +10,14 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 require('bootstrap');
 const $ = require('jquery');
+
+
+
+var myModal = document.getElementById('myModal');
+
+myModal.addEventListener('shown.bs.modal', function () {
+});

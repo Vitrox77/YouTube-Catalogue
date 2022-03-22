@@ -1,0 +1,38 @@
+.input-center {
+    margin-top: 20%;
+}
+
+.center{
+    margin: auto;
+    width: 50%;
+}
+.border-radius-input {
+    border-radius: 27.5rem 0 0 27.5rem !important;
+    margin: 0 !important;
+}
+
+.border-radius-button {
+    border-radius: 0 27.5rem 27.5rem 0 !important;
+    margin: 0 !important;
+}
+/*Modal components*/
+
+.modal-container-border{
+    border: groove black;
+    border-radius: 30px;
+}
+
+.modal-boutton-CSV{
+    border-radius: 13px;
+}
+
+.modal-rounded{
+    border-radius: 20px !important;
+}
+
+.modal-center{
+    margin: 16.75rem auto;
+}
+.csv-icon{
+    font-family: Helvetica, Arial, sans-serif;
+}

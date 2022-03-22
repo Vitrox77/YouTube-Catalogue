@@ -16,19 +16,16 @@
 {% block body %}
 
 <!-- Modal -->
-    <div class="modal fade " id="importSCVModal" tabindex="-1" aria-labelledby="importSCVModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="importSCVModal" tabindex="-1" aria-labelledby="importSCVModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-center">
             <div class="modal-content modal-rounded p-2">
                 <div class="modal-body">
                     <div class="modal-container-border text-center">
                         <p>Drag your CSV File here</p>
-                        <i class="bi bi-filetype-csv"></i>
+                        <i class="h1 bi bi-filetype-csv"></i>
                         <p class="h3">--------- OR ---------</p>
                         <p><button class="btn btn-danger modal-boutton-CSV">Browse Files</button></p>
                     </div>
-                </div>
-                <div class="text-center">
-                    <p class="text-danger"><u>Import via URL</u></p>
                 </div>
             </div>
         </div>
@@ -36,37 +33,20 @@
 
 <div class="container input-center">
     <div class="center">
-            <div class="input-group mb-3">
-                <input class="form-control border-radius-input" onkeyup="url_video()" type="text" name="search" placeholder="Saisir une URL">
-                <input class="btn btn-danger border-radius-button" type="button" value="Download">
-            </div>
+        <div class="input-group mb-3">
+            <input class="form-control border-radius-input" onkeyup="url_video()" type="text" name="search" placeholder="Saisir une URL">
+            <input class="btn btn-danger border-radius-button" type="button" value="Download">
+        </div>
     </div>
-
     <div class="download_video text-center">
         <a class="text-danger" type="button"data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Importer un CSV</u></a>
     </div>
-    
-    
-
 </div>
-<script>
-var myModal = document.getElementById('importSCVModal')
 
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
-</script>
 {% endblock %}
 
 {% block scripts %}
 
-<script>
-var myModal = document.getElementById('myModal')
-
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
-</script>
 {% endblock %}
 
 
