@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -12,10 +13,8 @@ class UniqueUrlType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('unique_link', UrlType::class,[
-                'required' => true,
-                'label' => 'Lien d\'une vidéo Youtube'
-            ])
+            ->add('unique_link', UrlType::class)
+            ->add('button', ButtonType::class)
         ;
     }
 
