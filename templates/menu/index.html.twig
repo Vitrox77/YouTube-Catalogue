@@ -1,22 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('menu') }}
-
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('menu') }}
-{% endblock %}
+{% block title %}Insertion des vidéos!{% endblock %}
 
 {% block body %}
-
-
-
 
 <!-- Modal -->
     <div class="modal fade" id="importSCVModal" tabindex="-1" aria-labelledby="importSCVModalLabel" aria-hidden="true">
@@ -32,7 +18,7 @@
                         <p class="h3">--------- OR ---------</p>
 
                         {{ form_start(CSVform) }}
-                            <label for="import_CSV" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
+                            <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
                             {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile'}}) }}
                             {{ form_widget(CSVform.button, {'attr': {'class': 'btn btn-danger modal-boutton-CSV'}}) }}
                         {{ form_end(CSVform) }}
@@ -61,11 +47,22 @@
         </div>
     {{ form_end(URLform) }}
 
+    {% if videoTitle is defined %}
+    <ul>
+    {% for title in videoTitle %}
+        <li class="text-light">{{ title }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
 {% endblock %}
 
-{% block scripts %}
-
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('menu') }}
 {% endblock %}
 
-
-
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('menu') }}
+{% endblock %}
