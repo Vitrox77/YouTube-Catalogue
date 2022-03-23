@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImportCSVType extends AbstractType
@@ -16,7 +17,7 @@ class ImportCSVType extends AbstractType
         $builder
         ->add('CSV_file', FileType::class, [
             'label' => 'Brochure (CSV file)',
-
+            
             // unmapped means that this field is not associated to any entity property
             'mapped' => false,
 
@@ -30,14 +31,15 @@ class ImportCSVType extends AbstractType
                 new File([
                     'maxSize' => '1024k',
                     'mimeTypes' => [
-                        'text/csv',
-                        'application/csv',
+                        "text/plain", 
+                        "text/csv", 
+                        "application/octet-stream"
                     ],
                     'mimeTypesMessage' => 'Please upload a valid CSV document',
                 ])
             ],
         ])
-        ->add('button', ButtonType::class);
+        ->add('button', SubmitType::class);
         ;
     }
 

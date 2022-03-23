@@ -36,15 +36,15 @@ class UploaderRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Uploader
+    
+    public function findOneOrNullByYtId($ytId): ?Uploader
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('u.channel_id = :val')
+            ->setParameter('val', $ytId)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

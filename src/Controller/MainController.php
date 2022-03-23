@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
+use App\Entity\Uploader;
+use App\Entity\Video;
 use App\Form\ImportCSVType;
 use App\Form\UniqueUrlType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,16 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\CategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\CallApiService;
+use DateTime;
+use Doctrine\Persistence\ManagerRegistry;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/main", name="app_main")
-     * Je mets la variable $categoryRepository en param pour pouvoir faire des requetes sur les videos
      */
-    public function index(CategoriesRepository $categoryRepository, Request $request): Response
+    public function index(Request $request, CallApiService $callApiService, ManagerRegistry $doctrine): Response
     {
         // https://stackoverflow.com/questions/31878323/add-data-when-running-symfony-migrations
+
+        $entityManager = $doctrine->getManager();
 
         $URLform = $this->createForm(UniqueUrlType::class);
         $CSVform = $this->createForm(ImportCSVType::class);
@@ -29,11 +35,92 @@ class MainController extends AbstractController
         
         if ($URLform->isSubmitted() && $URLform->isValid()) {
             //todo appeler l'api avec l'url donné
-            return $this->redirectToRoute('app_main');
+            $data = $URLform->getData();
+            $videoId = substr($data['unique_link'], -11);
+            //toDo asynchrone
+            $json = $callApiService->getVideoJson($videoId);
+
+            //toDo enregistrer en base les infos
+            $newVideo = new Video();
+            
+            /* ************************ GESTION DE LA CATEGORIE ****************************** */
+            $category = $json['result']['categories'][0];
+            $categoryRepository = $doctrine->getRepository(Categories::class);
+            $searchedCategory = $categoryRepository->findOneOrNullByName($category);
+            //si la catégorie n'existe pas, on la créée
+            if($searchedCategory == NULL){
+                $newCategory = new Categories();
+                $newCategory->setName($category);
+                $entityManager->persist($newCategory);
+                $entityManager->flush();
+                $finalCategory = $categoryRepository->findOneBy([
+                    'name' => $json['result']['categories'][0]
+                ]);
+                $newVideo->setUploader($finalCategory);
+            }else{
+                $newVideo->setCategory($searchedCategory);
+            }
+            /* ******************************************************************************** */
+
+            /* ************************* GESTION DE L'UPLOADER ******************************** */
+            $uploader_id = $json['result']['uploader_id'];
+            $uploaderRepository = $doctrine->getRepository(Uploader::class);
+            $searchedUploader = $uploaderRepository->findOneOrNullByYtId($uploader_id);
+            //si l'uploader n'existe pas, on le crée
+            if($searchedUploader == NULL){
+                $newUploader = new Uploader();
+                $newUploader->setChannelId($uploader_id);
+                $newUploader->setName($json['result']['channel']);
+                $entityManager->persist($newUploader);
+                $entityManager->flush();
+                $finalUploader = $uploaderRepository->findOneBy([
+                    'name' => $json['result']['channel'],
+                    'channel_id' => $uploader_id
+                ]);
+                $newVideo->setUploader($finalUploader);
+            }else{
+                $newVideo->setUploader($searchedUploader);
+            }
+            /* ******************************************************************************** */
+
+            $newVideo->setTitle($json['result']['title']);//title
+            $newVideo->setUrl($json['result']['id']);//id de la video
+            $newVideo->setThumbnail($json['result']['thumbnail']);//url de la thumbnail (todo save dans le serv et mettre le chemin)
+            $newVideo->setUploadDate(new DateTime($json['result']['upload_date']));//upload date
+            $newVideo->setDescription($json['result']['description']);
+            $newVideo->setDuration($json['result']['duration']);
+            $newVideo->setDownloadDate(new DateTime('now'));
+            //j'envoi en bdd
+            $entityManager->persist($newVideo);
+            $entityManager->flush();
+
+            return $this->render('menu/index.html.twig', [
+                'controller_name' => 'MenuController',
+                'CSVform' => $CSVform->createView(),
+                'URLform' => $URLform->createView(),
+                'videoData' => $json
+            ]);
         }
 
         if ($CSVform->isSubmitted() && $CSVform->isValid()) {
-            //todo lire le csv
+            $file = $CSVform->get('CSV_file')->getData();
+            $extension = $file->getMimeType();
+            var_dump($extension);
+            
+            //Open the file
+            if(($handle = fopen($file->getPathName(), "r")) !== false){
+                //Read and process the lines
+                while (($data = fgetcsv($handle)) !== false) {
+                    // Do the processing: Map line to entity, validate if needed
+                    $videoId = substr($data[0], -11);;
+                    //appel de l'api //toDo asynchrone
+                    $json = $callApiService->getVideoJson($videoId);
+                    var_dump($json);
+                }
+                //Close the file
+                fclose($handle);
+            }
+            
             return $this->redirectToRoute('app_main');
         }
 
@@ -41,17 +128,6 @@ class MainController extends AbstractController
             'controller_name' => 'MenuController',
             'CSVform' => $CSVform->createView(),
             'URLform' => $URLform->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/apiTest", name="apiTest")
-     * Je teste un appel evrs une api
-     */
-    public function getJsonInfos(CallApiService $callApiService) :Response{
-        $videoId = 'jjs27jXL0Zs';
-        return $this->render('menu/testApi.html.twig', [
-            'data' => $callApiService->getVideoJson($videoId),
         ]);
     }
 }
