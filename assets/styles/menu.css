@@ -1,0 +1,61 @@
+.input-center {
+    margin-top: 20%;
+}
+
+.center{
+    margin: auto;
+    width: 50%;
+}
+.border-radius-input {
+    border-radius: 27.5rem 0 0 27.5rem !important;
+    margin: 0 !important;
+}
+
+.border-radius-button {
+    border-radius: 0 27.5rem 27.5rem 0 !important;
+    margin: 0 !important;
+}
+
+/*Modal components*/
+
+.modal-container-border{
+    border: groove black;
+    border-radius: 30px;
+}
+
+.modal-btn-CSV{
+    border-radius: 13px;
+}
+
+.modal-rounded{
+    border-radius: 20px !important;
+}
+
+.modal-center{
+    margin: 16.75rem auto;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+
+}
+
+
+
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}

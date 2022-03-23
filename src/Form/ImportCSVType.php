@@ -16,8 +16,6 @@ class ImportCSVType extends AbstractType
     {
         $builder
         ->add('CSV_file', FileType::class, [
-            'label' => 'Brochure (CSV file)',
-            
             // unmapped means that this field is not associated to any entity property
             'mapped' => false,
 
