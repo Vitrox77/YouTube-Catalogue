@@ -54,3 +54,4 @@ composer.lock
 
 # Samples video in local
 /public/samples/
+/public/build/
