@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -45,11 +46,13 @@ class FilterType extends AbstractType
                 'required' => false,
             ])
             ->add('min_uploadDate', DateType::class, [
+                'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
             ])
             ->add('max_uploadDate', DateType::class, [
+                'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'js-datepicker'],
@@ -63,23 +66,21 @@ class FilterType extends AbstractType
                 'required' => false,
             ])
             ->add('keywords', TextType::class, [
+                'required' => false,
                 'label' => 'Keywords',
                 'required' => false,
             ])
             ->add('category', EntityType::class, [
+                'required' => false,
                 'class' => Categories::class,
                 'choice_label' => 'name',
-
             ])
-            ->add('tags', TextType::class, [
-                'label' => 'Tags',
-                'required' => false,
-            ])
+            //toDo 
             ->add('wantSave', CheckboxType::class, [
-                'label' => 'Save filters',
                 'required' => false,
+                'label' => 'Save filters',
             ])
-            ->add('button', ButtonType::class, [
+            ->add('button', SubmitType::class, [
                 'label' => 'Search',
                 'attr' => ['class' => 'btn btn-primary'],
             ])
@@ -90,7 +91,6 @@ class FilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Filters::class,
         ]);
     }
 }
