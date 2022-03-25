@@ -27,16 +27,6 @@ class Statistics
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nb_dislikes;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $nb_coms;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
     private $nb_views;
 
     /**
@@ -55,6 +45,11 @@ class Statistics
      */
     private $video;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $duration;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -68,30 +63,6 @@ class Statistics
     public function setNbLikes(?int $nb_likes): self
     {
         $this->nb_likes = $nb_likes;
-
-        return $this;
-    }
-
-    public function getNbDislikes(): ?int
-    {
-        return $this->nb_dislikes;
-    }
-
-    public function setNbDislikes(?int $nb_dislikes): self
-    {
-        $this->nb_dislikes = $nb_dislikes;
-
-        return $this;
-    }
-
-    public function getNbComs(): ?int
-    {
-        return $this->nb_coms;
-    }
-
-    public function setNbComs(?int $nb_coms): self
-    {
-        $this->nb_coms = $nb_coms;
 
         return $this;
     }
@@ -140,6 +111,18 @@ class Statistics
     public function setVideo(Video $video): self
     {
         $this->video = $video;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }

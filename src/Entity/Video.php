@@ -37,19 +37,9 @@ class Video
     private $thumbnail;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $upload_date;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $duration;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="video")
@@ -130,18 +120,6 @@ class Video
         return $this;
     }
 
-    public function getUploadDate(): ?\DateTimeInterface
-    {
-        return $this->upload_date;
-    }
-
-    public function setUploadDate(\DateTimeInterface $upload_date): self
-    {
-        $this->upload_date = $upload_date;
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -150,18 +128,6 @@ class Video
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }

@@ -3,8 +3,22 @@
 {% block title %}Page de test de recherche!{% endblock %}
 
 {% block body %}
-
+<div class="row">
     {{ form_start(filterForm)  }}
-        <div class="text-light">{{ form_widget(filterForm) }}</div>
+        <div class="text-light">{{ form_row(filterForm.min_likes) }}</div>
+        <div class="text-light">{{ form_row(filterForm.max_likes) }}</div>
+        <div class="text-light">{{ form_row(filterForm.min_views) }}</div>
+        <div class="text-light">{{ form_row(filterForm.max_views) }}</div>
+        <div class="text-light">{{ form_row(filterForm.min_duration) }}</div>
+        <div class="text-light">{{ form_row(filterForm.max_duration) }}</div>
+        <div class="text-light">{{ form_row(filterForm.min_uploadDate) }}</div>
+        <div class="text-light">{{ form_row(filterForm.max_uploadDate) }}</div>
+        <div class="text-light">{{ form_row(filterForm.has_subtitles) }}</div>
+        <div class="text-light">{{ form_row(filterForm.has_ageLimit) }}</div>
+        <div class="text-light">{{ form_row(filterForm.keywords) }}</div>
+        <div class="text-light">{{ form_row(filterForm.category) }}</div>
+        <div class="text-light">{{ form_row(filterForm.wantSave) }}</div>
+        <div class="text-light">{{ form_row(filterForm.tags) }}</div>
     {{ form_end(filterForm) }}
+</div>
 {% endblock %}

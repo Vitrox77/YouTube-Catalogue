@@ -39,10 +39,15 @@ class SearchController extends AbstractController
             //je recupere les données du formulaire
             $data = $filterForm->getData();
 
+            //si la checkbox wantSave est cochée on enregistre en bdd
+            
+            //sinon on fait simplement la recherche des videos selon les filtres
+
 
             //retourne la vue avec les données
             return $this->render('search/test.html.twig', [
                 'filterForm' => $filterForm->createView(),
+                'filters' => $filters,
                 'data' => $data,
             ]);
         }
@@ -50,6 +55,7 @@ class SearchController extends AbstractController
 
         return $this->render('search/test.html.twig', [
             'filterForm' => $filterForm->createView(),
+            'filters' => $filters,
         ]);
     }
 }
