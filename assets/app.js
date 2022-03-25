@@ -15,27 +15,23 @@ import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 require('bootstrap');
 const $ = require('jquery');
 
-var myModal = document.getElementById('myModal');
-myModal.addEventListener('shown.bs.modal', function () {
-});
 
-var inputs = document.querySelectorAll( '.inputfile' );
-Array.prototype.forEach.call( inputs, function( input )
-{
-	var label	 = input.nextElementSibling,
-		labelVal = label.innerHTML;
 
-	input.addEventListener( 'change', function( e )
-	{
-		var fileName = '';
-		if( this.files && this.files.length > 1 )
-			fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
-		else
-			fileName = e.target.value.split( '\\' ).pop();
-
-		if( fileName )
-			label.querySelector( 'span' ).innerHTML = fileName;
-		else
-			label.innerHTML = labelVal;
+$(document).ready(function() {
+	$('#import_csv_CSV_file').on('change', function() {
+		//get the file name
+		var fileName = $(this).val();
+		fileName = $(this).val().split('/').pop().split('\\').pop();
+		//replace the "Choose a file" label
+		$('.modal-btn-CSV').html(fileName);
+		//change button class
+		$('#logo-csv-post-submit').removeClass('logo-csv-post-submit');
+		$('#to_replace').html('<div class="mb-4"> Le fichier a été uploadé ! </div>');
+		$('#post-submit-div').removeClass('modal-post-submit-hidden');
+		
 	});
 });
+
+
+
+

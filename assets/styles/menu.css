@@ -19,18 +19,35 @@
 .modal-container-border {
     border: groove black;
     border-radius: 30px;
+    min-height: 12rem;
 }
 
 .modal-btn-CSV {
     border-radius: 13px;
+    margin-bottom: 1rem;
 }
+
+
 
 .modal-rounded {
     border-radius: 20px !important;
+    min-height: 12rem;
 }
 
 .modal-center {
     margin: 16.75rem auto;
+}
+
+.modal-post-submit-hidden{
+    display: none;
+}
+
+.modal-post-submit{
+    margin-top: 3rem;
+}
+
+.logo-csv-post-submit{
+    display: none;
 }
 
 .inputfile {
@@ -48,7 +65,6 @@
     color: white;
     display: inline-block;
     cursor: pointer;
-    /* "hand" cursor */
 }
 
 .inputfile:focus+label {

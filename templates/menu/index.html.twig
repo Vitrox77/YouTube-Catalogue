@@ -9,19 +9,20 @@
         <div class="modal-dialog modal-center">
             <div class="modal-content modal-rounded p-2">
                 <div class="modal-body">
-                    <div class="modal-container-border text-center">
-                        
-
-
-                        <p>Drag your CSV File here</p>
-                        <i class="h1 bi bi-filetype-csv"></i>
-                        <p class="h3">--------- OR ---------</p>
-
-                        {{ form_start(CSVform) }}
-                            <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
-                            {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile'}}) }}
-                            {{ form_widget(CSVform.button, {'attr': {'class': 'btn btn-danger modal-boutton-CSV'}}) }}
-                        {{ form_end(CSVform) }}
+                    <div class="modal-container-border text-center">      
+                        <div id="to_replace">
+                            <p>Drag your CSV File here</p>
+                            <i class="h1 bi bi-filetype-csv"></i>
+                            <p class="h3">--------- OR ---------</p>
+                        </div>
+                            {{ form_start(CSVform) }}
+                                <i id="logo-csv-post-submit" class="pt-3 h1 bi bi-filetype-csv logo-csv-post-submit"></i>
+                                <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
+                                <div class="modal-post-submit modal-post-submit-hidden" id="post-submit-div">
+                                    {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile'}}) }}
+                                    {{ form_widget(CSVform.button, {'attr': {'class': 'btn btn-danger modal-btn-hidden'}}) }}
+                                </div>
+                            {{ form_end(CSVform) }}
 
                     </div>
                 </div>
