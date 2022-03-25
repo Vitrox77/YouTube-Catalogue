@@ -1,0 +1,58 @@
+body{
+    font-family: Montserrat;
+    font-style: normal;
+}
+
+.container-main{
+    background-color: white;
+    padding: 2%;
+    width: 80%;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+h3{
+    font-style: normal!important;
+    letter-spacing: 3px;
+}
+
+.under_title{
+    width: 70px;
+    height: 2px;
+    background-color: #EE4145;
+    margin-top: -8px;
+}
+
+.container-input{
+    margin-top: 2%;
+    /*border: solid red 1px;*/
+}
+
+.container-input .row{
+    margin-bottom: 2.5%;
+}
+
+.double-input {
+    display: flex;
+}
+
+.inter-input{
+    margin: 3%;
+}
+
+.form-check-input{
+    border: solid #ced4da 1px;
+    padding: 2%;
+    width: 12%!important;
+    height: 25px;
+}
+
+.form-check-input:active, .form-check-input:checked{
+    background-color: red;
+    border: solid #EE4145;
+}
+
+.button{
+    width: 20%;
+    margin-top: 1%;
+}
