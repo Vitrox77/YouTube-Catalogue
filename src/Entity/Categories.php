@@ -31,9 +31,15 @@ class Categories
      */
     private $video;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Filters::class, mappedBy="category")
+     */
+    private $filters;
+
     public function __construct()
     {
         $this->video = new ArrayCollection();
+        $this->filters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -77,6 +83,41 @@ class Categories
             // set the owning side to null (unless already changed)
             if ($videoId->getCategory() === $this) {
                 $videoId->setCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection<int, Filters>
+     */
+    public function getFilters(): Collection
+    {
+        return $this->filters;
+    }
+
+    public function addFilter(Filters $filter): self
+    {
+        if (!$this->filters->contains($filter)) {
+            $this->filters[] = $filter;
+            $filter->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilter(Filters $filter): self
+    {
+        if ($this->filters->removeElement($filter)) {
+            // set the owning side to null (unless already changed)
+            if ($filter->getCategory() === $this) {
+                $filter->setCategory(null);
             }
         }
 

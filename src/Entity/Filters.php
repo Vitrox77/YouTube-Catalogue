@@ -22,11 +22,6 @@ class Filters
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categories::class)
-     */
-    private $categoy;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $min_likes;
@@ -96,6 +91,11 @@ class Filters
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="filters")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -104,18 +104,6 @@ class Filters
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategoy(): ?Categories
-    {
-        return $this->categoy;
-    }
-
-    public function setCategoy(?Categories $categoy): self
-    {
-        $this->categoy = $categoy;
-
-        return $this;
     }
 
     public function getMinLikes(): ?int
@@ -297,4 +285,17 @@ class Filters
 
         return $this;
     }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 }

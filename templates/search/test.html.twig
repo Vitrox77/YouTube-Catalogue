@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de test de recherche!{% endblock %}
+
+{% block body %}
+
+    {{ form_start(filterForm)  }}
+        <div class="text-light">{{ form_widget(filterForm) }}</div>
+    {{ form_end(filterForm) }}
+{% endblock %}
