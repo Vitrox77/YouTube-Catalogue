@@ -26,7 +26,7 @@ $(document).ready(function() {
 		$('.modal-btn-CSV').html(fileName);
 		//change button class
 		$('#logo-csv-post-submit').removeClass('logo-csv-post-submit');
-		$('#to_replace').html('<div class="mb-4"> Le fichier a été uploadé ! </div>');
+		$('#to_replace').html('<div class="mb-4"> This file has been uploaded ! </div>');
 		$('#post-submit-div').removeClass('modal-post-submit-hidden');
 		
 	});

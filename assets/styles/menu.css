@@ -27,8 +27,6 @@
     margin-bottom: 1rem;
 }
 
-
-
 .modal-rounded {
     border-radius: 20px !important;
     min-height: 12rem;
@@ -43,7 +41,7 @@
 }
 
 .modal-post-submit{
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .logo-csv-post-submit{

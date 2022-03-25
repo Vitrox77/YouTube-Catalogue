@@ -20,7 +20,9 @@
                                 <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Choose a file</label>
                                 <div class="modal-post-submit modal-post-submit-hidden" id="post-submit-div">
                                     {{ form_widget(CSVform.CSV_file, {'attr': {'class': 'inputfile'}}) }}
-                                    {{ form_widget(CSVform.button, {'attr': {'class': 'btn btn-danger modal-btn-hidden'}}) }}
+
+                                    {{ form_widget(CSVform.reset) }}
+                                    {{ form_widget(CSVform.button) }}
                                 </div>
                             {{ form_end(CSVform) }}
 
@@ -43,7 +45,7 @@
                 </div>
             </div>
             <div class="download_video text-center">
-                <a class="text-danger" type="button"data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Importer un CSV</u></a>
+                <a class="text-danger" type="button"data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Import CSV file</u></a>
             </div>
         </div>
     {{ form_end(URLform) }}
