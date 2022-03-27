@@ -9,13 +9,18 @@
         <div class="modal-dialog modal-center">
             <div class="modal-content modal-rounded p-2">
                 <div class="modal-body">
-                    <div class="modal-container-border text-center">      
+                    <div class="modal-container-border text-center">    
+                    <div id="dropzone" style="border: 2px dashed black; background: limegreen; padding: 25px; margin: 25px 0; display: none; position">
+                        🎯 Drop files here!
+                    </div>  
                         <div id="before-submit-div" name="before-submit-div" >
                             <p>Drag your CSV File here</p>
                             <i class="h1 bi bi-filetype-csv"></i>
                             <p class="h3">--------- OR ---------</p>
                         </div>
-                        
+                        <div id="post-submit-div" class="d-none mb-4">
+                            File uploaded successfully!
+                        </div>
                             {{ form_start(CSVform) }}
                                 <i id="after-submit-logo" class="d-none pt-3 h1 bi bi-filetype-csv"></i>
                                 <label for="import_csv_CSV_file" class="btn btn-danger modal-btn-CSV ">Browse files</label>
