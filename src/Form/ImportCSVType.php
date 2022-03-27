@@ -24,14 +24,17 @@ class ImportCSVType extends AbstractType
             // every time you edit the Product details
             'required' => true,
         ])
-        ->add('button', ButtonType::class, [
+        ->add('submit', ButtonType::class, [
             'label' => 'Download CSV template',
             'attr' => [
-                'class' => 'btn btn-danger modal-btn-hidden'
+                'class' => 'd-none btn btn-danger my-2'
             ],
         ])
         ->add('reset', ResetType::class, [
-                'label' => '<i class="bi bi-x-circle"></i>',
+                'label' => '',
+                'attr' => [
+                    'class' => 'd-none btn btn-secondary modal-reset-button'
+                ],
             ]);
         ;
     }

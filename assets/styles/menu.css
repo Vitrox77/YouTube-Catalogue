@@ -24,7 +24,6 @@
 
 .modal-btn-CSV {
     border-radius: 13px;
-    margin-bottom: 1rem;
 }
 
 .modal-rounded {
@@ -40,13 +39,16 @@
     display: none;
 }
 
+.modal-reset-button{
+    border-radius: 13px;
+    padding: 1px 3px 1px 3px;
+}
+
 .modal-post-submit{
     margin-top: 2rem;
 }
 
-.logo-csv-post-submit{
-    display: none;
-}
+
 
 .inputfile {
     width: 0.1px;
