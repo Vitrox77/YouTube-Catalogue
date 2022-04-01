@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Statistics;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Service\Utilities;
 
 /**
  * @method Statistics|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,16 @@ class StatisticsRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByTest($minLikes, $maxLikes)
+    {  
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.nb_likes > :minLikes')
+            ->setParameter('minLikes', Utilities::checkNullity($minLikes, 0))
+            ->andWhere('s.nb_likes < :maxLikes')
+            ->setParameter('maxLikes', Utilities::checkNullity($maxLikes, 10000000000))
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }
