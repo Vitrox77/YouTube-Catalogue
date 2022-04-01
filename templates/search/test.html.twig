@@ -4,7 +4,51 @@
 
 {% block body %}
 
+{% if filters != NULL %}
+<label> CodeSd à rechercher :</label><BR/><BR/>
+    <select Id='recherche' name='recherche' >
+    {% for filter in filters %}
+            <OPTION id='recherche' value='{{ filter.keywords }}'>{{ filter.keywords }}             
+    {% endfor %}
+    </select> 
+<BR/><BR/>
+{% endif %}
+
+<div class="row">
     {{ form_start(filterForm)  }}
-        <div class="text-light">{{ form_widget(filterForm) }}</div>
+        <div class="text-light">{{ form_row(filterForm.min_likes) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.max_likes) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.min_views) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.max_views) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.min_duration) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.max_duration) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.min_uploadDate) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.max_uploadDate) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.has_subtitles) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.keywords) }}</div>
+        <br>
+        <div class="text-light">{{ form_row(filterForm.category) }}</div>
     {{ form_end(filterForm) }}
+</div>
+
+<div class="text-light">
+{% if data is defined %}
+    {% for vid in data %}
+        {{ vid.title }}<br>
+        {{ vid.url }}<br>
+        {{ vid.statistic.nbLikes }}<br>
+        {{ vid.uploader.name }}
+    {% endfor %}
+{% endif %}
+</div>
+
 {% endblock %}

@@ -4,14 +4,13 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
+//require bootstrap-datepicker
+require('bootstrap-datepicker/js/bootstrap-datepicker')
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-// start the Stimulus application
-
 //import datepicker
-import '../node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js';
 import './bootstrap';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 

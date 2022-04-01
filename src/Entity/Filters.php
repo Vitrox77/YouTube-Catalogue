@@ -44,16 +44,6 @@ class Filters
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $min_dislikes;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $max_dislikes;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
     private $min_duration;
 
     /**
@@ -150,30 +140,6 @@ class Filters
     public function setMaxViews(?int $max_views): self
     {
         $this->max_views = $max_views;
-
-        return $this;
-    }
-
-    public function getMinDislikes(): ?int
-    {
-        return $this->min_dislikes;
-    }
-
-    public function setMinDislikes(?int $min_dislikes): self
-    {
-        $this->min_dislikes = $min_dislikes;
-
-        return $this;
-    }
-
-    public function getMaxDislikes(): ?int
-    {
-        return $this->max_dislikes;
-    }
-
-    public function setMaxDislikes(?int $max_dislikes): self
-    {
-        $this->max_dislikes = $max_dislikes;
 
         return $this;
     }

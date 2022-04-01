@@ -36,15 +36,13 @@ class TagsRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Tags
+    public function findOneOrNullByName($name): ?Tags
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('t.name = :val')
+            ->setParameter('val', $name)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
 }
