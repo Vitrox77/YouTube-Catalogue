@@ -61,10 +61,6 @@ class FilterType extends AbstractType
                 'label' => 'Has subtitles',
                 'required' => false,
             ])
-            ->add('has_ageLimit', CheckboxType::class, [
-                'label' => 'Has age limit',
-                'required' => false,
-            ])
             ->add('keywords', TextType::class, [
                 'required' => false,
                 'label' => 'Keywords',
