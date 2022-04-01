@@ -22,11 +22,6 @@ class Filters
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categories::class)
-     */
-    private $categoy;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $min_likes;
@@ -45,16 +40,6 @@ class Filters
      * @ORM\Column(type="integer", nullable=true)
      */
     private $max_views;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $min_dislikes;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $max_dislikes;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -96,6 +81,11 @@ class Filters
      */
     private $tags;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="filters")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -104,18 +94,6 @@ class Filters
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCategoy(): ?Categories
-    {
-        return $this->categoy;
-    }
-
-    public function setCategoy(?Categories $categoy): self
-    {
-        $this->categoy = $categoy;
-
-        return $this;
     }
 
     public function getMinLikes(): ?int
@@ -162,30 +140,6 @@ class Filters
     public function setMaxViews(?int $max_views): self
     {
         $this->max_views = $max_views;
-
-        return $this;
-    }
-
-    public function getMinDislikes(): ?int
-    {
-        return $this->min_dislikes;
-    }
-
-    public function setMinDislikes(?int $min_dislikes): self
-    {
-        $this->min_dislikes = $min_dislikes;
-
-        return $this;
-    }
-
-    public function getMaxDislikes(): ?int
-    {
-        return $this->max_dislikes;
-    }
-
-    public function setMaxDislikes(?int $max_dislikes): self
-    {
-        $this->max_dislikes = $max_dislikes;
 
         return $this;
     }
@@ -297,4 +251,17 @@ class Filters
 
         return $this;
     }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 }

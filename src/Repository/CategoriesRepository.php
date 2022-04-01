@@ -36,15 +36,15 @@ class CategoriesRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Categories
+    
+    public function findOneOrNullByName($name): ?Categories
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('c.name = :val')
+            ->setParameter('val', $name)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

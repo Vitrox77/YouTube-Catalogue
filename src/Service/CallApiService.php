@@ -17,9 +17,9 @@ class CallApiService
     {
         $response = $this->client->request(
             'GET',
-            'http://localhost:8080/api/video/'.$videoId,
+            'http://127.0.0.1:5001/api/video/'.$videoId,
         );
-
+        
         return $response->toArray();
     }
 }

@@ -4,11 +4,13 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
+//require bootstrap-datepicker
+require('bootstrap-datepicker/js/bootstrap-datepicker')
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
-// start the Stimulus application
+//import datepicker
 import './bootstrap';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
@@ -103,4 +105,11 @@ $(document).on('drop', function(e) {
 	$('#import_csv_CSV_file').files = fileName;
 	alert($('#import_csv_CSV_file').files[0]);
 	//$('#import_csv__token').val(e);
+});
+
+$(document).ready(function() {
+    // you may need to change this code if you are not using Bootstrap Datepicker
+    $('.js-datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
 });
