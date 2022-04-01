@@ -1,11 +1,8 @@
-.input-center {
-    margin-top: 20%;
-}
-
-.center{
+.center {
     margin: auto;
     width: 50%;
 }
+
 .border-radius-input {
     border-radius: 27.5rem 0 0 27.5rem !important;
     margin: 0 !important;
@@ -16,46 +13,61 @@
     margin: 0 !important;
 }
 
+
 /*Modal components*/
 
-.modal-container-border{
+.modal-container-border {
     border: groove black;
     border-radius: 30px;
+    min-height: 12rem;
 }
 
-.modal-btn-CSV{
+.modal-btn-CSV {
     border-radius: 13px;
 }
 
-.modal-rounded{
+.modal-rounded {
     border-radius: 20px !important;
+    min-height: 12rem;
 }
 
-.modal-center{
+.modal-center {
     margin: 16.75rem auto;
 }
 
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+.modal-post-submit-hidden{
+    display: none;
 }
 
-.inputfile + label {
+.modal-reset-button{
+    border-radius: 13px;
+    padding: 1px 3px 0px 3px;
+}
+
+.modal-post-submit{
+    margin-top: 2rem;
+}
+
+
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile+label {
     font-size: 1.25em;
     font-weight: 700;
     color: white;
     display: inline-block;
-    cursor: pointer; /* "hand" cursor */
-
+    cursor: pointer;
 }
 
-
-
-.inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
+.inputfile:focus+label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
 }

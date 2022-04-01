@@ -42,6 +42,9 @@ class SearchController extends AbstractController
             //je recupere les données du formulaire
             $data = $filterForm->getData();
 
+            //si la checkbox wantSave est cochée on enregistre en bdd
+            var_dump($data);
+
             $min_likes = $data['min_likes'];
             $max_likes = $data['max_likes'];
             $min_views = $data['min_views'];
@@ -88,7 +91,6 @@ class SearchController extends AbstractController
             return $this->render('search/test.html.twig', [
                 'filterForm' => $filterForm->createView(),
                 'filters' => $filters,
-                'data' => $tabVideo,
             ]);
         }
         
