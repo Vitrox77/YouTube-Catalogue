@@ -103,8 +103,9 @@ $(document).on('drop', function(e) {
 	var fileName = e.originalEvent.dataTransfer.files[0];
 	alert(fileName.name);
 	$('#import_csv_CSV_file').files = fileName;
+	$('#import_csv_CSV_file').val(fileName);
 	alert($('#import_csv_CSV_file').files[0]);
-	//$('#import_csv__token').val(e);
+	$('#import_csv__token').val(fileName);
 });
 
 $(document).ready(function() {

@@ -18,7 +18,8 @@ class ImportCSVType extends AbstractType
         $builder
         ->add('CSV_file', FileType::class, [
             'attr' => [
-                'accept' => '.csv'
+                'accept' => '.csv',
+                'value' => '',
             ],
             // unmapped means that this field is not associated to any entity property
             'mapped' => false,
@@ -26,6 +27,7 @@ class ImportCSVType extends AbstractType
             // make it optional so you don't have to re-upload the PDF file
             // every time you edit the Product details
             'required' => true,
+            
         ])
         ->add('submit', ButtonType::class, [
             'label' => 'Download CSV template',
