@@ -2,22 +2,22 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-4a7ee5.js",
-        "/build/app.js"
+        "/build/runtime.9a71ee5d.js",
+        "/build/195.7c0bdf88.js",
+        "/build/app.a0841098.js"
       ],
       "css": [
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-4a7ee5.css",
-        "/build/app.css"
+        "/build/195.f333affc.css",
+        "/build/app.520018b6.css"
       ]
     },
     "menu": {
       "js": [
-        "/build/runtime.js",
-        "/build/menu.js"
+        "/build/runtime.9a71ee5d.js",
+        "/build/menu.4d1830e1.js"
       ],
       "css": [
-        "/build/menu.css"
+        "/build/menu.478fc217.css"
       ]
     }
   }
