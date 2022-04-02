@@ -100,12 +100,123 @@
 
         <div class="row">
             <div class="col-sm-7 col-md-12" style="text-align: end">
-                <button type="button" class="btn btn-danger button">Rechercher</button>
+                <button type="button" id="search-btn" class="btn btn-danger button">Rechercher</button>
             </div>
         </div>
 
 
     </form>
+    </div>
+
+    <div class="container-main" style="margin-top:3%">
+        <h3>RESULTATS</h3>
+        <div class="under_title"></div>
+
+        <div class="row justify-content-between container-button">
+
+            <div class="col-sm-7 col-md-3">
+                <label for="check" class="form-label" style="margin-top:10%">Select all</label>
+                <div class="form-check">
+                    <input class="form-check-input" id="check" type="checkbox" value="" id="flexCheckDefault">
+                </div>
+            </div>
+
+            <div class="col-sm-7 col-md-3" >
+                <button type="button" class="btn btn-danger button">Ajouter tags</button>
+            </div>
+
+            <div class="col-sm-7 col-md-3" >
+                <button type="button" class="btn btn-danger button">Voir les statistiques</button>
+            </div>
+            <div class="col-sm-7 col-md-3" >
+                <button type="button" class="btn btn-danger button">Extraire les données</button>
+            </div>
+
+            
+        </div>
+
+        <div class="container">
+
+            <table class="table" style="margin-top:5%">
+                <tbody>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check " >
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                        </th>
+                        <td>
+                            <img src="Images/thumbnail.png" alt="Bootstrap" class="img-thumbnail">
+                        </td>
+                        <td>
+                            Titre de la vidéo<br/>
+                            Description de la vidéo
+                        </td>
+                        <td>
+                            Nb vues
+                        </td>
+                        <td>
+                            Nb likes
+                        </td>
+                        <td>
+                            Nb dislikes
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check " >
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                        </th>
+                        <td>
+                            <img src="Images/thumbnail.png" alt="Bootstrap" class="img-thumbnail">
+                        </td>
+                        <td>
+                            Titre de la vidéo<br/>
+                            Description de la vidéo
+                        </td>
+                        <td>
+                            Nb vues
+                        </td>
+                        <td>
+                            Nb likes
+                        </td>
+                        <td>
+                            Nb dislikes
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check " >
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </div>
+                        </th>
+                        <td>
+                            <img src="Images/thumbnail.png" alt="Bootstrap" class="img-thumbnail">
+                        </td>
+                        <td>
+                            Titre de la vidéo<br/>
+                            Description de la vidéo
+                        </td>
+                        <td>
+                            Nb vues
+                        </td>
+                        <td>
+                            Nb likes
+                        </td>
+                        <td>
+                            Nb dislikes
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+    </div> 
+
     {% endblock %}
 
     {% block stylesheets %}

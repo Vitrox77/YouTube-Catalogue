@@ -19,6 +19,15 @@
       "css": [
         "/build/menu.css"
       ]
+    },
+    "search": {
+      "js": [
+        "/build/runtime.js",
+        "/build/search.js"
+      ],
+      "css": [
+        "/build/search.css"
+      ]
     }
   }
 }
