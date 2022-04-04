@@ -16,7 +16,7 @@ class UniqueUrlType extends AbstractType
         $builder
             ->add('unique_link', UrlType::class)
 
-            ->add('button', ButtonType::class,
+            ->add('button', SubmitType::class,
                 [
                     'label' => 'Download video',
                     'attr' => [
