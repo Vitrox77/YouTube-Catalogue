@@ -29,7 +29,7 @@ class ImportCSVType extends AbstractType
             'required' => true,
             
         ])
-        ->add('submit', ButtonType::class, [
+        ->add('submit', SubmitType::class, [
             'label' => 'Download CSV template',
             'attr' => [
                 'class' => 'd-none btn btn-danger my-4'

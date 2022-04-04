@@ -53,7 +53,6 @@ $(document).ready(function() {
 import_scv_reset.on('click', function() {
 	//Gestion du bouton de reset et du bouton d'upload
 	$('#import_csv_CSV_file').val('');
-	//$('#import_csv__token').val('');
 	import_scv_reset.addClass('d-none');
 	modal_btn_csv.html("Browse files"); 
 	modal_btn_csv.addClass("btn btn-danger");
@@ -67,10 +66,17 @@ import_scv_reset.on('click', function() {
 
 });
 
+$(document).ready(function() {
+    // you may need to change this code if you are not using Bootstrap Datepicker
+    $('.js-datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+    });
+});
 
 // Show the dropzone when dragging files (not folders or page
 // elements). The dropzone is hidden after a timer to prevent 
 // flickering to occur as `dragleave` is fired constantly.
+/*
 var dragTimer;
 $(document).on('dragover', function(e) {
 	e.preventDefault()
@@ -129,10 +135,4 @@ Array.prototype.forEach.call(inputs, function(input) {
             label.innerHTML = labelVal;
     });
 });
-
-$(document).ready(function() {
-    // you may need to change this code if you are not using Bootstrap Datepicker
-    $('.js-datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-});
+*/
