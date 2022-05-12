@@ -5,7 +5,7 @@
 {% block body %}
 
 {% if filters != NULL %}
-<label> CodeSd à rechercher :</label><BR/><BR/>
+<label> Filtres existants :</label><BR/><BR/>
     <select Id='recherche' name='recherche' >
     {% for filter in filters %}
             <OPTION id='recherche' value='{{ filter.keywords }}'>{{ filter.keywords }}             
@@ -47,6 +47,7 @@
         {{ vid.url }}<br>
         {{ vid.statistic.nbLikes }}<br>
         {{ vid.uploader.name }}
+        <br>
     {% endfor %}
 {% endif %}
 </div>

@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
 use App\Entity\Filters;
-use App\Entity\Statistics;
 use App\Entity\Video;
 
 class SearchController extends AbstractController
@@ -53,16 +52,10 @@ class SearchController extends AbstractController
             $has_subtitles = $data['has_subtitles'];
             $keyWords = $data['keywords'];
             $category = $data['category'];
-
-            $tabStats = $this->getDoctrine()->getRepository(Statistics::class)->findByTest($min_likes, $max_likes);
-            $tabVideo = array();
-            //je boucle sur la variable $searchedVideos
-            foreach($tabStats as $stats){
-                array_push($tabVideo, $stats->getVideo());
-            }
+            $filterName = $data['name'];
 
             //si la checkbox wantSave est cochée on enregistre en bdd
-            if($data['wantSave'] == true){
+            if($filterName =! null){
                 $newFilter = new Filters();
                 $newFilter->setMinLikes($min_likes);
                 $newFilter->setMaxLikes($max_likes);
@@ -76,19 +69,26 @@ class SearchController extends AbstractController
                 $newFilter->setHasAgeLimit(false);
                 $newFilter->setKeywords($keyWords);
                 $newFilter->setCategory($category);
+                $newFilter->setName($filterName);
 
                 $entityManager->persist($newFilter);
                 $entityManager->flush();
                 //enregistre le filtre en db
             }
-            //sinon on fait simplement la recherche des videos selon les filtres
-            //on lit la modale de tags et on les enregistres en bdd en mettant isTagPerso à 1
+            //je recupere toutes les videos via le repository
+            $tabVideos = $this->getDoctrine()->getRepository(Video::class)->selectByFilter($min_likes, $max_likes, $min_views, $max_views, $min_duration, $max_duration, $min_uploadDate, $max_uploadDate, $category, $keyWords);
+            $tabVideo = array();
+            //je boucle sur la variable pour remplir le tableau $tabVideo
+            foreach($tabVideos as $video){
+                array_push($tabVideo, $video);
+            }
 
             //retourne la vue avec les données
             return $this->render('search/test.html.twig', [
                 'filterForm' => $filterForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
+                'category' => $category,
             ]);
         }
         
