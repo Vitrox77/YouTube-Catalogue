@@ -12,21 +12,16 @@
     <h3>FILTRES</h3>
     <div class="under_title"></div>
 
-    <form action="">
+    {{ form_start(filterForm) }}
     <div class="container-input">
         <div class="row justify-content-between">
             <div class="col-sm-7 col-md-7">
-                <label for="url" class="form-label">URL</label>
-                <input type="text" class="form-control" id="url" placeholder="UrlVideo" aria-label="URL Video">
+                <label for="keywords" class="form-label">Mots clés</label>
+                {{ form_widget(filterForm.keywords) }}
             </div>
             <div class="col-sm col-md-3">
-                <label for="category" class="form-label">Category</label>
-                <select class="form-select" id="category" aria-label="Category">
-                    <option selected>Choose a category</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <label for="category" class="form-label">Categories</label>
+                {{ form_widget(filterForm.category) }}
             </div>
             <div class="col-sm col-md-2">
                 <label for="tags" class="form-label">Tags</label>
@@ -43,56 +38,44 @@
             <div class="col-sm-7 col-md-3">
                 <label for="likes" class="form-label">Likes</label>
                 <div class="double-input col-md-12">
-                    <input type="text" class="form-control" id="likes_min" placeholder="Nb Min" aria-label="Min">
+                    {{ form_widget(filterForm.min_likes) }}
                     <p class="inter-input">à</p>
-                    <input type="text" class="form-control" id="likes_max" placeholder="Nb Max" aria-label="Max">
+                    {{ form_widget(filterForm.max_likes) }}
                 </div>
             </div>
 
             <div class="col-sm-7 col-md-3">
-                <label for="views" class="form-label">Nb vus</label>
+                <label for="views" class="form-label">Vues</label>
                 <div class="double-input col-md-12">
-                    <input type="text" class="form-control" id="views" placeholder="Nb Min" aria-label="Min">
+                    {{ form_widget(filterForm.min_views) }}
                     <p class="inter-input">à</p>
-                    <input type="text" class="form-control" placeholder="Nb Max" aria-label="Max">
+                    {{ form_widget(filterForm.max_views) }}
                 </div>
             </div>
 
             <div class="col-sm-7 col-md-5">
                 <label for="upload_date" class="form-label">Date d'upload</label>
                 <div class="double-input col-md-12" id="upload_date" data-provide="datepicker">
-                    <input type="date" class="form-control" aria-label="Date début">
+                    {{ form_widget(filterForm.min_uploadDate) }}
                     <p class="inter-input">à</p>
-                    <input type="date" class="form-control" aria-label="Date fin">
-                    {#                        <div class="input-group-addon">#}
-                    {#                            <span class="glyphicon glyphicon-th"></span>#}
-                    {#                        </div>#}
+                    {{ form_widget(filterForm.max_uploadDate) }}
                 </div>
             </div>
         </div>
 
         <div class="row justify-content-between">
             <div class="col-sm-7 col-md-3">
-                <label for="dislikes" class="form-label">Dislikes</label>
-                <div class="double-input col-md-12">
-                    <input type="text" class="form-control" id="dislikes" placeholder="Nb Min" aria-label="Min">
-                    <p class="inter-input">à</p>
-                    <input type="text" class="form-control"  placeholder="Nb Max" aria-label="Max">
-                </div>
-            </div>
-
-            <div class="col-sm-7 col-md-3">
                 <label for="time" class="form-label">Durée</label>
                 <div class="double-input col-md-12">
-                    <input type="text" class="form-control" id="time" placeholder="Nb Min" aria-label="Min">
+                    {{ form_widget(filterForm.min_duration) }}
                     <p class="inter-input">à</p>
-                    <input type="text" class="form-control" placeholder="Nb Max" aria-label="Max">
+                    {{ form_widget(filterForm.max_duration) }}
                 </div>
             </div>
-            <div class="col-sm-7 col-md-5">
+            <div class="col-sm-7 scol-md-5">
                 <label for="flexSwitchCheckDefault" class="form-label">Sous-Titres</label>
                 <div class="col-md-12 form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    {{ form_widget(filterForm.has_subtitles) }}
                 </div>
             </div>
         </div>
@@ -100,13 +83,21 @@
 
         <div class="row">
             <div class="col-sm-7 col-md-12" style="text-align: end">
-                <button type="button" id="search-btn" class="btn btn-danger button">Rechercher</button>
+                {{ form_widget(filterForm.button) }}
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <label for="flexCheckDefault" class="form-label">Save</label>
+            <div class="col-sm-7 col-md-12" style="text-align: start">
+                {{ form_widget(filterForm.wantSave) }}
             </div>
         </div>
 
 
-    </form>
-    </div>
+    {{form_end(filterForm)}}
+</div>
 
     <div class="container-main" style="margin-top:3%">
         <h3>RESULTATS</h3>
@@ -209,18 +200,26 @@
 
             <table class="table" style="margin-top:5%">
                 <tbody>
+                {% for i in 0..5 %}
                     <tr>
                         <th scope="row">
-                            <div class="form-check " >
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <div class="form-check" >
+                                <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
                             </div>
                         </th>
                         <td>
-                            <img src="templates\search\thumbnail.png" alt="Bootstrap" class="img-thumbnail">
+                            <img src="assets\images\exthumbnailjpg.jpg" alt="Bootstrap" class="img-thumbnail">
                         </td>
                         <td>
                             Titre de la vidéo<br/>
                             Description de la vidéo
+                            <div class=" row" >
+                            {% for i in 0..5 %}
+                                    <div class="tags col-4" >
+                                        Tag {{i}}
+                                    </div>
+                            {% endfor %}
+                            </div> 
                         </td>
                         <td>
                             Nb vues
@@ -232,52 +231,7 @@
                             Nb dislikes
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check " >
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </div>
-                        </th>
-                        <td>
-                            <img src="Images/thumbnail.png" alt="Bootstrap" class="img-thumbnail">
-                        </td>
-                        <td>
-                            Titre de la vidéo<br/>
-                            Description de la vidéo
-                        </td>
-                        <td>
-                            Nb vues
-                        </td>
-                        <td>
-                            Nb likes
-                        </td>
-                        <td>
-                            Nb dislikes
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check " >
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            </div>
-                        </th>
-                        <td>
-                            <img src="{{ asset('images\logo.png') }}" class="img-thumbnail">
-                        </td>
-                        <td>
-                            Titre de la vidéo<br/>
-                            Description de la vidéo
-                        </td>
-                        <td>
-                            Nb vues
-                        </td>
-                        <td>
-                            Nb likes
-                        </td>
-                        <td>
-                            Nb dislikes
-                        </td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 

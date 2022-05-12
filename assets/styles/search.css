@@ -1,3 +1,60 @@
+.container-videos {
+    background-color: black;
+    padding: 2%;
+    width: 80%;
+    border-radius: 30px;
+    border-color: black;
+    margin: 0 auto;
+}
+
+.container-table {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.modal-tag {
+    background-color: rgb(32, 33, 49);
+}
+
+.modal-rounded {
+    border-radius: 20px !important;
+    min-height: 12rem;
+}
+
+.tag-container {
+    padding: 20px 10px 20px 10px;
+    margin: 0 !important;
+}
+
+.form-container {
+    padding: 20px 10px;
+}
+
+.tag-user-containerr,
+.tag-video-container,
+.tag-recap-container {
+    padding-left: 0 !important;
+}
+
+.tag-user,
+.tag-video,
+.tag-recap {
+    background-color: white;
+    border-radius: 25px;
+    height: 100%;
+}
+
+.tag {
+    border: #EE4145 solid 1px;
+    border-radius: 20px;
+    background-color: #cf171a;
+    color: white;
+    font-weight: 300;
+}
+
 .container-main {
     background-color: white;
     padding: 2%;
@@ -38,12 +95,24 @@ h3 {
 .form-check-input {
     border: solid #ced4da 1px;
     padding: 2%;
-    width: 12%!important;
+    width: 10%!important;
     height: 25px;
 }
 
 .form-check-input:active,
 .form-check-input:checked {
+    background-color: red;
+    border: solid #EE4145;
+}
+
+.form-check-video-res {
+    border: solid #ced4da 1px;
+    padding: 2%;
+    height: 25px;
+}
+
+.form-check-video-res:active,
+.form-check-video-res:checked {
     background-color: red;
     border: solid #EE4145;
 }
@@ -56,59 +125,13 @@ h3 {
     margin-top: 20%;
 }
 
+.tags {
+    border-radius: 30px;
+    background-color: red;
+    border: solid #EE4145;
+    margin-left: -8px;
+}
+
 #search-btn {
     width: 20%;
-}
-
-.container-videos {
-    background-color: black;
-    padding: 2%;
-    width: 80%;
-    border-radius: 30px;
-    border-color: black;
-    margin: 0 auto;
-}
-
-.container-table {
-    padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: #e5e5e5;
-    text-align: center;
-}
-
-.modal-tag{
-    background-color: rgb(32, 33, 49);
-}
-
-.modal-rounded {
-    border-radius: 20px !important;
-    min-height: 12rem;
-}
-
-.tag-container {
-    padding: 20px 10px 20px 10px;
-    margin: 0 !important;
-}
-.form-container {
-    padding: 20px 10px;
-}
-
-.tag-user-containerr, .tag-video-container, .tag-recap-container{
-    padding-left: 0 !important;
-}
-
-
-.tag-user, .tag-video, .tag-recap{
-    background-color: white;
-    border-radius: 25px;
-    height: 100%;
-}
-
-.tag{
-    border: #EE4145 solid 1px;
-    border-radius: 20px;
-    background-color: #cf171a;
-    color: white;
-    font-weight: 300;
 }
