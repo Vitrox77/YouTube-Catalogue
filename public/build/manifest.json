@@ -6,8 +6,8 @@
   "build/search.css": "/build/search.css",
   "build/search.js": "/build/search.js",
   "build/runtime.js": "/build/runtime.js",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-3588eb.css": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-3588eb.css",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-3588eb.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-3588eb.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.css": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.css",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.js",
   "build/fonts/bootstrap-icons.woff?": "/build/fonts/bootstrap-icons.c1d7432e.woff",
   "build/fonts/bootstrap-icons.woff2?": "/build/fonts/bootstrap-icons.a13b8155.woff2"
 }
