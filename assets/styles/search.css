@@ -50,9 +50,15 @@
 .tag {
     border: #EE4145 solid 1px;
     border-radius: 20px;
-    background-color: #cf171a;
+    background-color: #ffffff;
+    font-weight: 500;
+}
+
+.tag:hover {
+    border-radius: 20px;
+    background-color: #dc3545;
     color: white;
-    font-weight: 300;
+    cursor: pointer;
 }
 
 .container-main {

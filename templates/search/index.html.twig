@@ -135,7 +135,7 @@
                                             <div class="tag-user-tags row">
                                                 {% for i in 0..5 %}
                                                     <div class="col-4">
-                                                        <div class="tag m-1 ">
+                                                        <div class="tag m-1">
                                                             tag U.{{i}}
                                                         </div>
                                                     </div>
@@ -159,7 +159,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2 tag-video-contaier">
+                                    <div class="col-2 tag-recap-contaier">
                                         <div class="tag-recap">
                                             <div class="tag-recap-title">
                                                 Recap   
@@ -175,6 +175,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="m-2">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Appliquer les tags</button>
                                 </div>
                             </div>
                         </div>
@@ -241,9 +244,18 @@
 
     </div> 
 
+
+
     {% endblock %}
 
     {% block stylesheets %}
         {{ parent() }}
         {{ encore_entry_link_tags('search') }}
     {% endblock %}
+
+    {% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('search') }}
+{% endblock %}
+
+
