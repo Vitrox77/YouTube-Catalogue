@@ -15,18 +15,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="app_search")
      */
-    public function index(): Response
-    {
-        return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
-        ]);
-    }
-
-    //nouvelle route de test des filtres pour Matthias
-    /**
-     * @Route("/search/test", name="app_search_test")
-     */
-    public function test(Request $request): Response
+    public function index(Request $request): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         //je recupere le formulaire FilterType
@@ -84,7 +73,7 @@ class SearchController extends AbstractController
             }
 
             //retourne la vue avec les données
-            return $this->render('search/test.html.twig', [
+            return $this->render('search/index.html.twig', [
                 'filterForm' => $filterForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
@@ -93,7 +82,7 @@ class SearchController extends AbstractController
         }
         
 
-        return $this->render('search/test.html.twig', [
+        return $this->render('search/index.html.twig', [
             'filterForm' => $filterForm->createView(),
             'filters' => $filters,
         ]);
