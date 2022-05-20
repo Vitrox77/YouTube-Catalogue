@@ -33,29 +33,44 @@
     padding: 20px 10px;
 }
 
-.tag-user-containerr,
+.tag-user-container,
 .tag-video-container,
 .tag-recap-container {
     padding-left: 0 !important;
+}
+
+.tag-container-body{
+    height: 70%;
+}
+
+.tag-user-tags,
+.tag-video-tags
+{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.tags-wrap{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .tag-user,
 .tag-video,
 .tag-recap {
     background-color: white;
-    border-radius: 25px;
+    border-radius: 10px;
     height: 100%;
 }
 
 .tag {
-    border: #EE4145 solid 1px;
-    border-radius: 20px;
+    border: #EE4145 solid 2px;
+    border-radius: 10px;
     background-color: #ffffff;
     font-weight: 500;
 }
 
 .tag:hover {
-    border-radius: 20px;
     background-color: #dc3545;
     color: white;
     cursor: pointer;

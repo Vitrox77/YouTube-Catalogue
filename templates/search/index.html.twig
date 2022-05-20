@@ -132,14 +132,20 @@
                                             <div class="tag-user-title">
                                                 Tags User   
                                             </div>
-                                            <div class="tag-user-tags row">
-                                                {% for i in 0..5 %}
-                                                    <div class="col-4">
-                                                        <div class="tag m-1">
-                                                            tag U.{{i}}
+                                            <div class="tag-container-body">
+                                                <div class="tag-user-tags row">
+                                                    {% for i in 0..20 %}
+                                                        <div class="col-4 tags-wrap">
+                                                            <div class="tag m-1">
+                                                                tag U.{{i}}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                {% endfor %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {# hide this div if their is tags in the search response #}
+                                            <div class="tag-container-footer">
+                                                <button type="button" class="btn btn-danger">Ajouter le tag</button>
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +156,7 @@
                                             </div>
                                             <div class="tag-video-tags row">
                                                 {% for i in 0..4 %}
-                                                    <div class="col-4">
+                                                    <div class="col-4 tags-wrap">
                                                         <div class="tag m-1 ">
                                                             tag V.{{i}}
                                                         </div>
