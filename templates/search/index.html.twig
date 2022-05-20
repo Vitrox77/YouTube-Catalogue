@@ -200,40 +200,57 @@
 
             <table class="table" style="margin-top:5%">
                 <tbody>
-                {% for i in 0..5 %}
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check" >
-                                <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
-                            </div>
-                        </th>
-                        <td>
-                            <img src="assets\images\exthumbnailjpg.jpg" alt="Bootstrap" class="img-thumbnail">
-                        </td>
-                        <td>
-                            Titre de la vidéo<br/>
-                            Description de la vidéo
-                            <div class=" row" >
-                            {% for i in 0..5 %}
-                                    <div class="tags col-4" >
-                                        Tag {{i}}
-                                    </div>
-                            {% endfor %}
-                            </div> 
-                        </td>
-                        <td>
-                            Nb vues
-                        </td>
-                        <td>
-                            Nb likes
-                        </td>
-                        <td>
-                            Nb dislikes
-                        </td>
-                    </tr>
-                    {% endfor %}
+                {% if data is defined %}
+                    {% for video in data %}
+                        <tr>
+                            <th scope="row">
+                                <div class="form-check" >
+                                    <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
+                                </div>
+                            </th>
+                            <td>
+                                <img src="assets\images\exthumbnailjpg.jpg" alt="Bootstrap" class="img-thumbnail">
+                            </td>
+                            <td>
+                                <div class="title">
+                                    {{ video.title}}<br/>
+                                </div> 
+                                {{ video.description}}
+                                <div class=" row" >
+                                    {% for tag in video.tags %}
+                                            <div class="tag col-2" >
+                                                {{tag.name}}
+                                            </div>
+                                    {% endfor %}
+                                </div> 
+                            </td>
+                            <td>
+                                Nb vues
+                                <div class="numbers">
+                                    {{ video.statistic.nbViews}}
+                                </div>
+                            </td>
+                            <td>
+                                Nb likes
+                                <div class="numbers">
+                                    {{ video.statistic.nbLikes}}
+                                </div>
+                            </td>
+                            <td>
+                                Date d'upload
+                                <div class="numbers">
+                                    {{ video.statistic.releaseDate | date('d-m-Y')}}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
+
+            <div class="pagination">
+                1-2345
+            </div>
 
 
         </div>
