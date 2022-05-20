@@ -119,7 +119,7 @@ class FilterType extends AbstractType
                 'choice_label' => 'name',
             ])
             //toDo 
-            ->add('wantSave', CheckboxType::class, [
+            ->add('name', TextType::class, [
                 'required' => false,
                 'label' => 'Save filters',
                 'attr' => [
