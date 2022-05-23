@@ -31,7 +31,7 @@ class SearchController extends AbstractController
             $data = $filterForm->getData();
 
             //si la checkbox wantSave est cochée on enregistre en bdd
-            var_dump($data);
+            // var_dump($data);
 
             $min_likes = $data['min_likes'];
             $max_likes = $data['max_likes'];

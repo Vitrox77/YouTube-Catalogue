@@ -93,7 +93,7 @@ class VideoRepository extends ServiceEntityRepository
                     ->setParameter('category', $category->getName());
             }
             $qb = $qb->getQuery();
-            error_log("\n".date("H:i:s").":\n".print_r($qb->getSQL(),true),3,'C:\wamp64\logs\log_perso.log');
+            // error_log("\n".date("H:i:s").":\n".print_r($qb->getSQL(),true),3,'C:\wamp64\logs\log_perso.log');
         $qb = $qb->getResult();
         return $qb;
     }
