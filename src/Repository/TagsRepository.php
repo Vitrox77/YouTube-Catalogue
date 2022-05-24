@@ -45,4 +45,14 @@ class TagsRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findByString($string): array
+    {
+        return $this->createQueryBuilder('t')
+            ->andWhere('t.name LIKE :val')
+            ->setParameter('val', $string.'%')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

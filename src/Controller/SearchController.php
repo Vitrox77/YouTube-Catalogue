@@ -9,18 +9,22 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
 use App\Entity\Filters;
 use App\Entity\Video;
+use App\Service\TagsService;
 
 class SearchController extends AbstractController
 {
     /**
      * @Route("/search", name="app_search")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, TagsService $tagsService): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
         //je recupere le formulaire FilterType
         $filterForm = $this->createForm(FilterType::class);
         $filterForm->handleRequest($request);
+        //je recup le form pour voir les statistiques
+        $statForm = $this->createForm(WatchStatType::class);
+        $statForm->handleRequest($request);
 
         //je recupere tous les filtres existants via le repository
         $filters = $this->getDoctrine()->getRepository(Filters::class)->findAll();
@@ -75,15 +79,34 @@ class SearchController extends AbstractController
                 array_push($tabVideo, $video);
             }
 
+            //si le form pour voir les statistiques est valide
+            if($statForm->isSubmitted() && $statForm->isValid()){
+                //j'envoie le tableau $tabVideo à l'autre route dans StatsController
+                $this->forward('App\Controller\StatsController::index', [
+                    'tabVideo' => $tabVideo,
+                ]);
+                return $this->redirectToRoute('stats_globale');
+            }
+
             //retourne la vue avec les données
             return $this->render('search/index.html.twig', [
                 'filterForm' => $filterForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
-                'category' => $category,
             ]);
         }
         
+        //Search tag by name
+        $tag = $request->query->get('stringTag');
+        $tabTags = $tagsService->searchTagByName($tag);
+        if($tabTags != null){
+            return $this->render('search/index.html.twig', [
+                'filterForm' => $filterForm->createView(),
+                'filters' => $filters,
+                'tabTags' => $tabTags,
+            ]);
+        }
+
 
         return $this->render('search/index.html.twig', [
             'filterForm' => $filterForm->createView(),
