@@ -81,175 +81,180 @@
         </div>
     </div>
 
-        <div class="row">
-            <div class="col-sm-7 col-md-12" style="text-align: end">
-                {{ form_widget(filterForm.button) }}
-            </div>
+    <div class="row">
+        <div class="col-sm-7 col-md-12" style="text-align: end">
+            {{ form_widget(filterForm.button) }}
         </div>
+    </div>
 
-        <div class="row">
-            
-            <label for="flexCheckDefault" class="form-label">Save</label>
-            <div class="col-sm-7 col-md-12" style="text-align: start">
-                {#{{ form_widget(filterForm.wantSave) }}#}button save
-            </div>
+    <div class="row">
+
+        <label for="flexCheckDefault" class="form-label">Save</label>
+        <div class="col-sm-7 col-md-12" style="text-align: start">
+            {#{{ form_widget(filterForm.wantSave) }}#}button save
         </div>
+    </div>
 
 
     {{form_end(filterForm)}}
 </div>
 
-    <div class="container-main" style="margin-top:3%">
-        <h3>RESULTATS</h3>
-        <div class="under_title"></div>
+<div class="container-main" style="margin-top:3%">
+    <h3>RESULTATS</h3>
+    <div class="under_title"></div>
 
-            <div class="row justify-content-between container-button">
-                <div class="col-sm-7 col-md-3">
-                    <label for="check" class="form-label" style="margin-top:10%">Select all</label>
-                    <div class="form-check">
-                        <input class="form-check-input" id="check" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
-                </div>
-                <div class="col-sm-7 col-md-3" >
-                    <a class="text-light btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal"><u>Ajouter tags</u></a>
-                </div>
-                <div class="col-sm-7 col-md-3" >
-                    <button type="button" class="btn btn-danger button">Voir les statistiques</button>
-                </div>
-                <div class="col-sm-7 col-md-3" >
-                    <button type="button" class="btn btn-danger button">Extraire les données</button>
-                </div>
-
-
-            <div class="container">
-
-                <table class="table" style="margin-top:5%">
-                    <tbody>
-        {% if data is defined %}
-                        {% for video in data %}
-                            <tr>
-                                <th scope="row">
-                                    <div class="form-check" >
-                                        <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
-                                    </div>
-                                </th>
-                                <td>
-                                    <img src="assets\images\exthumbnailjpg.jpg" alt="Bootstrap" class="img-thumbnail">
-                                </td>
-                                <td>
-                                    <div class="title">
-                                        {{ video.title}}<br/>
-                                    </div> 
-                                    {{ video.description[:100] ~ '...'}}
-                                    <div class=" row" >
-                                        {% for tag in video.tags %}
-                                                <div class="tag col-2" >
-                                                    {{tag.name}}
-                                                </div>
-                                        {% endfor %}
-                                    </div> 
-                                </td>
-                                <td>
-                                    Nb vues
-                                    <div class="numbers">
-                                        {{ video.statistic.nbViews}}
-                                    </div>
-                                </td>
-                                <td>
-                                    Nb likes
-                                    <div class="numbers">
-                                        {{ video.statistic.nbLikes}}
-                                    </div>
-                                </td>
-                                <td>
-                                    Date d'upload
-                                    <div class="numbers">
-                                        {{ video.statistic.releaseDate | date('d-m-Y')}}
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        
-                    </tbody>
-                </table>
-
-                <div class="pagination">
-                    1-2345
-                </div>
-
-
+    <div class="row justify-content-between container-button">
+        <div class="col-sm-7 col-md-3">
+            <label for="check" class="form-label" style="margin-top:10%">Select all</label>
+            <div class="form-check">
+                <input class="form-check-input" id="check" type="checkbox" value="" id="flexCheckDefault">
             </div>
+        </div>
+        <div class="col-sm-7 col-md-3" >
+            <a class="text-light btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal"><u>Ajouter tags</u></a>
+        </div>
+        <div class="col-sm-7 col-md-3" >
+            {% if statForm is defined %}
+                {{ form_start(statForm) }}
+                {{ form_widget(statForm.watchStat) }}
+                {{form_end(statForm)}}
+            {% endif %}
+
+        </div>
+        <div class="col-sm-7 col-md-3" >
+            <button type="button" class="btn btn-danger button">Extraire les données</button>
+        </div>
+
+
+        <div class="container">
+
+            <table class="table" style="margin-top:5%">
+                <tbody>
+                {% if data is defined %}
+                {% for video in data %}
+                    <tr>
+                        <th scope="row">
+                            <div class="form-check" >
+                                <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
+                            </div>
+                        </th>
+                        <td>
+                            <img src="assets\images\exthumbnailjpg.jpg" alt="Bootstrap" class="img-thumbnail">
+                        </td>
+                        <td>
+                            <div class="title">
+                                {{ video.title}}<br/>
+                            </div>
+                            {{ video.description[:100] ~ '...'}}
+                            <div class=" row" >
+                                {% for tag in video.tags %}
+                                    <div class="tag col-2" >
+                                        {{tag.name}}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>
+                            Nb vues
+                            <div class="numbers">
+                                {{ video.statistic.nbViews}}
+                            </div>
+                        </td>
+                        <td>
+                            Nb likes
+                            <div class="numbers">
+                                {{ video.statistic.nbLikes}}
+                            </div>
+                        </td>
+                        <td>
+                            Date d'upload
+                            <div class="numbers">
+                                {{ video.statistic.releaseDate | date('d-m-Y')}}
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                1-2345
+            </div>
+
+
+        </div>
         {% else %}
-        <p>
-            Pas de vidéos disponibles
-        </p>
+            <p>
+                Pas de vidéos disponibles
+            </p>
         {% endif %}
 
-  <!-- Modal -->
-            <div class="modal fade" id="tagsModal" tabindex="-1" aria-labelledby="tagsModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-center">
-                    <div class="modal-content modal-rounded p-2 modal-tag">
-                        <div class="modal-body">
-                            <div class="modal-container-border text-center">
-                                <div class="row form-container">
-                                    <div class="col-12">
-                                        <input type="text" class="form-control" id="search-tag" name="search-tag" placeholder="Search tags" aria-label="Search tags"/>
+        <!-- Modal -->
+        <div class="modal fade" id="tagsModal" tabindex="-1" aria-labelledby="tagsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-center">
+                <div class="modal-content modal-rounded p-2 modal-tag">
+                    <div class="modal-body">
+                        <div class="modal-container-border text-center">
+                            <div class="row form-container">
+                                <div class="col-12">
+                                    <input type="text" class="form-control" id="search-tag" name="search-tag" placeholder="Search tags" aria-label="Search tags"/>
+                                </div>
+                            </div>
+                            <div class="col-12 tag-container row">
+                                <div class="col-5 tag-user-container">
+                                    <div class="tag-user">
+                                        <div class="tag-user-title">
+                                            Tags User
+                                        </div>
+                                        <div class="tag-container-body">
+                                            <div class="tag-user-tags row" id="tag-user" name="tag-user">
+
+                                            </div>
+                                        </div>
+                                        {# hide this div if their is tags in the search response #}
+                                        <div class="tag-container-footer">
+                                            <button type="button" class="btn btn-danger">Créer le tag</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12 tag-container row">
-                                    <div class="col-5 tag-user-container">
-                                        <div class="tag-user">
-                                            <div class="tag-user-title">
-                                                Tags User   
-                                            </div>
-                                            <div class="tag-container-body">
-                                                <div class="tag-user-tags row" id="tag-user" name="tag-user">
-                                                    
+                                <div class="col-5 tag-video-container">
+                                    <div class="tag-video">
+                                        <div class="tag-video-title">
+                                            Tags Video
+                                        </div>
+                                        <div class="tag-video-tags row" id="tag-user" name="tag-user">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2 tag-recap-container">
+                                    <div class="tag-recap">
+                                        <div class="tag-recap-title">
+                                            Recap
+                                        </div>
+                                        <div class="tag-recap-tags row">
+                                            {% for i in 0..4 %}
+                                                <div class="col-12">
+                                                    <div class="tag m-2">
+                                                        tag {{i}}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {# hide this div if their is tags in the search response #}
-                                            <div class="tag-container-footer">
-                                                <button type="button" class="btn btn-danger">Créer le tag</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 tag-video-container">
-                                        <div class="tag-video">
-                                            <div class="tag-video-title">
-                                                Tags Video   
-                                            </div>
-                                            <div class="tag-video-tags row" id="tag-user" name="tag-user">
-                                                 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2 tag-recap-container">
-                                        <div class="tag-recap">
-                                            <div class="tag-recap-title">
-                                                Recap   
-                                            </div>
-                                            <div class="tag-recap-tags row">
-                                                {% for i in 0..4 %}
-                                                    <div class="col-12">
-                                                        <div class="tag m-2">
-                                                            tag {{i}}
-                                                        </div>
-                                                    </div>    
-                                                {% endfor %}   
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-2">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Appliquer les tags</button>
-                                </div>
+                            </div>
+                            <div class="m-2">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Appliquer les tags</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         <!-- endmodal -->
-    </div> 
+    </div>
 
 
 
@@ -261,8 +266,8 @@
     {% endblock %}
 
     {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('search') }}
-{% endblock %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('search') }}
+    {% endblock %}
 
 
