@@ -13,7 +13,7 @@ $(document).ready(function() {
         elem.bind("keyup input paste", function(event){
 
             if (elem.data('oldVal') != elem.val()) {
-
+                addTagUser(elem.val());
                 // Updated stored value
                 elem.data('oldVal', elem.val());
 
@@ -29,13 +29,29 @@ $(document).ready(function() {
                     }
                 });
             }
+            if(elem.val().length == 0){
+                resetTagUser();
+            }
         });
+
+        
     });
     
     $(document).on("click", ".tag", function() {
-  
-    alert('clicked');
-    
+        var elem = $(this);
+        alert(elem.text());
     });
 });
 
+function addTagUser(tag) {
+    var div_data = "<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tag + "</div><div>";
+    $('#tag-user').html(div_data);
+}
+function resetTagUser(){
+    $('#tag-user').html('');
+}
+
+function addTagVideo(tag){
+    $('#search-tag').val(tag);
+    $('#search-results').html('');
+}
