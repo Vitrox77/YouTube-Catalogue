@@ -60,7 +60,8 @@ function addTagUser(tagName, tagId) {
     $('#tag-user').html(div_data);
 }
 function resetAllTags(){
-    $('#tag-user #tag-video').html('');
+    $('#tag-user').html('');
+    $('#tag-video').html('');
 }
 
 function addTagVideo(tagName, tagId) {
