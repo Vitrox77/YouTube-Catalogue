@@ -41,7 +41,7 @@ class SearchController extends AbstractController
             $max_duration = $data['max_duration'];
             $min_uploadDate = $data['min_uploadDate'];
             $max_uploadDate = $data['max_uploadDate'];
-            $has_subtitles = $data['has_subtitles'];
+            $has_subtitles =false; //$data['has_subtitles'];
             $keyWords = $data['keywords'];
             $category = $data['category'];
             $filterName = $data['name'];
