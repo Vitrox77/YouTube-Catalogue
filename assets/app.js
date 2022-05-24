@@ -73,8 +73,9 @@ $(document).ready(function() {
     });
 });
 
-var myModal = document.getElementById('myModal');
-myModal.addEventListener('shown.bs.modal', function() {});
+// var myModal = document.getElementById('myModal');
+// myModal.addEventListener('shown.bs.modal', function() {});
+
 
 // Show the dropzone when dragging files (not folders or page
 // elements). The dropzone is hidden after a timer to prevent 

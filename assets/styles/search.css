@@ -1,144 +1,169 @@
-    .container-videos {
-        background-color: black;
-        padding: 2%;
-        width: 80%;
-        border-radius: 30px;
-        border-color: black;
-        margin: 0 auto;
-    }
-    
-    .container-table {
-        padding: 10px;
-        border: 2px solid black;
-        border-radius: 5px;
-        background-color: #e5e5e5;
-        text-align: center;
-    }
-    
-    .modal-tag {
-        background-color: rgb(32, 33, 49);
-    }
-    
-    .modal-rounded {
-        border-radius: 20px !important;
-        min-height: 12rem;
-    }
-    
-    .tag-container {
-        padding: 20px 10px 20px 10px;
-        margin: 0 !important;
-    }
-    
-    .form-container {
-        padding: 20px 10px;
-    }
-    
-    .tag-user-containerr,
-    .tag-video-container,
-    .tag-recap-container {
-        padding-left: 0 !important;
-    }
-    
-    .tag-user,
-    .tag-video,
-    .tag-recap {
-        background-color: white;
-        border-radius: 25px;
-        height: 100%;
-    }
-    
-    .tag {
-        border: #EE4145 solid 1px;
-        border-radius: 20px;
-        background-color: #cf171a;
-        color: white;
-        font-weight: 300;
-    }
-    
-    .container-main {
-        background-color: white;
-        padding: 2%;
-        width: 80%;
-        border-radius: 30px;
-        margin: 0 auto;
-    }
-    
-    h3 {
-        font-style: normal!important;
-        letter-spacing: 3px;
-    }
-    
-    .under_title {
-        width: 70px;
-        height: 2px;
-        background-color: #EE4145;
-        margin-top: -8px;
-    }
-    
-    .container-input {
-        margin-top: 2%;
-        /*border: solid red 1px;*/
-    }
-    
-    .container-input .row {
-        margin-bottom: 2.5%;
-    }
-    
-    .double-input {
-        display: flex;
-    }
-    
-    .inter-input {
-        margin: 3%;
-    }
-    
-    .form-check-input {
-        border: solid #ced4da 1px;
-        padding: 2%;
-        width: 10%!important;
-        height: 25px;
-    }
-    
-    .form-check-input:active,
-    .form-check-input:checked {
-        background-color: red;
-        border: solid #EE4145;
-    }
-    
-    .form-check-video-res {
-        background-color: green;
-        padding: 2%!important;
-        height: 25px!important;
-    }
-    
-    .form-check-video-res:active,
-    .form-check-video-res:checked {
-        background-color: red!important;
-        border: solid #EE4145!important;
-    }
-    
-    .button {
-        margin-top: 1%;
-    }
-    
-    .container-button .button {
-        margin-top: 20%;
-    }
-    
-    .title {
-        font-weight: 300;
-        font-size: 21px;
-        font-style: normal;
-    }
-    
+.container-videos {
+    background-color: black;
+    padding: 2%;
+    width: 80%;
+    border-radius: 30px;
+    border-color: black;
+    margin: 0 auto;
+}
+
+.container-table {
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+.modal-tag {
+    background-color: rgb(32, 33, 49);
+}
+
+.modal-rounded {
+    border-radius: 20px !important;
+    min-height: 12rem;
+}
+
+.tag-container {
+    padding: 20px 10px 20px 10px;
+    margin: 0 !important;
+}
+
+.form-container {
+    padding: 20px 10px;
+}
+
+.tag-user-container,
+.tag-video-container,
+.tag-recap-container {
+    padding-left: 0 !important;
+}
+
+.tag-container-body{
+    height: 70%;
+}
+
+.tag-user-tags,
+.tag-video-tags
+{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.tags-wrap{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.tag-user,
+.tag-video,
+.tag-recap {
+    background-color: white;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.tag {
+    border: #EE4145 solid 2px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-weight: 500;
+}
+
+.tag:hover {
+    background-color: #dc3545;
+    color: white;
+    cursor: pointer;
+}
+
+.container-main {
+    background-color: white;
+    padding: 2%;
+    width: 80%;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+h3 {
+    font-style: normal!important;
+    letter-spacing: 3px;
+}
+
+.under_title {
+    width: 70px;
+    height: 2px;
+    background-color: #EE4145;
+    margin-top: -8px;
+}
+
+.container-input {
+    margin-top: 2%;
+    /*border: solid red 1px;*/
+}
+
+.container-input .row {
+    margin-bottom: 2.5%;
+}
+
+.double-input {
+    display: flex;
+}
+
+.inter-input {
+    margin: 3%;
+}
+
+.form-check-input {
+    border: solid #ced4da 1px;
+    padding: 2%;
+    width: 10%!important;
+    height: 25px;
+}
+
+.form-check-input:active,
+.form-check-input:checked {
+    background-color: red;
+    border: solid #EE4145;
+}
+
+.form-check-video-res {
+    border: solid #ced4da 1px;
+    padding: 2%;
+    height: 25px;
+}
+
+.form-check-video-res:active,
+.form-check-video-res:checked {
+    background-color: red;
+    border: solid #EE4145;
+}
+
+.button {
+    margin-top: 1%;
+}
+
+.container-button .button {
+    margin-top: 20%;
+}
+
+.tags {
+    border-radius: 30px;
+    background-color: red;
+    border: solid #EE4145;
+    margin-left: -8px;
+}
+
+#search-btn {
+    width: 20%;
+}
     .numbers {
         font-weight: 300;
         font-size: 21px;
         font-style: normal;
-        color: red;
     }
-    
+        color: red;
     .pagination {
+    
         font-weight: 300;
         font-size: 21px;
         font-style: normal;
