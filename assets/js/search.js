@@ -13,19 +13,19 @@ $(document).ready(function() {
         elem.bind("keyup input paste", function(event){
 
             if (elem.data('oldVal') != elem.val()) {
-                addTagUser(elem.val());
+                // addTagUser(elem.val());
                 // Updated stored value
                 elem.data('oldVal', elem.val());
 
                 // Do AJAX call to get the tag corresponding to the search
                 $.ajax({
-                    url: '/search',
+                    url: '/search?stringTag=' + elem.val(),
                     type: 'POST',
                     data: {
                         'search': elem.val()
                     },
                     success: function(data) {
-                        $('#search-results').html(data);
+                        addTagUser(data);
                     }
                 });
             }
