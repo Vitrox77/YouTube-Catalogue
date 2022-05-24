@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
+use App\Form\WatchStatType;
 use App\Entity\Filters;
 use App\Entity\Video;
 use App\Service\TagsService;
