@@ -13,9 +13,9 @@ class TagsService
         $this->tagsRepository = $tagsRepository;
     } 
 
-    public function searchTagByName($name): array
+    public function searchTagByName($name)
     {
         $result = $this->tagsRepository->findByString($name);
-        return $result;
+        return json_encode($result);
     }
 }
