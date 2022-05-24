@@ -156,19 +156,20 @@ h3 {
 #search-btn {
     width: 20%;
 }
-    .numbers {
-        font-weight: 300;
-        font-size: 21px;
-        font-style: normal;
-    }
-        color: red;
-    .pagination {
-    
-        font-weight: 300;
-        font-size: 21px;
-        font-style: normal;
-    }
-    
-    #search-btn {
-        width: 20%;
-    }
+
+.numbers {
+    font-weight: 300;
+    font-size: 21px;
+    font-style: normal;
+    color: red;
+}
+.pagination {
+
+    font-weight: 300;
+    font-size: 21px;
+    font-style: normal;
+}
+
+#search-btn {
+    width: 20%;
+}
