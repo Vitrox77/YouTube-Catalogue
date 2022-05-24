@@ -96,18 +96,6 @@ class SearchController extends AbstractController
                 'data' => $tabVideo,
             ]);
         }
-        
-        //Search tag by name
-        $tag = $request->query->get('stringTag');
-        $tabTags = $tagsService->searchTagByName($tag);
-        if($tabTags != null){
-            return $this->render('search/index.html.twig', [
-                'filterForm' => $filterForm->createView(),
-                'filters' => $filters,
-                'tabTags' => $tabTags,
-            ]);
-        }
-
 
         return $this->render('search/index.html.twig', [
             'filterForm' => $filterForm->createView(),
@@ -115,6 +103,19 @@ class SearchController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/search/tagName", name="app_search_with_tag_name")
+     */
+    public function searchByTagName(Request $request, TagsService $tagsService){
+        //Search tag by name
+        $tag = $request->query->get('tagName');
+        $tabTags = $tagsService->searchTagByName($tag);
+        if($tabTags != null){
+            return $this->$tabTags;
+        }
+    }
+    
+     
 }
 
 
