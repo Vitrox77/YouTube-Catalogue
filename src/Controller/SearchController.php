@@ -104,15 +104,22 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/search/tagName", name="app_search_with_tag_name")
+     * @Route("/search/get/{tagName}", methods={"GET"}, name="app_search_with_tag_name")
      */
-    public function searchByTagName(Request $request, TagsService $tagsService){
+    public function searchByTagName(Request $request, TagsService $tagsService, string $tagName) : Response{
         //Search tag by name
-        $tag = $request->query->get('tagName');
-        $tabTags = $tagsService->searchTagByName($tag);
+        // $tag = $request->query->get('tagName');
+        $tabTags = $tagsService->searchTagByName($tagName);
+        $test = array();
+        $test[] = "test";
         if($tabTags != null){
-            return $this->$tabTags;
+            $response = new Response(json_encode($tabTags));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
         }
+        return new Response(
+            $tabTags
+        );
     }
     
      

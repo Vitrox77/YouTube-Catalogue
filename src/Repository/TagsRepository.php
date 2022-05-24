@@ -49,10 +49,12 @@ class TagsRepository extends ServiceEntityRepository
     public function findByString($string): array
     {
         return $this->createQueryBuilder('t')
+            ->select('t.id, t.name, t.isTagPerso')
             ->andWhere('t.name LIKE :val')
             ->setParameter('val', $string.'%')
             ->getQuery()
             ->getResult()
         ;
+
     }
 }

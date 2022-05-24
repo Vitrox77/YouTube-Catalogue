@@ -19,18 +19,30 @@ $(document).ready(function() {
 
                 // Do AJAX call to get the tag corresponding to the search
                 $.ajax({
-                    url: '/search?stringTag=' + elem.val(),
-                    type: 'POST',
+                    url: '/search/get/' + elem.val(),
+                    type: 'GET',
                     data: {
-                        'search': elem.val()
+                        'tagName': elem.val()
                     },
+                    dataType: 'json',
                     success: function(data) {
-                        addTagUser(data);
+                        alert(data);
+                        var parsed_data = JSON.parse(data);
+                        // alert(parsed_data[0].name);
+                    
+                        resetAllTags();
+                        parsed_data.forEach(element => {
+                            if(element.isTagPerso){
+                                addTagUser(element.name, element.id);
+                            }else{
+                                addTagVideo(element.name, element.id);
+                            }
+                        });
                     }
                 });
             }
             if(elem.val().length == 0){
-                resetTagUser();
+                resetAllTags();
             }
         });
 
@@ -43,15 +55,15 @@ $(document).ready(function() {
     });
 });
 
-function addTagUser(tag) {
-    var div_data = "<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tag + "</div><div>";
+function addTagUser(tagName, tagId) {
+    var div_data = $('#tag-user').html()+"<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tagName + "</div><div>";
     $('#tag-user').html(div_data);
 }
-function resetTagUser(){
-    $('#tag-user').html('');
+function resetAllTags(){
+    $('#tag-user #tag-video').html('');
 }
 
-function addTagVideo(tag){
-    $('#search-tag').val(tag);
-    $('#search-results').html('');
+function addTagVideo(tagName, tagId) {
+    var div_data = $('#tag-video').html()+"<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tagName + "</div><div>";
+    $('#tag-video').html(div_data);
 }
