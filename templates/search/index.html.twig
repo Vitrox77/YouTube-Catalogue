@@ -19,11 +19,11 @@
                 <label for="keywords" class="form-label">Mots clés</label>
                 {{ form_widget(filterForm.keywords) }}
             </div>
-            <div class="col-sm col-md-3">
+            <div class="col-sm col-md-5">
                 <label for="category" class="form-label">Categories</label>
                 {{ form_widget(filterForm.category) }}
             </div>
-            <div class="col-sm col-md-2">
+            {# <div class="col-sm col-md-2">
                 <label for="tags" class="form-label">Tags</label>
                 <select class="form-select" id="tags" aria-label="Tags">
                     <option selected>Choose tags</option>
@@ -31,7 +31,7 @@
                     <option value="2">Two</option>
                     <option value="3">Three</option>
                 </select>
-            </div>
+            </div> #}
         </div>
 
         <div class="row justify-content-between">
@@ -73,27 +73,27 @@
                 </div>
             </div>
             <div class="col-sm-7 scol-md-5">
-                <label for="flexSwitchCheckDefault" class="form-label">Sous-Titres</label>
+                <label for="flexSwitchCheckDefault" class="form-label">Save</label>
+                <div class="form-switch" style="display: flex">
+                    <input class="form-check-input form-switch" type="checkbox" id="flexSwitchCheckDefault" onclick="isCheckBoxChecked()">
+                    <div class="name-filters-save" style="display:none; margin-left: 2%; margin-bottom: 5%" id="namefilters">
+                        {{ form_widget(filterForm.name) }}
+                    </div>
+                </div> 
+                {# <label for="flexSwitchCheckDefault" class="form-label">Sous-Titres</label>
                 <div class="col-md-12 form-check form-switch">
                     {{ form_widget(filterForm.has_subtitles) }}
-                </div>
+                </div> #}
             </div>
         </div>
     </div>
 
-        <div class="row">
-            <div class="col-sm-7 col-md-12" style="text-align: end">
-                {{ form_widget(filterForm.button) }}
-            </div>
-        </div>
 
-        <div class="row">
-            
-            <label for="flexCheckDefault" class="form-label">Save</label>
-            <div class="col-sm-7 col-md-12" style="text-align: start">
-                {#{{ form_widget(filterForm.wantSave) }}#}button save
-            </div>
+    <div class="row">
+        <div class="col-sm-7 col-md-12" style="text-align: end">
+            {{ form_widget(filterForm.button) }}
         </div>
+    </div>
 
 
     {{form_end(filterForm)}}
@@ -111,7 +111,7 @@
                     </div>
                 </div>
                 <div class="col-sm-7 col-md-3" >
-                    <a class="text-light btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal"><u>Ajouter tags</u></a>
+                    <a class="text-light btn btn-danger" style="margin-top:20%" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal"><u>Ajouter tags</u></a>
                 </div>
                 <div class="col-sm-7 col-md-3" >
                     <button type="button" class="btn btn-danger button">Voir les statistiques</button>
@@ -251,7 +251,22 @@
         <!-- endmodal -->
     </div> 
 
+    <script>
+        function isCheckBoxChecked() {
+            // Get the checkbox
+            var checkBox = document.getElementById("flexSwitchCheckDefault");
+            // Get the output text
+            var textbox = document.getElementById("namefilters");
 
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true) {
+                console.log("checked");
+                textbox.style.display = "block";
+            } else {
+                textbox.style.display = "none";
+            }
+        }
+    </script>
 
     {% endblock %}
 
@@ -261,8 +276,6 @@
     {% endblock %}
 
     {% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags('search') }}
-{% endblock %}
-
-
+        {{ parent() }}
+        {{ encore_entry_script_tags('search') }}
+    {% endblock %}
