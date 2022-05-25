@@ -12,7 +12,7 @@ class StatsService
 
         foreach ($tabVideo as $video) {
             $statsVideo = new Statistics();
-            $statsVideo = $video->getStatistics();
+            $statsVideo = $video->getStatistic();
             $jsonArray[] = [
                 'name' => $video->getTitle(),
                 'nbViews' => $statsVideo->getNbViews(),

@@ -121,6 +121,9 @@
             <a class="text-light btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal"><u>Ajouter tags</u></a>
         </div>
         <div class="col-sm-7 col-md-3" >
+            {% if stringParam is defined %}
+                <a href="{{ path ('stats_globale', {'stringParam' : stringParam}) }}" class="btn btn-success text-white" >Voir les stats</a>
+            {% endif %}
             {% if statForm is defined %}
                 {{ form_start(statForm) }}
                 {{ form_widget(statForm.watchStat) }}

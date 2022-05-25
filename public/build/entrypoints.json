@@ -30,6 +30,15 @@
       "css": [
         "/build/search.css"
       ]
+    },
+    "stats": {
+      "js": [
+        "/build/runtime.js",
+        "/build/stats.js"
+      ],
+      "css": [
+        "/build/stats.css"
+      ]
     }
   }
 }

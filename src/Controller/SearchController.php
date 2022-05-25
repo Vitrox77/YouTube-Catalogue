@@ -11,6 +11,7 @@ use App\Form\WatchStatType;
 use App\Entity\Filters;
 use App\Entity\Video;
 use App\Service\TagsService;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class SearchController extends AbstractController
 {
@@ -29,7 +30,8 @@ class SearchController extends AbstractController
 
         //je recupere tous les filtres existants via le repository
         $filters = $this->getDoctrine()->getRepository(Filters::class)->findAll();
-        
+        $stringParam = "";
+
         //is le formulaire est valide
         if ($filterForm->isSubmitted() && $filterForm->isValid()) {
             //je recupere les données du formulaire
@@ -78,6 +80,7 @@ class SearchController extends AbstractController
             //je boucle sur la variable pour remplir le tableau $tabVideo
             foreach($tabVideos as $video){
                 array_push($tabVideo, $video);
+                $stringParam = $stringParam . strval($video->getId()) . ",";
             }
 
             //retourne la vue avec les données
@@ -86,16 +89,16 @@ class SearchController extends AbstractController
                 'statForm' => $statForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
+                'stringParam' => $stringParam,
             ]);
         }
 
+       
         //si le form pour voir les statistiques est valide
         if($statForm->isSubmitted() && $statForm->isValid()){
-            //j'envoie le tableau $tabVideo à l'autre route dans StatsController
-            return $this->redirectToRoute('stats_globale');
-            /*return $this->forward('App\Controller\StatsController::index', [
-                'tabVideo' => 12,//$tabVideo,
-            ]);*/
+            return $this->redirectToRoute("stats_globale", [
+                'tabVideo' => $stringParam,
+            ]);
             //echo 'YOUHOUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT<br><br><br><br><br><br><br>freeeeeeeeeeeeeeee';
         }
 

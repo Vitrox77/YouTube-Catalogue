@@ -5,6 +5,8 @@
   "build/menu.js": "/build/menu.js",
   "build/search.css": "/build/search.css",
   "build/search.js": "/build/search.js",
+  "build/stats.css": "/build/stats.css",
+  "build/stats.js": "/build/stats.js",
   "build/runtime.js": "/build/runtime.js",
   "build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js": "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js",
   "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-786a82.css": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-786a82.css",
