@@ -90,14 +90,14 @@ class FilterType extends AbstractType
                 'placeholder' => 'aaaa-mm-jj'
                 ],
             ])
-            ->add('has_subtitles', CheckboxType::class, [
-                'label' => 'Has subtitles',
-                'attr'=>[
-                    'class'=>'form-check-input',
-                    'id'=>'flexSwitchCheckDefault'
-                ],
-                'required' => false,
-            ])
+            // ->add('has_subtitles', CheckboxType::class, [
+            //     'label' => 'Has subtitles',
+            //     'attr'=>[
+            //         'class'=>'form-check-input',
+            //         'id'=>'flexSwitchCheckDefault'
+            //     ],
+            //     'required' => false,
+            // ])
             ->add('keywords', TextType::class, [
                 'required' => false,
                 'label' => 'Keywords',
@@ -123,7 +123,7 @@ class FilterType extends AbstractType
                 'required' => false,
                 'label' => 'Save filters',
                 'attr' => [
-                    'class' => 'btn btn-danger button²',
+                    'placeholder' => 'Add name to save filter',
                     'id'=>'flexCheckDefault'
                 ],
             ])

@@ -46,7 +46,7 @@ class SearchController extends AbstractController
             $max_duration = $data['max_duration'];
             $min_uploadDate = $data['min_uploadDate'];
             $max_uploadDate = $data['max_uploadDate'];
-            $has_subtitles = $data['has_subtitles'];
+            $has_subtitles =false; //$data['has_subtitles'];
             $keyWords = $data['keywords'];
             $category = $data['category'];
             $filterName = $data['name'];
@@ -80,21 +80,23 @@ class SearchController extends AbstractController
                 array_push($tabVideo, $video);
             }
 
-            //si le form pour voir les statistiques est valide
-            if($statForm->isSubmitted() && $statForm->isValid()){
-                //j'envoie le tableau $tabVideo à l'autre route dans StatsController
-                $this->forward('App\Controller\StatsController::index', [
-                    'tabVideo' => $tabVideo,
-                ]);
-                return $this->redirectToRoute('stats_globale');
-            }
-
             //retourne la vue avec les données
             return $this->render('search/index.html.twig', [
                 'filterForm' => $filterForm->createView(),
+                'statForm' => $statForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
             ]);
+        }
+
+        //si le form pour voir les statistiques est valide
+        if($statForm->isSubmitted() && $statForm->isValid()){
+            //j'envoie le tableau $tabVideo à l'autre route dans StatsController
+            return $this->redirectToRoute('stats_globale');
+            /*return $this->forward('App\Controller\StatsController::index', [
+                'tabVideo' => 12,//$tabVideo,
+            ]);*/
+            //echo 'YOUHOUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT<br><br><br><br><br><br><br>freeeeeeeeeeeeeeee';
         }
 
         return $this->render('search/index.html.twig', [

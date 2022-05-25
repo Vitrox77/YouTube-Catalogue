@@ -3,12 +3,12 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-786a82.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-45b77a.css",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-786a82.css",
         "/build/app.css"
       ]
     },
@@ -24,7 +24,7 @@
     "search": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js",
         "/build/search.js"
       ],
       "css": [

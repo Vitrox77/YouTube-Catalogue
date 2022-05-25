@@ -11,9 +11,8 @@ class StatsController extends AbstractController
     /**
      * @Route("/stats", name="stats_globale")
      */
-    public function index($tabVideo): Response
+    public function index($tabVideo = null): Response
     {
-        
         
         return $this->render('stats/statsGlobale.html.twig', [
             'controller_name' => 'StatsController',
