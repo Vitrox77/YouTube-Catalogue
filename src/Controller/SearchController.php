@@ -7,11 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
-use App\Form\WatchStatType;
 use App\Entity\Filters;
 use App\Entity\Video;
 use App\Service\TagsService;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class SearchController extends AbstractController
 {
@@ -24,9 +22,6 @@ class SearchController extends AbstractController
         //je recupere le formulaire FilterType
         $filterForm = $this->createForm(FilterType::class);
         $filterForm->handleRequest($request);
-        //je recup le form pour voir les statistiques
-        $statForm = $this->createForm(WatchStatType::class);
-        $statForm->handleRequest($request);
 
         //je recupere tous les filtres existants via le repository
         $filters = $this->getDoctrine()->getRepository(Filters::class)->findAll();
@@ -86,7 +81,6 @@ class SearchController extends AbstractController
             //retourne la vue avec les données
             return $this->render('search/index.html.twig', [
                 'filterForm' => $filterForm->createView(),
-                'statForm' => $statForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
                 'stringParam' => $stringParam,

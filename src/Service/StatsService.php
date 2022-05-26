@@ -19,6 +19,6 @@ class StatsService
                 'nbLikes' => $statsVideo->getNbLikes(),
             ];
         }
-        return json_encode($jsonArray);
+        return $jsonArray;
     }
 }

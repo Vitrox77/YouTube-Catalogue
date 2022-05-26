@@ -1,0 +1,15 @@
+/* ------------------------------------ PARTIE GRAPHIQUES --------------------------------------------------- */
+
+.chart-container {
+    width: 50%;
+    display: block;
+    overflow: hidden;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+}
+
+canvas {
+    background: white;
+    height: 400px;
+}

@@ -3,7 +3,7 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_arra-d0654c.js",
         "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-786a82.js",
         "/build/app.js"
       ],
@@ -15,6 +15,8 @@
     "menu": {
       "js": [
         "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_arra-d0654c.js",
+        "/build/vendors-node_modules_chart_js_dist_chart_esm_js-node_modules_core-js_modules_es_array_map_js--88918e.js",
         "/build/menu.js"
       ],
       "css": [
@@ -24,7 +26,7 @@
     "search": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_dom--57e942.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_arra-d0654c.js",
         "/build/search.js"
       ],
       "css": [

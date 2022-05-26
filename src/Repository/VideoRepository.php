@@ -39,6 +39,16 @@ class VideoRepository extends ServiceEntityRepository
     }
     */
 
+    public function selectVideosId(): array
+    {
+        $videos = $this->createQueryBuilder('v')
+            ->select('v.id')
+            ->getQuery()
+            ->getResult();
+
+        return $videos;
+    }
+
     public function findOneOrNullById($id): ?Video
     {
         return $this->createQueryBuilder('u')

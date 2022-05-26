@@ -1,12 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Statistiques des vidéos choisies!{% endblock %}
+{% block pageTitle %}Statistiques{% endblock %}
 
 {% block body %}
+<div class="container">
+    <a href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-json-data mx-auto">Charger les données</a>
+    <div class="chart-container my-1 justify-content-md-center">
+        <canvas id="myChart" ></canvas>
+        <canvas id="myChart2" ></canvas>
+    </div>
 
-<div class="example-wrapper">
-    <canvas id="myChart" width="400" height="400"></canvas>
 </div>
+
+
 {% endblock %}
 
 
@@ -14,9 +21,11 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('stats') }}
+    {{ encore_entry_link_tags('menu') }}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     {{ encore_entry_script_tags('stats') }}
+    {{ encore_entry_script_tags('menu') }}
 {% endblock %}
