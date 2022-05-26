@@ -35,20 +35,18 @@
     margin: 16.75rem auto;
 }
 
-.modal-post-submit-hidden{
+.modal-post-submit-hidden {
     display: none;
 }
 
-.modal-reset-button{
+.modal-reset-button {
     border-radius: 13px;
     padding: 1px 3px 0px 3px;
 }
 
-.modal-post-submit{
+.modal-post-submit {
     margin-top: 2rem;
 }
-
-
 
 .inputfile {
     width: 0.1px;

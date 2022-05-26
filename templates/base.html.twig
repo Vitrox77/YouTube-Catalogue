@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Youtube Catalogue{% endblock %}</title>
+        <title>Youtube Catalogue</title>
         
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -15,13 +15,11 @@
     <body>
         <div class="nav-bar text-light">
             <div class="h1">
-                <b>Import</b>
+                <b>Youtube Catalogue</b>
             </div>
             <div class="d-flex flex-row-reverse mx-4">
                 <div class="h2">
-                    <b class="px-1">Import</b>
-                    <b class="px-1">.</b>
-                    <b class="px-1">Catalogue</b>
+                    <b class="px-1">{% block pageTitle %}{% endblock %}</b>
                 </div>
             </div>
         </div>

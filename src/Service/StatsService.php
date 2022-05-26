@@ -12,13 +12,13 @@ class StatsService
 
         foreach ($tabVideo as $video) {
             $statsVideo = new Statistics();
-            $statsVideo = $video->getStatistics();
+            $statsVideo = $video->getStatistic();
             $jsonArray[] = [
                 'name' => $video->getTitle(),
                 'nbViews' => $statsVideo->getNbViews(),
                 'nbLikes' => $statsVideo->getNbLikes(),
             ];
         }
-        return json_encode($jsonArray);
+        return $jsonArray;
     }
 }

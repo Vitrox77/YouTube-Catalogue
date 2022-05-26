@@ -39,18 +39,17 @@
     padding-left: 0 !important;
 }
 
-.tag-container-body{
+.tag-container-body {
     height: 70%;
 }
 
 .tag-user-tags,
-.tag-video-tags
-{
+.tag-video-tags {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
 
-.tags-wrap{
+.tags-wrap {
     padding-left: 0px !important;
     padding-right: 0px !important;
 }
@@ -138,14 +137,6 @@ h3 {
     border: solid #EE4145;
 }
 
-.button {
-    margin-top: 1%;
-}
-
-.container-button .button {
-    margin-top: 20%;
-}
-
 .tags {
     border-radius: 30px;
     background-color: red;
@@ -163,8 +154,8 @@ h3 {
     font-style: normal;
     color: red;
 }
-.pagination {
 
+.pagination {
     font-weight: 300;
     font-size: 21px;
     font-style: normal;

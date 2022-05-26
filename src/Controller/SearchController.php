@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
-use App\Form\WatchStatType;
 use App\Entity\Filters;
 use App\Entity\Video;
 use App\Service\TagsService;
@@ -23,13 +22,11 @@ class SearchController extends AbstractController
         //je recupere le formulaire FilterType
         $filterForm = $this->createForm(FilterType::class);
         $filterForm->handleRequest($request);
-        //je recup le form pour voir les statistiques
-        $statForm = $this->createForm(WatchStatType::class);
-        $statForm->handleRequest($request);
 
         //je recupere tous les filtres existants via le repository
         $filters = $this->getDoctrine()->getRepository(Filters::class)->findAll();
-        
+        $stringParam = "";
+
         //is le formulaire est valide
         if ($filterForm->isSubmitted() && $filterForm->isValid()) {
             //je recupere les données du formulaire
@@ -78,24 +75,24 @@ class SearchController extends AbstractController
             //je boucle sur la variable pour remplir le tableau $tabVideo
             foreach($tabVideos as $video){
                 array_push($tabVideo, $video);
+                $stringParam = $stringParam . strval($video->getId()) . ",";
             }
 
             //retourne la vue avec les données
             return $this->render('search/index.html.twig', [
                 'filterForm' => $filterForm->createView(),
-                'statForm' => $statForm->createView(),
                 'filters' => $filters,
                 'data' => $tabVideo,
+                'stringParam' => $stringParam,
             ]);
         }
 
+       
         //si le form pour voir les statistiques est valide
         if($statForm->isSubmitted() && $statForm->isValid()){
-            //j'envoie le tableau $tabVideo à l'autre route dans StatsController
-            return $this->redirectToRoute('stats_globale');
-            /*return $this->forward('App\Controller\StatsController::index', [
-                'tabVideo' => 12,//$tabVideo,
-            ]);*/
+            return $this->redirectToRoute("stats_globale", [
+                'tabVideo' => $stringParam,
+            ]);
             //echo 'YOUHOUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT<br><br><br><br><br><br><br>freeeeeeeeeeeeeeee';
         }
 

@@ -90,21 +90,13 @@ class FilterType extends AbstractType
                 'placeholder' => 'aaaa-mm-jj'
                 ],
             ])
-            // ->add('has_subtitles', CheckboxType::class, [
-            //     'label' => 'Has subtitles',
-            //     'attr'=>[
-            //         'class'=>'form-check-input',
-            //         'id'=>'flexSwitchCheckDefault'
-            //     ],
-            //     'required' => false,
-            // ])
             ->add('keywords', TextType::class, [
                 'required' => false,
                 'label' => 'Keywords',
                 'attr'=>[
                     'class'=>'form-control',
                     'id'=>'keywords',
-                    'placeholder' => 'Add keywords'
+                    'placeholder' => 'Ajouter un mot clé (qui sera dans le titre, la description ou les tags)'
                 ],
                 'required' => false,
             ])
@@ -114,7 +106,7 @@ class FilterType extends AbstractType
                 'attr'=>[
                     'class'=>'form-select',
                     'id'=>'category',
-                    'placeholder' => 'Choose a category'
+                    'placeholder' => 'Choisir une catégorie'
                 ],
                 'choice_label' => 'name',
             ])
@@ -123,14 +115,15 @@ class FilterType extends AbstractType
                 'required' => false,
                 'label' => 'Save filters',
                 'attr' => [
-                    'placeholder' => 'Add name to save filter',
+                    'class'=>'form-control',
+                    'placeholder' => 'Ajouter un nom au filtre',
                     'id'=>'flexCheckDefault'
                 ],
             ])
             ->add('button', SubmitType::class, [
                 'label' => 'Search',
                 'attr' => [
-                    'class' => 'btn btn-danger button²',
+                    'class' => 'btn btn-danger',
                     'id'=> 'search-btn'
                 ],
             ])
