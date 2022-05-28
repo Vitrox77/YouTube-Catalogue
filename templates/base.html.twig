@@ -1,29 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Youtube Catalogue</title>
-        
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Catalogue</title>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <div class="nav-bar text-light">
-            <div class="h1">
-                <b>Youtube Catalogue</b>
-            </div>
-            <div class="d-flex flex-row-reverse mx-4">
-                <div class="h2">
-                    <b class="px-1">{% block pageTitle %}{% endblock %}</b>
-                </div>
-            </div>
-        </div>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<div class="nav-bar text-light">
+    <div class="h1">
+        <b><a class="main-title" href="{{path('app_main')}}">Youtube Catalogue</a></b>
+    </div>
+    <div class="h2 flex">
+        <b><a class="main-title" href="{{path('app_search')}}">Catalogue</a></b>
+        <b>	&bull;</b>
+        <b><a class="main-title" href="{{path('app_main')}}">Import</a></b>
+        {#                    <b class="px-1">{% block pageTitle %}{% endblock %}</b>#}
+    </div>
+
+</div>
+
+{% block body %}{% endblock %}
+</body>
 </html>
