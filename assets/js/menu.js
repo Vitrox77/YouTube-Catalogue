@@ -70,7 +70,7 @@ $(document).ready(function() {
         data: {
             labels: [],
             datasets: [{
-                label: 'Part de vues de chaque vidéo',
+                label: 'Part de vidéo pour le filtre choisi comparé aux autres filtres',
                 data: [],
                 backgroundColor: [],
                 borderWidth: 1
@@ -80,11 +80,27 @@ $(document).ready(function() {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top',
+                    align: "start",
+                    position: 'bottom',
+                    labels:{
+                        family: 'Roboto Condensed',
+                        padding: 20
+                    }
                 },
                 title: {
                     display: true,
-                    text: 'Part de vues sur la totalité des vidéos choisies'
+                    text: 'PART DE VIDEOS DU FILTRE',
+                    position: "top",
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    color: "#bb2d3b",
+                    font:{
+                        size: 14,
+                        family: 'Roboto Condensed',
+                        style: 'normal'
+                    }
                 }
             }
         }
@@ -108,9 +124,24 @@ $(document).ready(function() {
         },
         options: {
             plugins: {
+                legend: {
+                    align:"start",
+                    position:"bottom"
+                },
                 title: {
                     display: true,
-                    text: 'Parts de likes et vues de chaque vidéo'
+                    text: 'PARTS DE LIKES ET VUES DE CHAQUE FILTRE',
+                    position: "top",
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    color: "#bb2d3b",
+                    font:{
+                        size: 14,
+                        family: 'Roboto Condensed',
+                        style: 'normal'
+                    }
                 },
             },
             responsive: true,
@@ -124,6 +155,51 @@ $(document).ready(function() {
             }
         }
     });
+
+    /* PARAMETRES DU TROISIEME GRAPHIQUE */
+    const ctx3 = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: "labels",
+            datasets: [{
+                label: 'My First Dataset',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    align: "start",
+                    position: 'bottom',
+                    labels:{
+                        family: 'Roboto Condensed',
+                        padding: 20
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'NOMBRE DE LIKE EN FONCTION DU NOMBRE DE VUE',
+                    position: "top",
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    color: "#bb2d3b",
+                    font:{
+                        size: 14,
+                        family: 'Roboto Condensed',
+                        style: 'normal'
+                    }
+                }
+            }
+        }
+    });
+
     /* FIN DES PARAMS DU GRAPH  */
     /* Lors du clic sur le bouton pour charger les données des graphs */
     $('.get-json-data').on('click', function(e) {
@@ -134,6 +210,7 @@ $(document).ready(function() {
             url: $link.attr('href')
         }).done(function(data) {
             console.log('200 OK');
+            console.log(data);
             /* Si l'appel ajax à bien retourné une reponse avec de la data */
             var names = data.map(function(e) {
                 if (e.name.length > 50) {
@@ -148,6 +225,7 @@ $(document).ready(function() {
             var nbLikes = data.map(function(e) {
                 return e.nbLikes;
             });
+
 
             //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
             var colors = [];

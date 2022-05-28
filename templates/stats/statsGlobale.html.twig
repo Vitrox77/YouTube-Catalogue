@@ -4,14 +4,49 @@
 {% block pageTitle %}Statistiques{% endblock %}
 
 {% block body %}
-<div class="container">
-    <a href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-json-data mx-auto">Charger les données</a>
-    <div class="chart-container my-1 justify-content-md-center">
-        <canvas id="myChart" ></canvas>
-        <canvas id="myChart2" ></canvas>
-    </div>
 
-</div>
+
+    <div class="container">
+        <a href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-json-data mx-auto">Charger les données</a>
+
+        <div class="title-part-graph" style="margin-top: 2%">
+            <h3 class="">Statistiques globaux</h3>
+            <div class="under_title"></div>
+        </div>
+
+        <div class="row container-main justify-content-between">
+            <div class="container-graph">
+                <canvas id="myChart" class="graph"></canvas>
+            </div>
+            <div class="container-graph">
+                <canvas id="myChart2" class="graph"></canvas>
+            </div>
+        </div>
+
+
+        <div class="title-part-graph">
+            <h3 class="title-part-graph">Statistiques du filtre</h3>
+            <div class="under_title"></div>
+        </div>
+
+        <div class="row container-main justify-content-between">
+            <div class="container-graph graph-resume">
+                <div class="graph-resume-libelle">
+                    <p>Nom du filtre :</p>
+                    <p>Nb de vidéos :</p>
+                    <p>Catégorie la plus présente :</p>
+                    <p>Tag le plus présent :</p>
+                    <p>Nb de vue moyenne :</p>
+                    <p>Nb de like moyen :</p>
+                    <p>Durée moyenne des vidéos :</p>
+                </div>
+            </div>
+            <div class="container-graph">
+                <canvas id="myChart3" class="graph"></canvas>
+            </div>
+
+        </div>
+    </div>
 
 
 {% endblock %}
