@@ -87,15 +87,6 @@ class SearchController extends AbstractController
             ]);
         }
 
-       
-        //si le form pour voir les statistiques est valide
-//        if($statForm->isSubmitted() && $statForm->isValid()){
-//            return $this->redirectToRoute("stats_globale", [
-//                'tabVideo' => $stringParam,
-//            ]);
-//            //echo 'YOUHOUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT<br><br><br><br><br><br><br>freeeeeeeeeeeeeeee';
-//        }
-
         return $this->render('search/index.html.twig', [
             'filterForm' => $filterForm->createView(),
             'filters' => $filters,

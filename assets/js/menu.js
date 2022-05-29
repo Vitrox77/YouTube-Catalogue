@@ -82,7 +82,7 @@ $(document).ready(function() {
                 legend: {
                     align: "start",
                     position: 'bottom',
-                    labels:{
+                    labels: {
                         family: 'Roboto Condensed',
                         padding: 20
                     }
@@ -96,7 +96,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -125,8 +125,8 @@ $(document).ready(function() {
         options: {
             plugins: {
                 legend: {
-                    align:"start",
-                    position:"bottom"
+                    align: "start",
+                    position: "bottom"
                 },
                 title: {
                     display: true,
@@ -137,7 +137,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -176,7 +176,7 @@ $(document).ready(function() {
                 legend: {
                     align: "start",
                     position: 'bottom',
-                    labels:{
+                    labels: {
                         family: 'Roboto Condensed',
                         padding: 20
                     }
@@ -190,7 +190,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -209,7 +209,6 @@ $(document).ready(function() {
             method: 'GET',
             url: $link.attr('href')
         }).done(function(data) {
-            console.log('200 OK');
             console.log(data);
             /* Si l'appel ajax à bien retourné une reponse avec de la data */
             var names = data.map(function(e) {
@@ -249,10 +248,17 @@ $(document).ready(function() {
             myChart2.config.data.datasets[0].backgroundColor = colors[0];
             myChart2.config.data.datasets[1].backgroundColor = colors[1];
             myChart2.update(); //on met a jour
-        }, function(err) {
-            console.log('500 ERROR');
         });
     });
 
-
+    $('.get-info-from-search').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_json) {
+            console.log(data_json);
+        });
+    });
 });

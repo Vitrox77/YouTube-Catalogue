@@ -62,4 +62,31 @@ class StatsController extends AbstractController
 
         return new JsonResponse($jsonData);
     }
+
+    /**
+     * @Route("/stats/{stringParam}/getInfoFromSearch", name="get_info_from_search", methods={"GET"})
+     */
+    public function getInfoFromSearch($stringParam, StatsService $statsService): JsonResponse
+    {
+        //séparer le sring param pour récuperer les id de chaque video et enlever les virgules
+        //je verifie si le dernier caractere est une virgule
+        if(substr($stringParam, -1) == ","){
+            $stringParam = substr($stringParam, 0, -1);
+        }
+        $stringParam = explode(",", $stringParam);
+        $stringParam = array_map('intval', $stringParam);
+
+        //je recupere le nombre de vidéo dans la recherche
+        $videos = count($this->getDoctrine()->getRepository(Video::class)->findBy(['id' => $stringParam]));
+        //je reucpere le nombre de vidéo total
+        $videosTotal = count($this->getDoctrine()->getRepository(Video::class)->findAll());
+
+        //envoyer les videos au service StatsService pour traiter les donner et récupérer seul les données utiles pour le graphique
+        $jsonData = [
+            'videosFilterCount' => $videos,
+            'videosTotalCount' => $videosTotal,
+        ];
+
+        return new JsonResponse($jsonData);
+    }
 }
