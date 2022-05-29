@@ -82,7 +82,7 @@ $(document).ready(function() {
                 legend: {
                     align: "start",
                     position: 'bottom',
-                    labels:{
+                    labels: {
                         family: 'Roboto Condensed',
                         padding: 20
                     }
@@ -96,7 +96,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -125,8 +125,8 @@ $(document).ready(function() {
         options: {
             plugins: {
                 legend: {
-                    align:"start",
-                    position:"bottom"
+                    align: "start",
+                    position: "bottom"
                 },
                 title: {
                     display: true,
@@ -137,7 +137,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -176,7 +176,7 @@ $(document).ready(function() {
                 legend: {
                     align: "start",
                     position: 'bottom',
-                    labels:{
+                    labels: {
                         family: 'Roboto Condensed',
                         padding: 20
                     }
@@ -190,7 +190,7 @@ $(document).ready(function() {
                         bottom: 30
                     },
                     color: "#bb2d3b",
-                    font:{
+                    font: {
                         size: 14,
                         family: 'Roboto Condensed',
                         style: 'normal'
@@ -209,7 +209,7 @@ $(document).ready(function() {
             method: 'GET',
             url: $link.attr('href')
         }).done(function(data) {
-            console.log('200 OK');
+            console.log("Button 1");
             console.log(data);
             /* Si l'appel ajax à bien retourné une reponse avec de la data */
             var names = data.map(function(e) {
@@ -249,10 +249,66 @@ $(document).ready(function() {
             myChart2.config.data.datasets[0].backgroundColor = colors[0];
             myChart2.config.data.datasets[1].backgroundColor = colors[1];
             myChart2.update(); //on met a jour
-        }, function(err) {
-            console.log('500 ERROR');
         });
     });
 
+    $('.get-info-from-search').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_json) {
+            console.log("Button 2");
+            console.log(data_json);
+        });
+    });
 
+    $('.get-categories-data').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_categories) {
+            console.log("Button 3");
+            console.log(data_categories);
+        });
+    });
+
+    $('.get-tags-data').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_tags) {
+            console.log("Button 4");
+            console.log(data_tags);
+        });
+    });
+
+    $('.get-date-data').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_date) {
+            console.log("Button 5");
+            console.log(data_date);
+        });
+    });
+
+    $('.get-recap-data').on('click', function(e) {
+        e.preventDefault();
+        var $link = $(e.currentTarget);
+        $.ajax({
+            method: 'GET',
+            url: $link.attr('href')
+        }).done(function(data_recap) {
+            console.log("Button 6");
+            console.log(data_recap);
+        });
+    });
 });
