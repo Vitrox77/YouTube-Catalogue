@@ -9,7 +9,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Form\FilterType;
 use App\Entity\Filters;
 use App\Entity\Video;
+use App\Entity\Tags;
 use App\Service\TagsService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SearchController extends AbstractController
 {
@@ -96,12 +98,9 @@ class SearchController extends AbstractController
     /**
      * @Route("/search/get/{tagName}", methods={"GET"}, name="app_search_with_tag_name")
      */
-    public function searchByTagName(Request $request, TagsService $tagsService, string $tagName) : Response{
+    public function searchByTagName(TagsService $tagsService, string $tagName) : Response{
         //Search tag by name
-        // $tag = $request->query->get('tagName');
         $tabTags = $tagsService->searchTagByName($tagName);
-        $test = array();
-        $test[] = "test";
         if($tabTags != null){
             $response = new Response(json_encode($tabTags));
             $response->headers->set('Content-Type', 'application/json');
@@ -111,8 +110,41 @@ class SearchController extends AbstractController
             $tabTags
         );
     }
-    
+
+
+    /**
+     * @Route("/insert/tag/{idVideo}/{idTag}) methods={"POST"}, name="app_insert_tag")
+    */
+    public function insertTag(int $idVideo, int $idTag) : Response{
+        //insert tag in db
+        $entityManager = $this->getDoctrine()->getManager();
+        $video = $this->getDoctrine()->getRepository(Video::class)->find($idVideo);
+        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($idTag);
+        $video->addTag($tag);
+        $entityManager->persist($video);
+        $entityManager->flush();
+        return new JsonResponse(
+            '200',
+        );
+    }
+
+    /**
+    * @Route("/create/tag/{tagName}) methods={"POST"}, name="app_insert_tag_perso")
+    */
+    public function createTagPerso(string $tagName) : Response{
+        //insert tag in db
+        $entityManager = $this->getDoctrine()->getManager();
+        $tag = new Tags();
+        $tag->setName($tagName);
+        $tag->setIsTagPerso(true);
+        $entityManager->persist($tag);
+        $entityManager->flush();
+        return new JsonResponse(
+            '200',
+        );
+    }
      
+    
 }
 
 
