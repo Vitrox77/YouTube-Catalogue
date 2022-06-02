@@ -68,9 +68,9 @@ $(document).ready(function() {
     const myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: [],
+            labels: ['Vidéos du filtre', 'Vidéos de tout le catalogue'],
             datasets: [{
-                label: 'Part de vidéo pour le filtre choisi comparé aux autres filtres',
+                label: 'Nombre de vidéos',
                 data: [],
                 backgroundColor: [],
                 borderWidth: 1
@@ -105,6 +105,8 @@ $(document).ready(function() {
             }
         }
     });
+
+
     /* FIN DES PARAMS DU GRAPH  */
     /* PARAMETRES DU DEUXIEME GRAPHIQUE */
     const ctx2 = document.getElementById('myChart2').getContext('2d');
@@ -156,15 +158,15 @@ $(document).ready(function() {
         }
     });
 
-    /* PARAMETRES DU TROISIEME GRAPHIQUE */
+    /* PARAMETRES DU TROISIEME GRAPHIQUE : NB DE LIKES PAR RAPPORT AUX VUES*/
     const ctx3 = document.getElementById('myChart3').getContext('2d');
     const myChart3 = new Chart(ctx3, {
         type: 'line',
         data: {
             labels: "labels",
             datasets: [{
-                label: 'My First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                label: 'Nombre de likes',
+                data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
@@ -200,6 +202,50 @@ $(document).ready(function() {
         }
     });
 
+    /* PARAMETRES DU QUATRIEME GRAPHIQUE : CATEGORIES*/
+    const ctx4 = document.getElementById('myChartCategories').getContext('2d');
+    const myChartCategories = new Chart(ctx4, {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+                label: '',
+                data: [],
+                backgroundColor: [],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    align: "start",
+                    position: 'bottom',
+                    labels: {
+                        family: 'Roboto Condensed',
+                        padding: 20
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'CATEGORIE LA PLUS UTILISEE',
+                    position: "top",
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    },
+                    color: "#bb2d3b",
+                    font: {
+                        size: 14,
+                        family: 'Roboto Condensed',
+                        style: 'normal'
+                    }
+                }
+            }
+        }
+    });
+
+
     /* FIN DES PARAMS DU GRAPH  */
     /* Lors du clic sur le bouton pour charger les données des graphs */
     $('.get-json-data').on('click', function(e) {
@@ -227,6 +273,7 @@ $(document).ready(function() {
             });
 
 
+
             //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
             var colors = [];
             for (var i = 0; i < names.length; i++) {
@@ -237,10 +284,12 @@ $(document).ready(function() {
                 colors2.push(randomColor());
             }
             /* On remplit les données du graph */
-            myChart.config.data.labels = names;
-            myChart.config.data.datasets[0].data = nbViews;
-            myChart.config.data.datasets[0].backgroundColor = colors;
-            myChart.update(); //on met a jour
+            // myChart.config.data.labels = names;
+            // myChart.config.data.datasets[0].data = nbViews;
+            // myChart.config.data.datasets[0].backgroundColor = colors;
+            // myChart.update(); //on met a jour
+
+
 
             /* On remplit les données du graph */
             myChart2.config.data.labels = names;
@@ -261,9 +310,35 @@ $(document).ready(function() {
         }).done(function(data_json) {
             console.log("Button 2");
             console.log(data_json);
+            //console.log(data_json.videosFilterCount);
+
+            var filterCount = data_json.videosFilterCount;
+            var totalCount = data_json.videosTotalCount;
+
+            //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
+            var colors = [];
+            for (var i = 0; i < 2; i++) {
+                colors.push(randomColor());
+            }
+            var colors2 = [];
+            for (var i = 0; i < 2 ; i++) {
+                colors2.push(randomColor());
+            }
+
+            (myChart.config.data.datasets[0].data).push(filterCount);
+            (myChart.config.data.datasets[0].data).push(totalCount);
+
+            myChartCategories.config.data.datasets[0].backgroundColor = colors;
+
+            myChart.update(); //on met a jour
+
+
+
         });
     });
 
+
+    //GRAPH CATEGORIES
     $('.get-categories-data').on('click', function(e) {
         e.preventDefault();
         var $link = $(e.currentTarget);
@@ -273,6 +348,34 @@ $(document).ready(function() {
         }).done(function(data_categories) {
             console.log("Button 3");
             console.log(data_categories);
+
+            var names = data_categories.map(function (e) {
+                return e.name;
+            });
+
+            var nbVideos = data_categories.map(function (e) {
+                return e.count;
+            });
+
+            //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
+            var colors = [];
+            for (var i = 0; i < names.length; i++) {
+                colors.push(randomColor());
+            }
+            var colors2 = [];
+            for (var i = 0; i < names.length; i++) {
+                colors2.push(randomColor());
+            }
+
+            /* On remplit les données du graph */
+            myChartCategories.config.data.labels = names;
+            myChartCategories.config.data.datasets[0].data = nbVideos;
+            myChartCategories.config.data.datasets[0].backgroundColor = colors;
+            myChartCategories.update(); //on met a jour
+            console.log(myChartCategories.config.data.datasets[0].data);
+            console.log(nbVideos);
+
+
         });
     });
 
@@ -309,6 +412,9 @@ $(document).ready(function() {
         }).done(function(data_recap) {
             console.log("Button 6");
             console.log(data_recap);
+            $('#mean-duration').text(data_recap.duration  + " min");
+            $('#mean-views').text(data_recap.nbViews);
+            $('#mean-likes').text(data_recap.nbLikes);
         });
     });
 });

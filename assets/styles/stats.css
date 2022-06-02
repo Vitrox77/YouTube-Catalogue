@@ -1,3 +1,9 @@
+.graph-resume-libelle p span{
+    font-weight: normal;
+    color: #0a0a0a;
+}
+
+
 /* ------------------------------------ PARTIE GRAPHIQUES --------------------------------------------------- */
 
 .chart-container {
@@ -46,11 +52,12 @@ canvas {
 }
 
 .graph-resume-libelle{
-    padding: 5%;
+    padding: 2%;
 }
 
 .graph-resume-libelle p {
     text-transform: uppercase;
     font-weight: bold;
     color: white;
+    margin-bottom: 1%;
 }
