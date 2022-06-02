@@ -1,4 +1,5 @@
 import '../styles/search.css';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const $ = require('jquery');
 
 // array of video id
@@ -10,10 +11,14 @@ var inputSearchTimeout
 // Event listener for the search input
 var inputSearch = $('#search-tag');
 
+var tooltipTriggerList = []
 
 $(document).ready(function() {
-
-    
+    toggleAllTooltips();
+    $('#tagsModal').on('shown.bs.modal', function () {
+        alert()
+        $('#search-tag').focus();
+    });
     var elem = inputSearch;
     // Save current value of element
     elem.data('oldVal', elem.val());
@@ -94,6 +99,7 @@ function startSearchingTags(elem) {
                         addTagVideo(element.name, element.id);
                     }
                 });
+                toggleAllTooltips();
             },
             error: function(data) {
                 // alert();
@@ -104,31 +110,51 @@ function startSearchingTags(elem) {
     
     }, 400);
 }
+function toggleAllTooltips(){
+    console.log("Toggle all tooltips");
+    tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+}
+function hideAllTooltips(){
+    console.log("hidding all tooltips");
+    $(".bs-tooltip-top").remove();
+    tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl).hide();
+    });
+}
+
 function addTagUser(tagName, tagId) {
-    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\" >" + tagName + "</div><div>";
+    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\" >" + tagName + "</div><div>";
     $('#tag-user').html(div_data);
 }
 
 function addTagVideo(tagName, tagId) {
-    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\">" + tagName + "</div><div>";
+    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\">" + tagName + "</div><div>";
     $('#tag-video').html(div_data);
 }
 
 function addTagRecap(tagName, tagId) {
     if($.inArray(tagId, tagsId) == -1){
-        var div_data = $('#tag-recap').html() + "<div class=\"col-12 tags-wrap\"><div class=\"tag-recap-selected ellipsis m-2\" id=\"recap-"+ tagId +"\">" + tagName + "</div><div>";
+        var div_data = $('#tag-recap').html() + "<div class=\"col-12 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag-recap-selected ellipsis m-2\" id=\"recap-"+ tagId +"\">" + tagName + "</div><div>";
         $('#tag-recap').html(div_data);
         // add the tag id to the array tagsId
-            tagsId.push(tagId);
-        }else{
-            //Do not hide this alert
-            alert("Tag already added")
-        }
+        tagsId.push(tagId);
+        hideAllTooltips();
+        toggleAllTooltips();
+
+    }else{
+        //Do not hide this alert
+        alert("Tag already added")
+    }
 }
 
 function removeTagRecap(tagId) {
     $("#"+tagId).remove();
     tagsId.splice( $.inArray(tagId, tagsId), 1);
+    hideAllTooltips();
 }
 
 function resetTagRecap(tagId) {

@@ -38,6 +38,7 @@
 .tag-video-container,
 .tag-recap-container {
     padding-left: 0 !important;
+    height: 100%;
 }
 
 .tag-container-body {
@@ -63,6 +64,8 @@
     border-radius: 10px;
     height: 100%;
     min-height: 300px;
+    max-height: 500px;
+    overflow: auto;
 }
 
 .tag,
