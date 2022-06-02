@@ -41,6 +41,7 @@ $(document).ready(function() {
         var elem = $(this);
         removeTagRecap(elem.attr('id'));
     });
+
     // when clicking on button submit tag, call the function submitTags
     $('#submit-tags').click(function() {
         // alert(videosId)
@@ -114,7 +115,7 @@ function addTagVideo(tagName, tagId) {
 }
 
 function addTagRecap(tagName, tagId) {
-    if($.inArray(tagId, tagsId)){
+    if($.inArray(tagId, tagsId) == -1){
         var div_data = $('#tag-recap').html() + "<div class=\"col-12 tags-wrap\"><div class=\"tag-recap-selected ellipsis m-2\" id=\"recap-"+ tagId +"\">" + tagName + "</div><div>";
         $('#tag-recap').html(div_data);
         // add the tag id to the array tagsId
