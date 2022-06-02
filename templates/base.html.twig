@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Youtube Catalogue{% endblock %}</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.jpg') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
@@ -16,13 +16,13 @@
 <div class="nav-bar text-light">
     <img src="{{ asset('images/banniere.png') }}" alt="banniere" class="img-banniere">
     <div class="h1">
-        <b><a class="main-title fw-bold" href="{{path('app_main')}}">Youtube Catalogue</a></b>
+        <b><a class="main-title fw-bold" href="{{path('app_main')}}"><img src="{{ asset('images/logo2.png') }}"></a></b>
+        
     </div>
     <div class="h2 flex">
         <b><a class="second-main-title fw-bold" href="{{path('app_search')}}">Catalogue</a></b>
         <b>	&bull;</b>
         <b><a class="second-main-title fw-bold" href="{{path('app_main')}}">Import</a></b>
-        {#                    <b class="px-1">{% block pageTitle %}{% endblock %}</b>#}
     </div>
 
 </div>

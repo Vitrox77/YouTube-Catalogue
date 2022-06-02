@@ -5,14 +5,13 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 //require bootstrap-datepicker
-require('bootstrap-datepicker/js/bootstrap-datepicker')
+import 'bootstrap-datepicker/js/bootstrap-datepicker';
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
 //import datepicker
 import './bootstrap';
-import '../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 
 require('bootstrap');
 const $ = require('jquery');
@@ -47,6 +46,15 @@ $(document).ready(function() {
         after_submit_logo.removeClass('d-none');
 
     });
+
+    $('.js-datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        minViewMode: 1,
+        autoclose: true,
+        todayHighlight: true,
+        language: 'fr'
+    });
+
 });
 
 //event listener on click bouton reset
@@ -66,12 +74,6 @@ import_scv_reset.on('click', function() {
 
 });
 
-$(document).ready(function() {
-    // you may need to change this code if you are not using Bootstrap Datepicker
-    $('.js-datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });
-});
 
 // var myModal = document.getElementById('myModal');
 // myModal.addEventListener('shown.bs.modal', function() {});

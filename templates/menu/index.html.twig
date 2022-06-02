@@ -51,13 +51,9 @@
         </div>
     {{ form_end(URLform) }}
 
-    {% if videoTitle is defined %}
-    <ul>
-    {% for title in videoTitle %}
-        <li class="text-light">{{ title }}</li>
-    {% endfor %}
-    </ul>
-{% endif %}
+    <div class="container site-infos text-center my-5 text-light">
+        <p>Ici les infos concernant le site et le projet (à voir commment le mettre ?)</p>
+    </div>
 
 {% endblock %}
 
