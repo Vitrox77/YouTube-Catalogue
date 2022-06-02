@@ -8,15 +8,35 @@
     <h3 class="fw-bold">{{ video.title }} </h3>
     <div class="under_title"></div>
 
-    <div class="row" style="margin-top:5%">
+    {# Modal #}
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {# End modal #}
+
+    
+    <div class="row mt-1">
         <div class="col-md-5">
-            <div class="span4 proj-div" onClick="open('GSCCModal');">
+            <div class="proj-div">
                 <img src="{{ video.thumbnail }}" alt="" width="400" height="300">
-                {# <button type="button" class="btn btn-primary" id="exampleModal">
-                Launch demo modal
-                </button>   #}
-                <button id="myBtn">Open Modal</button>
-                <a class="text-light btn btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter tags</a>           
+                <button type="button" class="text-light btn btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Launch demo modal
+                </button>       
             </div>
         </div>
 
@@ -30,64 +50,20 @@
         </div>
     </div>
 
-    {# <div class="row my-1">
+    <div class="row my-1">
         <iframe width="420" height="500" src="https://www.youtube.com/embed/{{ video.url }}"></iframe>
-    </div> #}
-</div>
-
-
-{# Modal #}
-{# <div id="GSCCModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> #}
-{# <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="tagsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-center">
-        <div class="modal-content modal-rounded p-2 modal-tag">
-            <div class="modal-body">
-                 <div class="modal-container-border text-center">
-                    <iframe width="420" height="500" src="https://www.youtube.com/embed/{{ video.url }}"></iframe>
-                 </div>
-            </div>
-         </div>
     </div>
-</div> #}
-<!-- Modal -->
-{# <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> #}
-
-
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
 </div>
-{# End modal #}
 {% endblock %}
 
-{# 
-    {% block stylesheets %}
-        {{ parent() }}
-        {{ encore_entry_link_tags('video') }}
-    {% endblock %}
 
-    {% block javascripts %}
-        {{ parent() }}
-        {{ encore_entry_script_tags('video') }}
-    {% endblock %} #}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('video') }}
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    {{ encore_entry_script_tags('video') }}
+{% endblock %}
