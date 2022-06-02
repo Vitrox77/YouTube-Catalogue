@@ -74,20 +74,22 @@ class FilterType extends AbstractType
                 'required' => false,
             ])
             ->add('min_uploadDate', DateType::class, [
-                'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
+                'required' => false,
+                'format'=> 'yyyy-mm-dd',
                 'attr' => [
                     'class' => ' js-datepicker form-control',
-                    'placeholder' => 'aaaa-mm-jj'
+                    'placeholder' => 'yyyy-mm-dd'
                 ],
             ])
             ->add('max_uploadDate', DateType::class, [
-                'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
+                'required' => false,
+                'format'=> 'yyyy-mm-dd',
                 'attr' => ['class' => ' js-datepicker form-control',
-                'placeholder' => 'aaaa-mm-jj'
+                'placeholder' => 'yyyy-mm-dd'
                 ],
             ])
             ->add('keywords', TextType::class, [
