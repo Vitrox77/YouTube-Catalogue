@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
- * @ORM\Entity(repositoryClass=VideoRepository::class)7
+ * @ORM\Entity(repositoryClass=VideoRepository::class)
  * @ApiResource
  */
 class Video
