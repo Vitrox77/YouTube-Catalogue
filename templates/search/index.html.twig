@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="container-main">
-    <h3>FILTRES</h3>
+    <h3 class="fw-bold">FILTRES</h3>
     <div class="under_title"></div>
 
     {{ form_start(filterForm) }}
@@ -76,7 +76,7 @@
 
 {% if data is defined %}
 <div class="container-main mt-3">
-    <h3>RESULTATS</h3>
+    <h3 class="fw-bold">RESULTATS</h3>
     <div class="under_title"></div>
 
     <div class="row justify-content-between container-button mt-1">
@@ -102,18 +102,18 @@
             <table class="table" style="margin-top:5%">
                 <tbody>
                     {% for video in data %}
-                    <tr>
-                        <th scope="row">
+                    <tr class="row-video">
+                        <th scope="row ">
                             <div class="form-check" >
                                 <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
                             </div>
                         </th>
-                        <td>
-                            Image thumbnail<!--<img src="./././assets/images/favicon.jpg" alt="Bootstrap" class="img-thumbnail">-->
+                        <td class="text-center px-0">
+                            <img src="{{ video.thumbnail }}" alt="" width="250" height="150">
                         </td>
                         <td>
                             <div class="title mb-1">
-                                Titre : {{ video.title[:50] ~ '...' }}<br/>
+                                <a class="link-video" href="{{ path('app_video_detail', {'id' : video.id}) }}" target="_blank">Titre : {{ video.title[:50] ~ '...' }}<br/></a>
                             </div>
                             Description : {{ video.description[:50] ~ '...' }}
                             <div class="row mt-1 gx-0" >

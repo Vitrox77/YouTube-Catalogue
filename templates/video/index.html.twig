@@ -3,18 +3,24 @@
 {% block title %}Hello VideoController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Proprietaire/Documents/E4FI/Projet_fin_annee_YT/YouTube-Catalogue/src/Controller/VideoController.php'|file_link(0) }}">src/Controller/VideoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Proprietaire/Documents/E4FI/Projet_fin_annee_YT/YouTube-Catalogue/templates/video/index.html.twig'|file_link(0) }}">templates/video/index.html.twig</a></code></li>
-    </ul>
+<div class="container text-light">
+    <h1>{{ video.title }} ✅</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{ video.thumbnail }}" alt="" width="400" height="300">
+            <p>Nombre de vues : {{ video.statistic.nbViews }}</p>
+            <p>Nombre de likes : {{ video.statistic.nbLikes }}</p>
+        </div>
+        <div class="col-md-8">
+            <p>Description : {{ video.description }}</p>
+            <p>Catégorie : {{ video.category.name }}</p>
+            <p>Date de sortie : {{ video.statistic.releaseDate|date('d/m/Y') }}</p>
+            <p>Durée : {{ video.statistic.duration }}</p>
+        </div>
+    </div>
+    <div class="row my-1">
+        <iframe width="420" height="500" src="https://www.youtube.com/embed/{{ video.url }}"></iframe>
+    </div>
 </div>
 {% endblock %}

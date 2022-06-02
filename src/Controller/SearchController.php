@@ -113,7 +113,7 @@ class SearchController extends AbstractController
 
 
     /**
-     * @Route("/insert/tag/{idVideo}/{idTag}) methods={"POST"}, name="app_insert_tag")
+     * @Route("/insert/tag/{idVideo}/{idTag}", methods={"POST"}, name="app_insert_tag")
     */
     public function insertTag(int $idVideo, int $idTag) : Response{
         //insert tag in db
@@ -129,7 +129,7 @@ class SearchController extends AbstractController
     }
 
     /**
-    * @Route("/create/tag/{tagName}) methods={"POST"}, name="app_insert_tag_perso")
+    * @Route("/create/tag/{tagName}", methods={"POST"}, name="app_insert_tag_perso")
     */
     public function createTagPerso(string $tagName) : Response{
         //insert tag in db
