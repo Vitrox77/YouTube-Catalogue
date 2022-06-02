@@ -49,7 +49,6 @@ $(document).ready(function() {
 
     $('.js-datepicker').datepicker({
         format: 'yyyy-mm-dd',
-        minViewMode: 1,
         autoclose: true,
         todayHighlight: true,
         language: 'fr'

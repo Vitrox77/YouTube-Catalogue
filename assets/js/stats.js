@@ -1,6 +1,5 @@
 import '../styles/stats.css';
 
-alert('stats.js');
 /******************************** INCLUDES CHART JS ******************************************** */
 import {
     Chart,
