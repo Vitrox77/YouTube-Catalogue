@@ -27,6 +27,7 @@
 .tag-container {
     padding: 20px 10px 20px 10px;
     margin: 0 !important;
+    min-height: 320px;
 }
 
 .form-container {
@@ -44,7 +45,8 @@
 }
 
 .tag-user-tags,
-.tag-video-tags {
+.tag-video-tags,
+.tag-recap-tags {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
@@ -60,16 +62,25 @@
     background-color: white;
     border-radius: 10px;
     height: 100%;
+    min-height: 300px;
 }
 
-.tag {
+.tag,
+.tag-recap-selected {
     border: #EE4145 solid 2px;
     border-radius: 10px;
     background-color: #ffffff;
     font-weight: 500;
 }
 
-.tag:hover {
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tag:hover,
+.tag-recap-selected:hover {
     background-color: #dc3545;
     color: white;
     cursor: pointer;

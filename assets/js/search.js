@@ -1,61 +1,137 @@
 import '../styles/search.css';
 const $ = require('jquery');
 
+// array of video id
+var videosId = ["1","2"];
+// array of tag id
+var tagsId = [];
+// Timeout pour la recherche des tags
+var inputSearchTimeout
+// Event listener for the search input
+var inputSearch = $('#search-tag');
+
+
 $(document).ready(function() {
-    $('#search-tag').each(function() {
-        var elem = $(this);
-        // Save current value of element
-        elem.data('oldVal', elem.val());
 
-        // Look for changes in the value
-        elem.bind("keyup input paste", function(event) {
+    
+    var elem = inputSearch;
+    // Save current value of element
+    elem.data('oldVal', elem.val());
 
-            if (elem.data('oldVal') != elem.val()) {
-                // addTagUser(elem.val());
-                // Updated stored value
-                elem.data('oldVal', elem.val());
-
-                // Do AJAX call to get the tag corresponding to the search
-                $.ajax({
-                    url: '/search/get/' + elem.val(),
-                    type: 'GET',
-                    data: {
-                        'tagName': elem.val()
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        alert(data);
-                        var parsed_data = JSON.parse(data);
-                        // alert(parsed_data[0].name);
-
-                        resetAllTags();
-                        parsed_data.forEach(element => {
-                            if (element.isTagPerso) {
-                                addTagUser(element.name, element.id);
-                            } else {
-                                addTagVideo(element.name, element.id);
-                            }
-                        });
-                    }
-                });
-            }
-            if (elem.val().length == 0) {
-                resetAllTags();
-            }
-        });
-
-
+    // Look for changes in the value
+    elem.bind("keyup input paste", function(event) {
+        if (elem.data('oldVal') != elem.val()) {
+            //set timeout of start finding tags
+            clearTimeout(inputSearchTimeout);
+            startSearchingTags(elem)
+        }
+        
+        if (elem.val().length == 0) {
+            resetAllTags();
+            hideCreateTagButton();
+        }
     });
+    
 
     $(document).on("click", ".tag", function() {
         var elem = $(this);
-        alert(elem.text());
+        addTagRecap(elem.text(), elem.attr('id'));
+    });
+    $(document).on("click", ".tag-recap-selected", function() {
+        var elem = $(this);
+        removeTagRecap(elem.attr('id'));
+    });
+    // when clicking on button submit tag, call the function submitTags
+    $('#submit-tags').click(function() {
+        // alert(videosId)
+        // alert(tagsId)
+        submitTags();
+        resetTagRecap();
+        
+    });
+    // when clicking on button add tag, call the function addNewTag
+    $('#create-tag').click(function() {
+        // collect the string if the input called search-tag
+        var tagName = $('#search-tag').val();
+        var tagId = $('#search-tag').attr('id');
+        alert(tagId);
+        // alert(tagName);
+        if(tagName.length > 0) {
+            addNewTag(tagName);
+        }
     });
 });
 
+function startSearchingTags(elem) {
+    // alert("Searching tags");
+    inputSearchTimeout = setTimeout(function() {
+        // Updated stored value
+    elem.data('oldVal', elem.val());
+    // do a set timeout of the rest of the function
+    
+    if(elem.val() != ''){
+        // Do AJAX call to get the tag corresponding to the search
+        $.ajax({
+            url: '/search/get/' + elem.val(),
+            type: 'GET',
+            data: {
+                'tagName': elem.val()
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data.length == 2) {
+                    showCreateTagButton();
+                }else {
+                    hideCreateTagButton();
+                }
+                var parsed_data = JSON.parse(data);        
+                resetAllTags();
+                parsed_data.forEach(element => {
+                    if (element.isTagPerso) {
+                        addTagUser(element.name, element.id);
+                    } else {
+                        addTagVideo(element.name, element.id);
+                    }
+                });
+            },
+            error: function(data) {
+                // alert();
+                showCreateTagButton();
+            }
+        });
+    }
+    
+    }, 400);
+}
 function addTagUser(tagName, tagId) {
-    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tagName + "</div><div>";
+    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\" >" + tagName + "</div><div>";
     $('#tag-user').html(div_data);
+}
+
+function addTagVideo(tagName, tagId) {
+    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\">" + tagName + "</div><div>";
+    $('#tag-video').html(div_data);
+}
+
+function addTagRecap(tagName, tagId) {
+    if($.inArray(tagId, tagsId)){
+        var div_data = $('#tag-recap').html() + "<div class=\"col-12 tags-wrap\"><div class=\"tag-recap-selected ellipsis m-2\" id=\"recap-"+ tagId +"\">" + tagName + "</div><div>";
+        $('#tag-recap').html(div_data);
+        // add the tag id to the array tagsId
+            tagsId.push(tagId);
+        }else{
+            //Do not hide this alert
+            alert("Tag already added")
+        }
+}
+
+function removeTagRecap(tagId) {
+    $("#"+tagId).remove();
+    tagsId.splice( $.inArray(tagId, tagsId), 1);
+}
+
+function resetTagRecap(tagId) {
+    $('#tag-recap').html('');
 }
 
 function resetAllTags() {
@@ -63,7 +139,45 @@ function resetAllTags() {
     $('#tag-video').html('');
 }
 
-function addTagVideo(tagName, tagId) {
-    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\"><div class=\"tag m-2\">" + tagName + "</div><div>";
-    $('#tag-video').html(div_data);
+function showCreateTagButton() {
+    $('#create-tag').show();
+}
+
+function hideCreateTagButton() {
+    $('#create-tag').hide();
+}
+
+function submitTags() {
+    videosId.forEach(videoId => {
+        tagsId.forEach(tagId => {
+            $.ajax({
+                url: 'search/insert/tag/' + videoId + '/' + tagId,
+                type: 'GET',
+                data: {
+                    'videoId': videoId,
+                    'tagId': tagId,
+                },
+                dataType: 'json',
+                success: function(data) {
+                    // alert(data);
+                }
+            });
+        });
+    });
+}
+
+function addNewTag(tagName) {
+    $.ajax({
+        url: 'search/create/tag/' + tagName,
+        type: 'POST',
+        data: {
+            'tagName': tagName
+        },
+        dataType: 'json',
+        success: function(data) {
+            // alert(data);
+            clearTimeout(inputSearchTimeout);
+            startSearchingTags(inputSearch);
+        }
+    });
 }
