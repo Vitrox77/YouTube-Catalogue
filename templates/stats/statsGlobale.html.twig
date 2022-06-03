@@ -7,64 +7,70 @@
 
 
     <div class="container">
-        <a href="{{ path('get_tags_data', {stringParam : stringParam}) }}" class="btn btn-danger get-tags-data mx-auto">Charger les données (Tags)</a>
-        <a href="{{ path('get_date_data', {stringParam : stringParam}) }}" class="btn btn-danger get-date-data mx-auto">Charger les données (Date nbvues)</a>
-        <a href="{{ path('get_recap_data', {stringParam : stringParam}) }}" class="btn btn-danger get-recap-data mx-auto">Charger les données (Récap)</a>
-
-        <div class="title-part-graph" style="margin-top: 2%">
-            <h3>Statistiques globales</h3>
+        <div class="title-part-graph" style="margin-top: 2%; margin-bottom: 5%">
+            <h3>Statistiques du filtre</h3>
             <div class="under_title"></div>
         </div>
 
-        <div class="container-main justify-content-between" style="display: flex">
-            <div class="container-graph">
+        <div class="row container-main justify-content-between" style="display: flex;">
+            <div class="container-graph double-column" style="width: 45%;">
                 <canvas id="myChart" class="graph"></canvas>
-                <a href="{{ path('get_info_from_search', {stringParam : stringParam}) }}" class="btn btn-danger get-info-from-search mx-auto">Charger les données (pie videos filtres)</a>
-
-                <a href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-json-data mx-auto">Charger les données (graph 1 et 2)</a>
-
+                <a id="btn-vid-filtre" href="{{ path('get_info_from_search', {stringParam : stringParam}) }}" class="btn btn-danger get-info-from-search mx-auto btn-graph" onclick="displayNone('btn-vid-filtre', 'myChart')">Charger les données (pie videos filtres)</a>
             </div>
-            <div class="container-graph graph-resume" style="max-height: 250px">
-                <div class="graph-resume-libelle">
-                    <p><span style="font-size: 1.7em; color: white">NOM DU FILTRE</span></p>
-                    <p>Nb de vidéos :</p>
-                    <p>Catégorie la plus présente :</p>
-                    {#<p>Tag le plus présent :</p>#}
-                    <p>Nb de vue moyenne :  <span id="mean-views"></span></p>
-                    <p>Nb de like moyen : <span id="mean-likes"></span></p>
-                    <p>Durée moyenne des vidéos : <span id="mean-duration"></span></p>
+
+            <div class="double-column">
+                <div class="container-graph graph-resume" style="margin-bottom: 4%">
+                    <div class="graph-resume-libelle">
+                        <p><span style="font-size: 1.7em; color: white">NOM DU FILTRE</span></p>
+                        <p>Nb de vidéos :</p>
+                        <p>Catégorie la plus présente :</p>
+                        {#<p>Tag le plus présent :</p>#}
+                        <p>Nb de vue moyenne :  <span id="mean-views"></span></p>
+                        <p>Nb de like moyen : <span id="mean-likes"></span></p>
+                        <p>Durée moyenne des vidéos : <span id="mean-duration"></span></p>
+                    </div>
+                </div>
+
+                <div class="container-graph">
+                    <canvas id="myChartCategories" class="graph"></canvas>
+                    <a id="btn-categories" href="{{ path('get_categories_data', {stringParam : stringParam}) }}" class="btn btn-danger get-categories-data mx-auto btn-graph" onclick="displayNone('btn-categories', 'myChartCategories')">Charger les données (Categories)</a>
                 </div>
             </div>
-
-
-        </div>
-
-
-        <div class="title-part-graph">
-            <h3 class="title-part-graph">Statistiques du filtre</h3>
-            <div class="under_title"></div>
         </div>
 
 
         <div class="row container-main justify-content-between">
-
-            <div class="container-graph">
-                <canvas id="myChart2" class="graph"></canvas>
+            <div class="container-graph graph-40" >
+                <canvas id="myChartTags" class="graph"></canvas>
+                <a id="btn-tags" href="{{ path('get_tags_data', {stringParam : stringParam}) }}" class="btn btn-danger get-tags-data mx-auto btn-graph" onclick="displayNone('btn-tags', 'myChartTags')">Charger les données (Tags)</a>
             </div>
 
-            <div class="container-graph">
-                <canvas id="myChart3" class="graph"></canvas>
+            <div class="container-graph graph-40">
+                <canvas id="myChartLikesViews" class="graph"></canvas>
+                <a id="btn-likes" href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-graph-json-data mx-auto btn-graph" onclick="displayNone('btn-likes', 'myChartLikesViews')">Charger les données (graph 1 et 2)</a>
             </div>
-
-            <div class="container-graph">
-                <canvas id="myChartCategories" class="graph"></canvas>
-                <a href="{{ path('get_categories_data', {stringParam : stringParam}) }}" class="btn btn-danger get-categories-data mx-auto">Charger les données (Categories)</a>
-            </div>
-
-
-
         </div>
+
+        <div class="row container-main justify-content-between">
+            <div class="container-graph" >
+                <canvas id="myChartDate" class="graph"></canvas>
+                <a  id="btn-dates" href="{{ path('get_date_data', {stringParam : stringParam}) }}" class="btn btn-danger get-date-data mx-auto btn-graph" onclick="displayNone('btn-dates', 'myChartDate')">Charger les données (Date nbvues)</a>
+            </div>
+        </div>
+
+
+        <a href="{{ path('get_recap_data', {stringParam : stringParam}) }}" class="btn btn-danger get-recap-data mx-auto">Charger les données (Récap)</a>
+
+
     </div>
+
+    <script>
+        function displayNone(idButton, idCanva){
+            document.getElementById(idButton).style.display = "none";
+            document.getElementById(idCanva).style.visibility = "visible";
+
+        }
+    </script>
 
 
 {% endblock %}
