@@ -47,6 +47,14 @@ $(document).ready(function() {
         removeTagRecap(elem.attr('id'));
     });
 
+    // when clicking on button add tag, we add all the video to the video list 
+    $('#addTagButton').click(function() {
+        $('.form-check-video-res:checkbox:checked').each(function () {
+            videosId.push($(this).attr('id'));
+        });
+        alert(videosId);
+        
+    });
     // when clicking on button submit tag, call the function submitTags
     $('#submit-tags').click(function() {
         // alert(videosId)

@@ -117,7 +117,6 @@ class FilterType extends AbstractType
                 'attr' => [
                     'class'=>'form-control',
                     'placeholder' => 'Ajouter un nom au filtre',
-                    'id'=>'flexCheckDefault'
                 ],
             ])
             ->add('button', SubmitType::class, [

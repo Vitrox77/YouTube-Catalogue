@@ -68,6 +68,10 @@
     overflow: auto;
 }
 
+.recap-width {
+    width: 31%;
+}
+
 .tag,
 .tag-recap-selected {
     border: #EE4145 solid 2px;

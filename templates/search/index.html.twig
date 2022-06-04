@@ -73,7 +73,7 @@
     </div>
     {{form_end(filterForm)}}
 </div><!-- end container-main -->
-            <a class="text-light btn btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal">Ajouter tags</a>
+            <a class="text-light btn btn-danger mt-1" id="addTagButton" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal">Ajouter tags</a>
 <!-- Modal -->
         <div class="modal fade" id="tagsModal" tabindex="-1" aria-labelledby="tagsModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl modal-center">
@@ -85,8 +85,8 @@
                                     <input type="text" class="form-control" id="search-tag" name="search-tag" placeholder="Search tags" aria-label="Search tags"/>
                                 </div>
                             </div>
-                            <div class="col-12 tag-container row">
-                                <div class="col-12 row">
+                            <div class="tag-container">
+                                <div class="row">
                                     <div class="col-9 row">
                                         <div class="col-6 tag-user-container">
                                             <div class="tag-user">
@@ -114,7 +114,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3">
+                                    <div class="col-3 row recap-width">
                                         <div class="col-12 tag-recap-container">
                                             <div class="tag-recap">
                                                 <div class="tag-recap-title">
@@ -151,7 +151,7 @@
             </div>
         </div>
         <div class="col-sm-7 col-md-3">
-            <a class="text-light btn btn-danger mt-1" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal">Ajouter tags</a>
+            <a class="text-light btn btn-danger mt-1" id="addTagButton" type="button" data-bs-toggle="modal" data-bs-target="#tagsModal">Ajouter tags</a>
         </div>
         <div class="col-sm-7 col-md-3" >
             {% if stringParam is defined %}
@@ -169,7 +169,7 @@
                     <tr>
                         <th scope="row">
                             <div class="form-check" >
-                                <input class="form-check-video-res" type="checkbox" id="flexCheckDefault">
+                                <input class="form-check-video-res" type="checkbox" id="{{video.id}}">
                             </div>
                         </th>
                         <td>
