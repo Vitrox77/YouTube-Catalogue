@@ -1,4 +1,26 @@
+.graph-resume-libelle p span{
+    font-weight: normal;
+    color: #0a0a0a;
+}
+
+
 /* ------------------------------------ PARTIE GRAPHIQUES --------------------------------------------------- */
+.graph{
+    visibility: hidden;
+    border-radius: 30px;
+}
+
+.btn-graph{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.double-column{
+    width: 50%;
+}
+
 
 .chart-container {
     width: 50%;
@@ -15,11 +37,17 @@ canvas {
 }
 
 .container-graph{
+    position: relative;
     background-color: white;
     /*border: solid red;*/
-    width: 45%;
+    /*width: 40%;*/
     padding: 1% 2% 1% 2%;
     border-radius: 30px;
+}
+
+.graph-40{
+    width: 48%;
+    /*margin: 2%;*/
 }
 
 .graph-resume{
@@ -46,11 +74,12 @@ canvas {
 }
 
 .graph-resume-libelle{
-    padding: 5%;
+    padding: 2%;
 }
 
 .graph-resume-libelle p {
     text-transform: uppercase;
     font-weight: bold;
     color: white;
+    margin-bottom: 1%;
 }
