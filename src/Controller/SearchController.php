@@ -113,13 +113,13 @@ class SearchController extends AbstractController
 
 
     /**
-     * @Route("/insert/tag/{idVideo}/{idTag}", methods={"POST"}, name="app_insert_tag")
+     * @Route("/search/insert/tag/{idVideo}/{idTag}", methods={"GET"}, name="app_insert_tag")
     */
     public function insertTag(int $idVideo, int $idTag) : Response{
         //insert tag in db
         $entityManager = $this->getDoctrine()->getManager();
         $video = $this->getDoctrine()->getRepository(Video::class)->find($idVideo);
-        $tag = $this->getDoctrine()->getRepository(Tag::class)->find($idTag);
+        $tag = $this->getDoctrine()->getRepository(Tags::class)->find($idTag);
         $video->addTag($tag);
         $entityManager->persist($video);
         $entityManager->flush();
@@ -129,7 +129,7 @@ class SearchController extends AbstractController
     }
 
     /**
-    * @Route("/create/tag/{tagName}", methods={"POST"}, name="app_insert_tag_perso")
+    * @Route("/search/create/tag/{tagName}", methods={"POST"}, name="app_insert_tag_perso")
     */
     public function createTagPerso(string $tagName) : Response{
         //insert tag in db
