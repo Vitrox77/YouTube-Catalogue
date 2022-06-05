@@ -4,10 +4,9 @@
 {% block pageTitle %}Statistiques{% endblock %}
 
 {% block body %}
-
-
+    <input type="hidden" class="d-none" id="stringParamId" value="{{ stringParam }}" />
     <div class="container">
-        <div class="title-part-graph" style="margin-top: 2%; margin-bottom: 5%">
+        <div class="title-part-graph my-3" >
             <h3>Statistiques du filtre</h3>
             <div class="under_title"></div>
         </div>
@@ -19,11 +18,10 @@
             </div>
 
             <div class="double-column">
-                <div class="container-graph graph-resume" style="margin-bottom: 4%">
+                <div class="container-graph graph-resume mb-3">
                     <div class="graph-resume-libelle">
-                        <p><span style="font-size: 1.7em; color: white">NOM DU FILTRE</span></p>
-                        <p>Nb de vidéos :</p>
-                        <p>Catégorie la plus présente :</p>
+                        <p><span style="font-size: 1.7em; color: white">Récap de la recherche</span></p>
+                        <p>Nb de vidéos filtrées : <span id="nb-videos"></p>
                         {#<p>Tag le plus présent :</p>#}
                         <p>Nb de vue moyenne :  <span id="mean-views"></span></p>
                         <p>Nb de like moyen : <span id="mean-likes"></span></p>
@@ -57,10 +55,6 @@
                 <a  id="btn-dates" href="{{ path('get_date_data', {stringParam : stringParam}) }}" class="btn btn-danger get-date-data mx-auto btn-graph" onclick="displayNone('btn-dates', 'myChartDate')">Charger les données (Date nbvues)</a>
             </div>
         </div>
-
-
-        <a href="{{ path('get_recap_data', {stringParam : stringParam}) }}" class="btn btn-danger get-recap-data mx-auto">Charger les données (Récap)</a>
-
 
     </div>
 

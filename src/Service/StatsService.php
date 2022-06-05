@@ -114,11 +114,15 @@ class StatsService
         }
         $nbTags = $nbTags / count($videos);
 
+        //nombre total de vidéos
+        $nbVideos = count($videos);
+
         $recapJsonData = [
             'nbViews' => intval($nbViews),
             'nbLikes' => intval($nbLikes),
             'duration' => $duration,
             'nbTags' => intval($nbTags),
+            'nbVideos' => $nbVideos,
         ];
         return $recapJsonData;
     }
