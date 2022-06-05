@@ -14,7 +14,6 @@
         <div class="row container-main justify-content-between" style="display: flex;">
             <div class="container-graph double-column" style="width: 45%;">
                 <canvas id="myChart" class="graph"></canvas>
-                <a id="btn-vid-filtre" href="{{ path('get_info_from_search', {stringParam : stringParam}) }}" class="btn btn-danger get-info-from-search mx-auto btn-graph" onclick="displayNone('btn-vid-filtre', 'myChart')">Charger les données (pie videos filtres)</a>
             </div>
 
             <div class="double-column">
@@ -31,7 +30,6 @@
 
                 <div class="container-graph">
                     <canvas id="myChartCategories" class="graph"></canvas>
-                    <a id="btn-categories" href="{{ path('get_categories_data', {stringParam : stringParam}) }}" class="btn btn-danger get-categories-data mx-auto btn-graph" onclick="displayNone('btn-categories', 'myChartCategories')">Charger les données (Categories)</a>
                 </div>
             </div>
         </div>
@@ -40,32 +38,20 @@
         <div class="row container-main justify-content-between">
             <div class="container-graph graph-40" >
                 <canvas id="myChartTags" class="graph"></canvas>
-                <a id="btn-tags" href="{{ path('get_tags_data', {stringParam : stringParam}) }}" class="btn btn-danger get-tags-data mx-auto btn-graph" onclick="displayNone('btn-tags', 'myChartTags')">Charger les données (Tags)</a>
             </div>
 
             <div class="container-graph graph-40">
                 <canvas id="myChartLikesViews" class="graph"></canvas>
-                <a id="btn-likes" href="{{ path('get_graph_json_data', {stringParam : stringParam}) }}" class="btn btn-danger get-graph-json-data mx-auto btn-graph" onclick="displayNone('btn-likes', 'myChartLikesViews')">Charger les données (graph 1 et 2)</a>
             </div>
         </div>
 
         <div class="row container-main justify-content-between">
             <div class="container-graph" >
                 <canvas id="myChartDate" class="graph"></canvas>
-                <a  id="btn-dates" href="{{ path('get_date_data', {stringParam : stringParam}) }}" class="btn btn-danger get-date-data mx-auto btn-graph" onclick="displayNone('btn-dates', 'myChartDate')">Charger les données (Date nbvues)</a>
             </div>
         </div>
 
     </div>
-
-    <script>
-        function displayNone(idButton, idCanva){
-            document.getElementById(idButton).style.display = "none";
-            document.getElementById(idCanva).style.visibility = "visible";
-
-        }
-    </script>
-
 
 {% endblock %}
 

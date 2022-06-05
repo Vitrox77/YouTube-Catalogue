@@ -57,11 +57,11 @@ Chart.register(
 require('chart.js');
 const $ = require('jquery');
 
-/*************************************************************************************************** */
+/******************************** FUNCTION RANDOM COLOR ******************************************** */
 function randomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
-/*************************************************************************************************** */
+/************************* FUNCTION SORT ARRAY OF JSON OBJECT BY VALUE ***************************** */
 function GetSortOrder(prop) {
     return function(a, b) {
         if (a[prop] > b[prop]) {
@@ -72,7 +72,7 @@ function GetSortOrder(prop) {
         return 0;
     }
 }
-/* *************************************************************************************************** */
+/* ***************************** FUNCTION CONVERT TIME OBJECT ************************************** */
 function fancyTimeFormat(duration) {
     // Hours, minutes and seconds
     var hrs = ~~(duration / 3600);
@@ -96,7 +96,7 @@ function loadGraphRecap(stringParam) {
         method: 'GET',
         url: '/stats/' + stringParam + '/getRecapData',
     }).done(function(data_recap) {
-        console.log("Button recap data");
+        console.log("Recap data");
         $('#mean-duration').text(fancyTimeFormat(data_recap.duration) + " (min:sec)");
         $('#mean-views').text(data_recap.nbViews);
         $('#mean-likes').text(data_recap.nbLikes);
@@ -104,11 +104,146 @@ function loadGraphRecap(stringParam) {
     });
 }
 /* *************************************************************************************************** */
+function loadPieChart(stringParam, myChart) {
+    $.ajax({
+        method: 'GET',
+        url: '/stats/' + stringParam + '/getInfoFromSearch',
+    }).done(function(data_json) {
+        console.log("Pie chart filter");
 
+        var filterCount = data_json.videosFilterCount;
+        var totalCount = data_json.videosTotalCount;
+
+        (myChart.config.data.datasets[0].data).push(filterCount);
+        (myChart.config.data.datasets[0].data).push(totalCount - filterCount);
+        (myChart.config.data.labels).push('Vidéos du filtre');
+        (myChart.config.data.labels).push('Reste des vidéos dans le catalogue');
+        myChart.update(); //on met a jour
+
+    });
+}
+/* *************************************************************************************************** */
+function loadDateChart(stringParam, myChartDate) {
+    $.ajax({
+        method: 'GET',
+        url: '/stats/' + stringParam + '/getDateData',
+    }).done(function(data_date) {
+        console.log("Button nb vues en fonction des dates");
+
+        for (var vid in data_date) {
+            let vidDate = data_date[vid].release_date.date;
+            data_date[vid].release_date = vidDate.substring(0, 10);
+        }
+        data_date.sort(GetSortOrder("release_date"));
+
+        console.log(data_date);
+
+        var nbViews = data_date.map(function(e) {
+            return e.nbViews;
+        });
+
+        var release_date = data_date.map(function(e) {
+            return e.release_date;
+        });
+        myChartDate.config.data.labels = release_date;
+        myChartDate.config.data.datasets[0].data = nbViews;
+        myChartDate.update();
+    });
+}
+/* *************************************************************************************************** */
+function loadTagsChart(stringParam, myChartTags) {
+    $.ajax({
+        method: 'GET',
+        url: '/stats/' + stringParam + '/getTagsData',
+    }).done(function(data_tags) {
+        console.log("Nb vues en fonction des tags");
+
+        //je trie le tableau par nombre de vues
+        data_tags.sort(GetSortOrder("nbViews"));
+
+        var nbViews = data_tags.map(function(e) {
+            return e.nbViews;
+        });
+
+        var nbTags = data_tags.map(function(e) {
+            return e.nbTags;
+        });
+
+        myChartTags.config.data.labels = nbViews;
+        myChartTags.config.data.datasets[0].data = nbTags;
+        myChartTags.update();
+
+    });
+}
+/* *************************************************************************************************** */
+function loadCategoriesChart(stringParam, myChartCategories) {
+    //GRAPH CATEGORIES
+    $.ajax({
+        method: 'GET',
+        url: '/stats/' + stringParam + '/getCategoriesData',
+    }).done(function(data_categories) {
+        console.log("Chart Categories les plus utilisées");
+
+        var names = data_categories.map(function(e) {
+            return e.name;
+        });
+
+        var nbVideos = data_categories.map(function(e) {
+            return e.count;
+        });
+
+        //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
+        var colors = [];
+        for (var i = 0; i < names.length; i++) {
+            colors.push(randomColor());
+        }
+        var colors2 = [];
+        for (var i = 0; i < names.length; i++) {
+            colors2.push(randomColor());
+        }
+
+        /* On remplit les données du graph */
+        myChartCategories.config.data.labels = names;
+        myChartCategories.config.data.datasets[0].data = nbVideos;
+        myChartCategories.config.data.datasets[0].backgroundColor = colors;
+        myChartCategories.update(); //on met a jour
+        console.log(myChartCategories.config.data.datasets[0].data);
+        console.log(nbVideos);
+
+    });
+}
+/* *************************************************************************************************** */
+function loadLikesViewsChart(stringParam, myChartLikesViews) {
+    $.ajax({
+        method: 'GET',
+        url: '/stats/' + stringParam + '/getData',
+    }).done(function(data_graph) {
+        console.log("Button nb vues en fonction des likes");
+
+        //je trie le tableau par nombre de vues
+        data_graph.sort(GetSortOrder("nbViews"));
+        console.log(data_graph);
+
+        var nbViews = data_graph.map(function(e) {
+            return e.nbViews;
+        });
+
+        //pourcentage du nombre de likes par rapport au nombre de vues
+        //var percentLikes = data_graph.map(function(e) { return (e.nbLikes / e.nbViews) * 100; });
+
+        var nbLikes = data_graph.map(function(e) {
+            return e.nbLikes;
+        });
+
+        myChartLikesViews.config.data.labels = nbViews;
+        myChartLikesViews.config.data.datasets[0].data = nbLikes;
+        myChartLikesViews.update();
+    });
+}
+/* *************************************************************************************************** */
 $(document).ready(function() {
     /* Je recupere le stringParam et j'appelle la fontion loadGraph */
     const stringParam = document.getElementById('stringParamId').value;
-    loadGraphRecap(stringParam);
 
     /* PARAMETRES DU PREMIER GRAPHIQUE : PART DE VIDEOS DU FILTRE*/
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -155,7 +290,6 @@ $(document).ready(function() {
             }
         }
     });
-
 
     /* PARAMETRES DU DEUXIEME GRAPHIQUE : LE GRAPH PAR RAPPORT AUX DATES */
     const ctx2 = document.getElementById('myChartDate').getContext('2d');
@@ -206,6 +340,7 @@ $(document).ready(function() {
             },
         }
     });
+    loadDateChart(stringParam, myChartDate);
 
     /* PARAMETRES DU TROISIEME GRAPHIQUE : NB DE VUES PAR RAPPORT AUX NB DE TAGS*/
     const ctx3 = document.getElementById('myChartTags').getContext('2d');
@@ -353,155 +488,12 @@ $(document).ready(function() {
         }
     });
 
-    $('.get-info-from-search').on('click', function(e) {
-        e.preventDefault();
-        var $link = $(e.currentTarget);
-        $.ajax({
-            method: 'GET',
-            url: $link.attr('href')
-        }).done(function(data_json) {
-            console.log("Button pie chart filtres");
-            console.log(data_json);
-            //console.log(data_json.videosFilterCount);
+    //je set tous les graphs dans l'ordre que je veux avec les paramètres
+    loadGraphRecap(stringParam);
+    loadPieChart(stringParam, myChart);
+    loadCategoriesChart(stringParam, myChartCategories);
+    loadTagsChart(stringParam, myChartTags);
+    loadLikesViewsChart(stringParam, myChartLikesViews);
+    loadDateChart(stringParam, myChartDate);
 
-            var filterCount = data_json.videosFilterCount;
-            var totalCount = data_json.videosTotalCount;
-
-            (myChart.config.data.datasets[0].data).push(filterCount);
-            (myChart.config.data.datasets[0].data).push(totalCount - filterCount);
-            (myChart.config.data.labels).push('Vidéos du filtre');
-            (myChart.config.data.labels).push('Reste des vidéos dans le catalogue');
-            myChart.update(); //on met a jour
-
-        });
-    });
-
-
-    //GRAPH CATEGORIES
-    $('.get-categories-data').on('click', function(e) {
-        e.preventDefault();
-        var $link = $(e.currentTarget);
-        $.ajax({
-            method: 'GET',
-            url: $link.attr('href')
-        }).done(function(data_categories) {
-            console.log("Button categorie les plus utilisées");
-            console.log(data_categories);
-
-            var names = data_categories.map(function(e) {
-                return e.name;
-            });
-
-            var nbVideos = data_categories.map(function(e) {
-                return e.count;
-            });
-
-            //on crée un tableau du nombre de donnees qui contiendra des couleurs randoms
-            var colors = [];
-            for (var i = 0; i < names.length; i++) {
-                colors.push(randomColor());
-            }
-            var colors2 = [];
-            for (var i = 0; i < names.length; i++) {
-                colors2.push(randomColor());
-            }
-
-            /* On remplit les données du graph */
-            myChartCategories.config.data.labels = names;
-            myChartCategories.config.data.datasets[0].data = nbVideos;
-            myChartCategories.config.data.datasets[0].backgroundColor = colors;
-            myChartCategories.update(); //on met a jour
-            console.log(myChartCategories.config.data.datasets[0].data);
-            console.log(nbVideos);
-
-        });
-    });
-
-    $('.get-tags-data').on('click', function(e) {
-        e.preventDefault();
-        var $link = $(e.currentTarget);
-        $.ajax({
-            method: 'GET',
-            url: $link.attr('href')
-        }).done(function(data_tags) {
-            console.log("Button nb vues en fonction des tags");
-            console.log(data_tags);
-
-            //je trie le tableau par nombre de vues
-            data_tags.sort(GetSortOrder("nbViews"));
-
-            var nbViews = data_tags.map(function(e) {
-                return e.nbViews;
-            });
-
-            var nbTags = data_tags.map(function(e) {
-                return e.nbTags;
-            });
-
-            myChartTags.config.data.labels = nbViews;
-            myChartTags.config.data.datasets[0].data = nbTags;
-            myChartTags.update();
-
-        });
-    });
-
-    $('.get-date-data').on('click', function(e) {
-        e.preventDefault();
-        var $link = $(e.currentTarget);
-        $.ajax({
-            method: 'GET',
-            url: $link.attr('href')
-        }).done(function(data_date) {
-            console.log("Button nb vues en fonction des dates");
-
-            for (var vid in data_date) {
-                let vidDate = data_date[vid].release_date.date;
-                data_date[vid].release_date = vidDate.substring(0, 10);
-            }
-            data_date.sort(GetSortOrder("release_date"));
-
-            console.log(data_date);
-
-            var nbViews = data_date.map(function(e) {
-                return e.nbViews;
-            });
-
-            var release_date = data_date.map(function(e) {
-                return e.release_date;
-            });
-            myChartDate.config.data.labels = release_date;
-            myChartDate.config.data.datasets[0].data = nbViews;
-            myChartDate.update();
-        });
-    });
-
-    $('.get-graph-json-data').on('click', function(e) {
-        e.preventDefault();
-        var $link = $(e.currentTarget);
-        $.ajax({
-            method: 'GET',
-            url: $link.attr('href')
-        }).done(function(data_graph) {
-            console.log("Button nb vues en fonction des likes");
-
-            //je trie le tableau par nombre de vues
-            data_graph.sort(GetSortOrder("nbViews"));
-            console.log(data_graph);
-
-            var nbViews = data_graph.map(function(e) {
-                return e.nbViews;
-            });
-
-            //pourcentage du nombre de likes par rapport au nombre de vues
-            //var percentLikes = data_graph.map(function(e) { return (e.nbLikes / e.nbViews) * 100; });
-
-            var nbLikes = data_graph.map(function(e) {
-                return e.nbLikes;
-            });
-
-            myChartLikesViews.config.data.labels = nbViews;
-            myChartLikesViews.config.data.datasets[0].data = nbLikes;
-            myChartLikesViews.update();
-        });
-    });
 });

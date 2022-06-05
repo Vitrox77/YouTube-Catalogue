@@ -3,7 +3,8 @@
     "app": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-52097c.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
         "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap-datepicker_-649c9d.js",
         "/build/app.js"
       ],
@@ -24,7 +25,8 @@
     "search": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-52097c.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
         "/build/search.js"
       ],
       "css": [
@@ -34,12 +36,23 @@
     "stats": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-52097c.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_expo-9e55a2.js",
         "/build/vendors-node_modules_chart_js_dist_chart_esm_js-node_modules_core-js_modules_es_array_map_js--f25a8c.js",
         "/build/stats.js"
       ],
       "css": [
         "/build/stats.css"
+      ]
+    },
+    "video": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
+        "/build/video.js"
+      ],
+      "css": [
+        "/build/video.css"
       ]
     }
   }

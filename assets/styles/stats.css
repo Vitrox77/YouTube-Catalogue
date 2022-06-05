@@ -1,26 +1,26 @@
-.graph-resume-libelle p span{
+.graph-resume-libelle p span {
     font-weight: normal;
     color: #0a0a0a;
 }
 
 
 /* ------------------------------------ PARTIE GRAPHIQUES --------------------------------------------------- */
-.graph{
-    visibility: hidden;
+
+.graph {
+    /*visibility: hidden;*/
     border-radius: 30px;
 }
 
-.btn-graph{
+.btn-graph {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
-.double-column{
+.double-column {
     width: 50%;
 }
-
 
 .chart-container {
     width: 50%;
@@ -36,7 +36,7 @@ canvas {
     height: 400px;
 }
 
-.container-graph{
+.container-graph {
     position: relative;
     background-color: white;
     /*border: solid red;*/
@@ -45,21 +45,22 @@ canvas {
     border-radius: 30px;
 }
 
-.graph-40{
+.graph-40 {
     width: 48%;
     /*margin: 2%;*/
 }
 
-.graph-resume{
+.graph-resume {
     background-color: #EE4145;
 }
 
-.title-part-graph{
+.title-part-graph {
     text-align: center;
     color: white;
     text-transform: uppercase;
     /*margin: 2% 0 3% 0;*/
-    letter-spacing: 3px;font-style: normal!important;
+    letter-spacing: 3px;
+    font-style: normal!important;
 }
 
 .under_title {
@@ -69,11 +70,11 @@ canvas {
     margin: 0 auto;
 }
 
-.container-main{
+.container-main {
     margin: 3% 0 5% 0;
 }
 
-.graph-resume-libelle{
+.graph-resume-libelle {
     padding: 2%;
 }
 
