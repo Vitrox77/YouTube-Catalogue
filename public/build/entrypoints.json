@@ -27,7 +27,7 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors-node_modules_core-js_internals_array-iteration_js-node_modules_core-js_internals_arra-244e52.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_for-each_js-node_modules_core-js_modules_es_arr-a77685.js",
+        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_min_js-node_modules_core-js_modules_e-2a7396.js",
         "/build/search.js"
       ],
       "css": [

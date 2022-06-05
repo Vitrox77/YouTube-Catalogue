@@ -3,7 +3,7 @@ import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 const $ = require('jquery');
 
 // array of video id
-var videosId = ["1","2"];
+var videosId = [];
 // array of tag id
 var tagsId = [];
 // Timeout pour la recherche des tags
@@ -15,10 +15,6 @@ var tooltipTriggerList = []
 
 $(document).ready(function() {
     toggleAllTooltips();
-    $('#tagsModal').on('shown.bs.modal', function () {
-        alert()
-        $('#search-tag').focus();
-    });
     var elem = inputSearch;
     // Save current value of element
     elem.data('oldVal', elem.val());
@@ -38,7 +34,7 @@ $(document).ready(function() {
     });
     
 
-    $(document).on("click", ".tag", function() {
+    $(document).on("click", ".tag-js", function() {
         var elem = $(this);
         addTagRecap(elem.text(), elem.attr('id'));
     });
@@ -49,17 +45,41 @@ $(document).ready(function() {
 
     // when clicking on button add tag, we add all the video to the video list 
     $('#addTagButton').click(function() {
+        videosId = []
         $('.form-check-video-res:checkbox:checked').each(function () {
-            videosId.push($(this).attr('id'));
-        });
-        alert(videosId);
-        
+            //check if the id is not in videosId already
+            var videoId = $(this).attr('id')
+            if ($.inArray(videoId, videosId) == -1) {
+                videosId.push($(this).attr('id'));
+            }
+        });        
+        if(videosId.length <= 0){
+            alert("Pas de vidéos sélectionnées !");
+            //hide submit tag button
+            $('#submit-tags').attr('disabled', true);
+        }else{
+            $('#submit-tags').attr('disabled', false);
+        }
     });
+    // When clicking the select all checkbox, make all checbox to checked
+    $('#CheckBoxSelectAll').change(function() {
+        var videosCheckbox = $('.form-check-video-res:checkbox')
+        if(this.checked) {
+            videosCheckbox.each(function () {
+                $(this).prop('checked', true);
+            });
+        }else{
+            videosCheckbox.each(function () {
+                $(this).prop('checked', false);
+            });
+        }
+    });
+
     // when clicking on button submit tag, call the function submitTags
     $('#submit-tags').click(function() {
-        // alert(videosId)
-        // alert(tagsId)
         submitTags();
+        //empty array of tags
+        tagsId = [];
         resetTagRecap();
         
     });
@@ -68,8 +88,6 @@ $(document).ready(function() {
         // collect the string if the input called search-tag
         var tagName = $('#search-tag').val();
         var tagId = $('#search-tag').attr('id');
-        alert(tagId);
-        // alert(tagName);
         if(tagName.length > 0) {
             addNewTag(tagName);
         }
@@ -77,7 +95,6 @@ $(document).ready(function() {
 });
 
 function startSearchingTags(elem) {
-    // alert("Searching tags");
     inputSearchTimeout = setTimeout(function() {
         // Updated stored value
     elem.data('oldVal', elem.val());
@@ -110,7 +127,6 @@ function startSearchingTags(elem) {
                 toggleAllTooltips();
             },
             error: function(data) {
-                // alert();
                 showCreateTagButton();
             }
         });
@@ -135,12 +151,12 @@ function hideAllTooltips(){
 }
 
 function addTagUser(tagName, tagId) {
-    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\" >" + tagName + "</div><div>";
+    var div_data = $('#tag-user').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag-js ellipsis m-2\" id=\""+ tagId +"\" >" + tagName + "</div><div>";
     $('#tag-user').html(div_data);
 }
 
 function addTagVideo(tagName, tagId) {
-    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag ellipsis m-2\" id=\""+ tagId +"\">" + tagName + "</div><div>";
+    var div_data = $('#tag-video').html() + "<div class=\"col-4 tags-wrap\" data-bs-toggle='tooltip' data-bs-placement='top' title='"+tagName+"'><div class=\"tag-js ellipsis m-2\" id=\""+ tagId +"\">" + tagName + "</div><div>";
     $('#tag-video').html(div_data);
 }
 
@@ -188,13 +204,8 @@ function submitTags() {
             $.ajax({
                 url: 'search/insert/tag/' + videoId + '/' + tagId,
                 type: 'GET',
-                data: {
-                    'videoId': videoId,
-                    'tagId': tagId,
-                },
-                dataType: 'json',
                 success: function(data) {
-                    // alert(data);
+                    console.log(data);
                 }
             });
         });
