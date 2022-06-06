@@ -3,6 +3,10 @@
     width: 50%;
 }
 
+.site-infos {
+    font-family: 'Roboto', sans-serif;
+}
+
 .border-radius-input {
     border-radius: 27.5rem 0 0 27.5rem !important;
     margin: 0 !important;
