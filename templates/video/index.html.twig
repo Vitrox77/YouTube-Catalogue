@@ -1,59 +1,85 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VideoController!{% endblock %}
+{% block title %}Détails d'une vidéo{% endblock %}
 
 {% block body %}
-{# $("body").children().first().before($(".modal")); #}
+<input type="hidden" class="d-none" id="videoId" value="{{ video.id }}" />
 <div class="container-main ">
     <h3 class="fw-bold">{{ video.title }} </h3>
-    <div class="under_title"></div>
-
-    {# Modal #}
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    {# End modal #}
-
-    
+    <div class="under_title mb-3"></div>
     <div class="row mt-1">
+        <!-- COL 1 -->
         <div class="col-md-5">
             <div class="proj-div">
                 <img src="{{ video.thumbnail }}" alt="" width="400" height="300">
-                <button type="button" class="text-light btn btn-danger mt-1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Launch demo modal
-                </button>       
+                <a class="glightbox_video" data-bs-toggle="modal" data-bs-target="#videoModal"> 
+                  <svg width="110" height="110" viewBox="0 0 131 131" fill="none">
+                      <path class="inner-circle" d="M65 21C40.1488 21 20 41.1488 20 66C20 90.8512 40.1488 111 65 111C89.8512 111 110 90.8512 110 66C110 41.1488 89.8512 21 65 21Z" fill="white"></path>
+                      <circle class="outer_circle" cx="65.5" cy="65.5" r="64" stroke="white"></circle>
+                      <path class="play" fill-rule="evenodd" clip-rule="evenodd" d="M60 76V57L77 66.7774L60 76Z" fill="#BF2428"></path>
+                  </svg>
+                </a> 
             </div>
+            <p><span class="fw-bold">Date de sortie : </span>{{ video.statistic.releaseDate|date('d/m/Y') }}</p>
+            <p><span class="fw-bold">Durée (sec) : </span>{{ video.statistic.duration }}</p>
+            <p><span class="fw-bold">Nombre de vues : </span>{{ video.statistic.nbViews }}</p>
+            <p><span class="fw-bold">Nombre de likes : </span>{{ video.statistic.nbLikes }}</p>
+            
         </div>
-
-        <div class="col-md-6">
-            <p>Description : {{ video.description }}</p>
-            <p>Catégorie : {{ video.category.name }}</p>
-            <p>Date de sortie : {{ video.statistic.releaseDate|date('d/m/Y') }}</p>
-            <p>Durée : {{ video.statistic.duration }}</p>
-            <p>Nombre de vues : {{ video.statistic.nbViews }}</p>
-            <p>Nombre de likes : {{ video.statistic.nbLikes }}</p>
+        <!-- COL 2 -->
+        <div class="col-md-7 fs-5">
+            <p><span class="fw-bold">Catégorie : </span>{{ video.category.name }}</p>
+            <p><span class="fw-bold ">Description : </span>{{ video.description }}</p>
         </div>
-    </div>
-
-    <div class="row my-1">
-        <iframe width="420" height="500" src="https://www.youtube.com/embed/{{ video.url }}"></iframe>
     </div>
 </div>
+
+<div class="row container-graphs justify-content-between mt-2">
+  <div class="container-graph graph-40" >
+    <h4 class="fw-bold">Tags</h4>
+    <div class="under_title mb-3"></div>
+    <div class="d-inline-flex me-2">Tag d'origine</div><div class="d-inline-flex pastille-tag pastille-rouge"></div><br>
+    <div class="d-inline-flex me-2">Tag perso</div><div class="d-inline-flex pastille-tag pastille-perso"></div><br>
+    <div class="container-tags row justify-content-center">
+      {% for tag in video.tags %}
+        {% if tag.isTagPerso == false %}
+          <div class="tag col-3 m-1 px-1 pastille-rouge text-center">
+              {{tag.name}}
+          </div>
+        {% else %}
+          <div class="tag col-3 mx-1 px-1 pastille-perso text-center">
+              {{tag.name}}
+          </div>
+        {% endif %}
+      {% else %}
+        Aucun tag
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="container-graph graph-40">
+      <canvas id="myChartOneVideo" class="graph" class="200px"></canvas>
+  </div>
+</div>
+
+{# Modal #}
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="videoModalLabel">{{ video.title }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <iframe width="100%" height="500px" src="https://www.youtube.com/embed/{{ video.url }}"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+{# End modal #}
 {% endblock %}
 
 

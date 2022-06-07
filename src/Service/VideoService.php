@@ -2,22 +2,20 @@
 
 namespace App\Service;
 
-use App\Entity\Uploader;
-
 class VideoService
 {
-    public function getVideoJson($uploader, $title)
+
+    public function getVideoJson($video, $allVideosOfCategory)
     {
-       $videosFromUploader = $uploader->getVideo();
-       foreach ($videosFromUploader as $video) {
-           $jsonArray[] = [
-               'title' => $video->getStatistic()->getTitle(),
-               'nbViews' => $video->getStatistic()->getNbViews(),
-               'nbLikes' => $video->getStatistic()->getNbLikes(),
-           ];
-        }
-        //ajouter la variable titre à la suite du jsonArray
-        $jsonArray[] = $title;
+       $nbViews = $video->getStatistic()->getNbViews();
+       $nbViewsTotal = 0;
+       foreach ($allVideosOfCategory as $videoOfCategory) {
+           $nbViewsTotal += $videoOfCategory->getStatistic()->getNbViews();
+       }
+        $jsonArray = [
+            'nbVuesAllVideos' => $nbViewsTotal,
+            'nbViews' => $nbViews,
+        ];
 
         return $jsonArray;
     }

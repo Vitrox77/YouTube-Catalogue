@@ -107,4 +107,14 @@ class VideoRepository extends ServiceEntityRepository
         $qb = $qb->getResult();
         return $qb;
     }
+
+    public function findByCategory($category){
+        $qb = $this->createQueryBuilder('v')
+            ->leftJoin('v.category', 'c')
+            ->where('c.name = :category')
+            ->setParameter('category', $category);
+        $qb = $qb->getQuery();
+        $qb = $qb->getResult();
+        return $qb;
+    }
 }
