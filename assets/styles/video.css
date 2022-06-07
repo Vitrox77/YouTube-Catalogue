@@ -114,6 +114,7 @@ canvas {
 
 .pastille-rouge {
     background-color: #EE4145;
+    border: #EE4145 solid 1px;
 }
 
 .tag {

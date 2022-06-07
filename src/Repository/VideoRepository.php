@@ -77,6 +77,7 @@ class VideoRepository extends ServiceEntityRepository
             ->leftJoin('v.tags', 't')
             ->where('v.title LIKE :keyword')
             ->orWhere('t.name LIKE :keyword')
+            ->orWhere('v.description LIKE :keyword')
             ->setParameter('keyword', '%'.$keyword.'%')
             //Partie des stats
             ->leftJoin('v.statistic', 's')
