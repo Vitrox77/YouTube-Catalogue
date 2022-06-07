@@ -14,11 +14,15 @@ class UniqueUrlType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('unique_link', UrlType::class)
+            ->add('unique_link', UrlType::class, [
+                'attr' => [
+                    'placeholder' => 'Exemple de lien : https://www.youtube.com/watch?v=c0ruHxX7r3M',
+                ],
+            ])
 
             ->add('button', SubmitType::class,
                 [
-                    'label' => 'Download video',
+                    'label' => 'Télécharger',
                     'attr' => [
                         'class' => 'btn btn-danger border-radius-button'
                     ],

@@ -21,7 +21,7 @@ body {
 .nav-bar .img-banniere {
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     height: 90%;
     width: 100%;
     z-index: -2;
@@ -43,6 +43,11 @@ body {
 
 .second-main-title:hover {
     color: rgb(32, 33, 49);
+}
+
+img,
+svg {
+    vertical-align: inherit!important;
 }
 
 

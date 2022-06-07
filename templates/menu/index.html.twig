@@ -41,20 +41,16 @@
                 <div class="input-group mb-3">
                     {{ form_widget(URLform.unique_link, {'attr': {'class': 'form-control border-radius-input'}}) }}
                     {{ form_widget(URLform.button, {'attr': {'class': 'btn btn-danger border-radius-button'}}) }}
-
-                    {# <input class="form-control border-radius-input" onkeyup="url_video()" type="text" name="search" placeholder="Saisir une URL"> #}
-                    {# <input class="btn btn-danger border-radius-button" type="button" value="Download"> #}
                 </div>
             </div>
             <div class="download_video text-center">
-                <a class="text-danger" type="button"data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Import CSV file</u></a>
+                <a class="text-danger" type="button" data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Import CSV file</u></a>
             </div>
         </div>
     {{ form_end(URLform) }}
 
-    <div class="container site-infos text-center my-5 text-light">
-        <p>Ici les infos concernant le site et le projet (à voir commment le mettre ?)</p>
-    </div>
+
+    
 
 {% endblock %}
 
