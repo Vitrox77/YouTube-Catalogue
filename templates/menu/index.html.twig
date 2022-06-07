@@ -49,55 +49,8 @@
         </div>
     {{ form_end(URLform) }}
 
-    <a class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#infosYtCatalogue">Infos sur yt Catalogue</a>
 
-    <div class="modal fade" id="infosYtCatalogue" tabindex="-1" aria-labelledby="openInfosYtCata" aria-hidden="true">
-        <div class="modal-dialog modal-xl ">
-                <div class="modal-content modal-rounded p-2">
-                    <div class="modal-header">
-                        <h2 class="modal-title">Le projet Youtube Catalogue c'est quoi ?</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body site-infos">
-                        <p class="fs-5">Objectifs du projet</p>
-                        <p>Ce projet d'étude a été réalisé par des étudiants de 4ème année en filière Informatique et Applications de l'ESIEE Paris. 
-                        Il a pour but d'aider des sociologues du Centre National de la Recherche dans leurs travaux concernant l'application Youtube.
-                        L'objectif est de récupérer des informations sur des vidéos choisies par les scientifiques afin de les analyser simplement, de les catégoriser, ou de les comparer entre elles.
-                        Il y aura pour cela une page contenant des graphiques et à terme du machine learning pour analyser plus en détails les vidéos.</p>
-                        <p class="fs-5 ">L'insertion des vidéos</p>
-                        <p class="mb-0">Afin de récupérer ces informations, il n'y a qu'à insérer directement un lien vers une vidéo Youtube ou alors importer un fichier CSV contenant une liste de vidéos.
-                        Le téléchargement débutera lors du clic sur le bouton "Télécharger".</p>
-                        <p class=" fst-italic mt-0">Ci dessous un exemple de fichier CSV type (pas de "," ni ";" ) :</p>
-                        <img src="{{ asset('images/CSV_example.PNG') }}" alt="Exemple de fichier CSV" class="csv-example mb-0" loading="lazy">
-                        <p class="fs-5 mt-3">Les filtres et la recherche</p>
-                        <p>Pour accéder à la page de recherche il faut cliquer sur "Catalogue". Une fois dessus vous aurez accès à plusieurs paramètres pour rechercher les vidéos.
-                        <b>Si aucun champ n'est rempli alors toutes les vidéos déjà téléchargées apparaîtront.</b>
-                        Pour le moment la recherche par mot clé ne fonctionne qu'avec un seul mot.
-                        Vous pouvez enregistrer le filtre pour le réutiliser plus tard en cochant le bouton "Save" et en mettant un nom.</p>
-                        <p class="fs-5 mt-3">Les résultats de la recherche</p>
-                        <p>Les résultats de votre recherche s'affichent donc ensuite. Vous pouvez cliquer pour voir les statistiques des vidéos qui sont ressortis de la recherche.
-                        Pour avoir des infos sur une seule vidéo, vous pouvez cliquer sur le titre de celle-ci.</p>
-                        <p class="fs-5 mt-3">Les tags des videos</p>
-                        <p>Les vidéos contiennent toutes des tags. Les tags peuvent être soit "Video" soit "User". Les tags Vidéo sont les tags insérés par les vidéastes eux-même.
-                        Les tags "User" sont les tags qu'un utilisateur de Youtube-Catalogue peut créer et attribuer lui-même à une ou plusieurs vidéos afin d'identifier certains groupes de vidéos </p>
-                        <p class="fs-5 mt-3">Les statistiques</p>
-                        <p>Les graphiques se chargent automatiquement les uns à la suite des autres. 
-                        Cela peut prendre un certain temps si le résultat de votre recherche a ressorti un très grand nombre de vidéos.
-                        Cette partie à une marge d'évolution car elle pourra intégrer par la suite du machine learning sur les miniatures des vidéos ou même sur les vidéos complètes.</p>
-                        <p class="fs-5 mt-3">Les infos d'une seule vidéo</p>
-                        <p>Sur cette page vous pourrez regarder plus en détails une vidéo en voyant tous ses tags, la description complète etc.
-                        Vous pouvez même la visionner.</p>
-                        <p class="fs-5 mt-3">Les évolutions ?</p>
-                        <p>Comme évoqué précédemment, l'évolution majeure possible est celle de l'apprentissage automatique. 
-                        En intégrant celle-ci, on pourra analyser plus en profondeur les vidéos. Par exemple, on pourra voir si une vidéo qui contient plus de rouge sur sa miniature a fait plus de vues qu'une autre.
-                        Une autre évolution possible serait de faire une recherche par Youtubeur pour comparer les vidéos d'une seule personne.
-                        On pourrait également ajouter une page "Versus" pour comparer seulement deux vidéos entre elles et mettre d'autres types de graphiques plus spécifiques.</p>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
 {% endblock %}
 
