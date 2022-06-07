@@ -36,7 +36,7 @@
 
 
     {{ form_start(URLform) }}
-        <div class="container input-center" style="margin-top: 10%">
+        <div class="container input-center mt-2" >
             <div class="center">
                 <div class="input-group mb-3">
                     {{ form_widget(URLform.unique_link, {'attr': {'class': 'form-control border-radius-input'}}) }}
@@ -45,6 +45,17 @@
             </div>
             <div class="download_video text-center">
                 <a class="text-danger" type="button" data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Import CSV file</u></a>
+                <p class="text-light">
+                {% if videoTitle is defined %}
+                    {% if videoTitle is iterable %}
+                        {% for index, videoInfo in videoTitle %}
+                            Vidéo ({{index}}) : {{ videoInfo }}<br>
+                        {% endfor %}
+                    {% else %}
+                        Vidéo téléchargée : {{ videoTitle }}
+                    {% endif %}
+                {% endif %}
+                </p>
             </div>
         </div>
     {{ form_end(URLform) }}

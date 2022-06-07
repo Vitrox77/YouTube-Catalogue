@@ -25,17 +25,17 @@ class UniqueVideoController extends AbstractController
     }
 
     /**
-     * @Route("/video/{id}/getData", name="get_video_json_data", methods={"GET"})
+     * @Route("/stats/{videoId}/getDataOneVideo", name="get_video_json_data", methods={"GET"})
      */
-    public function getVideoData($id, VideoService $videoService): JsonResponse
+    public function getVideoData($videoId, VideoService $videoService): JsonResponse
     {
-        $video  = $this->getDoctrine()->getRepository(Video::class)->find($id);
-        $videoTitle = $video->getTitle();
-        $videoUploader = $video->getUploader();
+        $video  = $this->getDoctrine()->getRepository(Video::class)->find($videoId);
+        $category = $video->getCategory()->getName();
+        $allVideosOfCategory = $this->getDoctrine()->getRepository(Video::class)->findByCategory($category);
 
-        $jsonData = $videoService->getVideoJson($videoUploader , $videoTitle);
+        $jsonData = $videoService->getVideoJson($video, $allVideosOfCategory);
 
-        return new JsonResponse('test') ;
+        return new JsonResponse($jsonData) ;
     }
 
 }

@@ -1,0 +1,125 @@
+.proj-div {
+    position: relative;
+    width: 100%;
+}
+
+
+/* Make the image responsive */
+
+.proj-div img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
+
+
+/* ------------------------------------ PARTIE GLOABLE --------------------------------------------------- */
+
+.container-main {
+    background-color: white;
+    padding: 2%;
+    width: 80%;
+    border-radius: 30px;
+    margin: 0 auto;
+}
+
+h3 {
+    font-style: normal!important;
+    letter-spacing: 3px;
+}
+
+.under_title {
+    width: 70px;
+    height: 2px;
+    background-color: #EE4145;
+    margin-top: -8px;
+}
+
+
+/* ------------------------------------ PLAY BUTTON --------------------------------------------------- */
+
+.glightbox_video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.outer_circle {
+    stroke-width: 3;
+    stroke-dasharray: 410;
+    stroke-dashoffset: 0;
+    stroke-linecap: square;
+    transition: all .4s ease-out;
+}
+
+.glightbox_video:hover .outer_circle {
+    stroke-dashoffset: 410;
+    transition: stroke .7s .4s ease-out, stroke-dashoffset .4s ease-out
+}
+
+.glightbox_video:hover .inner-circle {
+    fill: #EE4145;
+    transition: fill .4s .3s ease-out;
+}
+
+.glightbox_video:hover .play {
+    fill: #ffffff;
+    transition: fill .4s .3s ease-out;
+}
+
+
+/* ------------------------------------ PARTIE GRAPHS --------------------------------------------------- */
+
+.graph-40 {
+    width: 49%;
+    /*margin: 2%;*/
+}
+
+.graph {
+    /*visibility: hidden;*/
+    border-radius: 30px;
+}
+
+.container-graph {
+    position: relative;
+    background-color: white;
+    /*border: solid red;*/
+    /*width: 40%;*/
+    padding: 1% 2% 1% 2%;
+    border-radius: 30px;
+}
+
+canvas {
+    background: white;
+    height: 400px;
+}
+
+.container-graphs {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.pastille-tag {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+.pastille-perso {
+    background-color: white;
+    color: #EE4145!important;
+    border: #EE4145 solid 1px;
+}
+
+.pastille-rouge {
+    background-color: #EE4145;
+    border: #EE4145 solid 1px;
+}
+
+.tag {
+    color: white;
+    border-radius: 10px;
+    width: 30%;
+    height: auto;
+}

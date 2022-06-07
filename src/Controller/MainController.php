@@ -197,7 +197,7 @@ class MainController extends AbstractController
 
                         //toDo enregistrer en base les infos
                         $newVideo = new Video();
-                        $videoTitle = [$json['result']['title']];
+                        $videoTitle[] = [$json['result']['title']];
                         
                         /* ************************ GESTION DE LA CATEGORIE ****************************** */
                         $category = $json['result']['categories'][0];
@@ -259,7 +259,9 @@ class MainController extends AbstractController
                         ]);
                         //on set les donnees pour stats
                         $newStats->setVideo($video);
-                        $newStats->setNbLikes($json['result']['like_count']);
+                        if($json['result']['like_count']){
+                            $newStats->setNbLikes($json['result']['like_count']);
+                        }
                         $newStats->setDuration($json['result']['duration']);
                         $newStats->setNbViews($json['result']['view_count']);
                         $newStats->setAgeLimit($json['result']['age_limit']);
@@ -284,14 +286,15 @@ class MainController extends AbstractController
                                     $newTag->setIsTagPerso(0);
                                     $newTag->addVideo($video);
                                     $newTag->setName($tag);
+
+                                    $entityManager->persist($newTag);
+                                    
                                 }else{
                                     //si le tag existe, on ajoute la video à celui-ci
                                     $searchedTag->addVideo($video);
                                 }
-                                
-                                //j'envoi en bdd
-                                $entityManager->persist($newTag);
                                 $entityManager->flush();
+                                
                             }
                         }
 

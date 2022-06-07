@@ -77,6 +77,7 @@ class VideoRepository extends ServiceEntityRepository
             ->leftJoin('v.tags', 't')
             ->where('v.title LIKE :keyword')
             ->orWhere('t.name LIKE :keyword')
+            ->orWhere('v.description LIKE :keyword')
             ->setParameter('keyword', '%'.$keyword.'%')
             //Partie des stats
             ->leftJoin('v.statistic', 's')
@@ -104,6 +105,16 @@ class VideoRepository extends ServiceEntityRepository
             }
             $qb = $qb->getQuery();
             // error_log("\n".date("H:i:s").":\n".print_r($qb->getSQL(),true),3,'C:\wamp64\logs\log_perso.log');
+        $qb = $qb->getResult();
+        return $qb;
+    }
+
+    public function findByCategory($category){
+        $qb = $this->createQueryBuilder('v')
+            ->leftJoin('v.category', 'c')
+            ->where('c.name = :category')
+            ->setParameter('category', $category);
+        $qb = $qb->getQuery();
         $qb = $qb->getResult();
         return $qb;
     }
