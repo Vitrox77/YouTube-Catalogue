@@ -110,20 +110,23 @@ function startSearchingTags(elem) {
             },
             dataType: 'json',
             success: function(data) {
-                if (data.length == 2) {
-                    showCreateTagButton();
-                }else {
-                    hideCreateTagButton();
-                }
+                var hasTagUser = false;
                 var parsed_data = JSON.parse(data);        
                 resetAllTags();
                 parsed_data.forEach(element => {
                     if (element.isTagPerso) {
                         addTagUser(element.name, element.id);
+                        hasTagUser = true;
                     } else {
                         addTagVideo(element.name, element.id);
                     }
                 });
+                if (!hasTagUser) {
+                    showCreateTagButton();
+                }else {
+                    hideCreateTagButton();
+                }
+
                 toggleAllTooltips();
             },
             error: function(data) {
