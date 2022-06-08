@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class CallApiService
 {
@@ -15,11 +16,20 @@ class CallApiService
 
     public function getVideoJson($videoId): array
     {
-        $response = $this->client->request(
-            'GET',
-            'http://127.0.0.1:5001/api/video/download/'.$videoId,
-        );
-        
+        try{
+            $response = $this->client->request(
+                'GET',
+                'http://127.0.0.1:5001/api/video/download/'.$videoId,
+                ['timeout' => PHP_INT_MAX]
+            );
+            $statusCode = $response->getStatusCode();
+        }catch (\Exception $e){
+            throw new \Exception('Error while calling API, ERROR : 500 - ' . $e->getMessage());
+        }
+        if($statusCode != 200){
+            $response = json_decode($response->getContent(false), true);
+            throw new \Exception('Error while calling API, ERROR : ' . $response['code'] . ' - ' . $response['error']);
+        }
         return $response->toArray();
     }
 }

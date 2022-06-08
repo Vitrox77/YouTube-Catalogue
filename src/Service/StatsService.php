@@ -11,13 +11,13 @@ class StatsService
         $jsonArray = [];
 
         foreach ($tabVideo as $video) {
-            $statsVideo = new Statistics();
-            $statsVideo = $video->getStatistic();
-            $jsonArray[] = [
-                'name' => $video->getTitle(),
-                'nbViews' => $statsVideo->getNbViews(),
-                'nbLikes' => $statsVideo->getNbLikes(),
-            ];
+            if($video->getStatistic() != null){
+                $jsonArray[] = [
+                    'name' => $video->getTitle(),
+                    'nbViews' => $video->getStatistic()->getNbViews(),
+                    'nbLikes' => $video->getStatistic()->getNbLikes(),
+                ];
+            }
         }
         return $jsonArray;
     }
@@ -59,10 +59,12 @@ class StatsService
         //je fais un tableau qui contient le nom de la video, le nombre de tags, et le nombre de vue
         $tagsJsonData = [];
         foreach ($videos as $video) {
-            $tagsJsonData[] = [
-                'nbTags' => count($video->getTags()),
-                'nbViews' => $video->getStatistic()->getNbViews(),
-            ];
+            if($video->getStatistic() != null){
+                $tagsJsonData[] = [
+                    'nbTags' => count($video->getTags()),
+                    'nbViews' => $video->getStatistic()->getNbViews(),
+                ];
+            }
         }
         
         return $tagsJsonData;
@@ -73,10 +75,13 @@ class StatsService
         //je fais un tableau qui contient le nom de la video, le nombre de tags, et le nombre de vue
         $dateJsonData = [];
         foreach ($videos as $video) {
-            $dateJsonData[] = [
-                'release_date' => $video->getStatistic()->getReleaseDate(),
-                'nbViews' => $video->getStatistic()->getNbViews(),
-            ];
+            if($video->getStatistic() != null)
+            {
+                $dateJsonData[] = [
+                    'release_date' => $video->getStatistic()->getReleaseDate(),
+                    'nbViews' => $video->getStatistic()->getNbViews(),
+                ];
+            }
         }
         return $dateJsonData;
     }
@@ -88,32 +93,27 @@ class StatsService
         
         //nombre de vues en moyenne sur les vidéos
         $nbViews = 0;
-        foreach ($videos as $video) {
-            $nbViews += $video->getStatistic()->getNbViews();
-        }
-        $nbViews = $nbViews / count($videos);
-
-        //nombre de likes en moyenne sur les vidéos
         $nbLikes = 0;
-        foreach ($videos as $video) {
-            $nbLikes += $video->getStatistic()->getNbLikes();
-        }
-        $nbLikes = $nbLikes / count($videos);
-
-        //duree moyenne des vidéos
         $duration = 0;
-        foreach ($videos as $video) {
-            $duration += $video->getStatistic()->getDuration();
-        }
-        $duration = $duration / count($videos);
-
-        //nombre de tags en moyenne 
         $nbTags = 0;
-        foreach ($videos as $video) {
-            $nbTags += count($video->getTags());
-        }
-        $nbTags = $nbTags / count($videos);
 
+        foreach ($videos as $video) {
+            if($video->getStatistic() != null)
+            {
+                $nbViews += $video->getStatistic()->getNbViews();
+                $nbLikes += $video->getStatistic()->getNbLikes();
+                $duration += $video->getStatistic()->getDuration();   
+            }
+            if($video->getTags() != null)
+            {
+                $nbTags += count($video->getTags());
+            }
+        }
+
+        $nbViews = $nbViews / count($videos);
+        $nbLikes = $nbLikes / count($videos);
+        $duration = $duration / count($videos);
+        $nbTags = $nbTags / count($videos);
         //nombre total de vidéos
         $nbVideos = count($videos);
 

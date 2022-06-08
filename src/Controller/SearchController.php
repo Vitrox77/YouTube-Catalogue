@@ -51,7 +51,7 @@ class SearchController extends AbstractController
             $filterName = $data['name'];
 
             //si la checkbox wantSave est cochée on enregistre en bdd
-            if($filterName =! null){
+            if(!empty($filterName)){
                 $newFilter = new Filters();
                 $newFilter->setMinLikes($min_likes);
                 $newFilter->setMaxLikes($max_likes);

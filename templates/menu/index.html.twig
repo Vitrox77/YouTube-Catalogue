@@ -45,13 +45,18 @@
             <div class="download_video text-center">
                 <a class="text-danger" type="button" data-bs-toggle="modal" data-bs-target="#importSCVModal"><u>Import CSV file</u></a>
                 <p class="text-light">
-                {% if videoTitle is defined %}
-                    {% if videoTitle is iterable %}
-                        {% for index, videoInfo in videoTitle %}
-                            Vidéo ({{index}}) : {{ videoInfo }}<br>
+                {% if error is defined %}
+                    {% if error is iterable %}
+                        {% for index, errorText in error %}
+                            Vidéo ({{index + 1}}) : {{ errorText }}<br>
+                            {% if error is iterable %}
+                                {% for text in errorText %}
+                                {{ text }}<br>
+                                {% endfor %}
+                            {% endif %}
                         {% endfor %}
                     {% else %}
-                        Vidéo téléchargée : {{ videoTitle }}
+                        {{ error }}
                     {% endif %}
                 {% endif %}
                 </p>
